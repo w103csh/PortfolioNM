@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  div.flex-content-container
+    div.flex-content-left
+    div.flex-content-center
+      div.form-container
+        if message
+          p.error.align-center= message
+        form.signup-form(action='/signup' method='post')
+          table.form-table
+            colgroup
+              col.label-col(style='width: 30%')
+              col.input-col(style='width: 70%')
+            tr
+              td
+                label Username
+              td
+                input(type='text' name='username')
+            //- tr
+            //-   td
+            //-     label First name
+            //-   td
+            //-     input(type='text' name='firstname')
+            //- tr
+            //-   td
+            //-     label Last name
+            //-   td
+            //-     input(type='text' name='lastname')
+            tr
+              td
+                label Email
+              td
+                input(type='text' name='email')
+            tr
+              td
+                label Password
+              td
+                input(type='password' name='password')
+            tr
+              td.primary-container(colspan=2)
+                input.primary.login(type='submit' value='Sign Up')
+    div.flex-content-right
