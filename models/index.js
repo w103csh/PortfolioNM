@@ -117,6 +117,9 @@ function registerUser(req, username, password, done) {
 //   finds any RememberMeTokens removing them from the database,
 //   and returns a User.
 //   If first argument is given we ignore user
+//
+//   Decided not to use the user arg and instead delete old tokens
+//   from the database using a TTL index. 
 function consumeRememberMeToken(token, user, done) {
   // Standard method used for the remember-me-strategy
   if (token) {
@@ -182,6 +185,7 @@ function issueRememberMeToken(user_id, done) {
   var newToken = new RememberMeToken();
   newToken.token = tokgen.generate();
   newToken.user_id = user_id;
+  newToken.createdDate = new Date();
 
   // save the token
   newToken.save(function(err) {

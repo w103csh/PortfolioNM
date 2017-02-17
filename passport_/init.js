@@ -35,8 +35,9 @@ module.exports = function() {
       // asynchronous verification, for effect...
       process.nextTick(function() {
         models.validateUsernameAndPassword(username, password, function(err, user, info) {
+          // Doing this using a mongo TTL index instead
           // consume any old tokens
-          models.consumeRememberMeToken(null, user, ()=>{});
+          // models.consumeRememberMeToken(null, user, ()=>{});
           return done(err, user, info);
         });
       });
@@ -55,7 +56,7 @@ module.exports = function() {
     }
   ));
 
-  // Remember Me cookie strategy
+  // Remember-Me cookie strategy
   //   This strategy consumes a remember me token, supplying the user the
   //   token was originally issued to.  The token is single-use, so a new
   //   token is then issued to replace it.

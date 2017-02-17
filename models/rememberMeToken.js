@@ -9,6 +9,7 @@ var rememberMeTokenSchema = new mongoose.Schema(
   {
     token: { type: String },
     user_id: { type: mongoose.Schema.ObjectId },
+    createdDate: { type: Date },
   },
   { collection: 'rememberMeTokens'}
 );

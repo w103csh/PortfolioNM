@@ -29,10 +29,10 @@ passport.issueRemeberMeCookie = function(req, res, next) {
   models.issueRememberMeToken(req.user.id, function(err, token) {
     // pass error along
     if (err) { return next(err); }
-    // sixty second cookie for test
+    // twenty second cookie for test
     //res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 20000 });
-    // 30 minute cookie for reals
-    res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 1800000 });
+    // 7 day cookie for reals
+    res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 });
     return next();
   });
 }

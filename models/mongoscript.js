@@ -12,11 +12,11 @@
 db.createCollection("users", { validator:
   { $and:
     [
-      { password: { $type: "string" } },
+      { "password": { $type: "string" } },
       { $or:
         [
-          { username: { $type: "string" } },
-          { email: { $type: "string" } }
+          { "username": { $type: "string" } },
+          { "email": { $type: "string" } }
         ]
       }
     ]
@@ -33,21 +33,23 @@ db.users.insert([{ email: "test1@test1.test1", username: "test1user", password: 
 db.createCollection("rememberMeTokens", { validator:
   { $and:
     [ 
-      { token: { $type: "string" } },
-      { user_id: { $type: "objectId" } }
+      { "token": { $type: "string" } },
+      { "user_id": { $type: "objectId" } },
+      { "createdDate": { $type: "date" } }
     ]
   },
   validationAction: "error"
 })
+// TTL index so that the left over tokens are automatically deleted from the database
+// 604800 is 7 days in seconds
+db.rememberMeTokens.createIndex({"createdDate": 1 }, { "expireAfterSeconds": 604800 })
 // rememberMeTokens insert scrap
 db.rememberMeTokens.insert([{
 	"user_id" : ObjectId("58a3b1070b2b8d2bafcdcd33"),
-	"token" : "uctZutq7Ah3cgPzEnNFgGE",
-	"__v" : 0
+	"token" : "uctZutq7Ah3cgPzEnNFgGE"
 },{
 	"user_id" : ObjectId("58a3b1070b2b8d2bafcdcd33"),
-	"token" : "vctZutq7Ah3cgPzEnNFgGE",
-	"__v" : 0
+	"token" : "vctZutq7Ah3cgPzEnNFgGE"
 }])
 
 
