@@ -45,7 +45,6 @@ export class AuthService {
                     .map((response: Response) => {
 
                       let data = response.json() && response.json().success && response.json().data;
-                      
                       // TODO: proper session logic
                       if(data.token && data.subject) {
                         localStorage.setItem('sessionToken', data.token);
@@ -54,7 +53,8 @@ export class AuthService {
 
                       return response.json();
 
-                    }).catch((error: any) => Observable.throw(error.json().message || 'Server error'));
+                    })
+                    .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
              
   }
 
