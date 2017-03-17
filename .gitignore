@@ -4,3 +4,6 @@ node_modules
 
 # vs code setting directory
 .vscode
+
+# old code directory
+.old

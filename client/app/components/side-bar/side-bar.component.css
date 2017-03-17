@@ -1,0 +1,48 @@
+
+#sideBar {
+  width: 250px;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+  background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(60, 55%, 90%));
+  border-right: 3px solid;
+  border-color: hsl(150, 100%, 30%);
+  box-shadow: 1px 0px 2px hsl(180, 100%, 10%);
+  z-index: 0;
+}
+
+ul.side-bar-list {
+  width: 100%;
+  margin: 0;
+  padding: 10px 0 0 0;
+  list-style-type: none;
+}
+
+li.li-button {
+  width: 95%;
+  height: 40px;
+  margin: 0 auto 5px auto;
+  background-color: #fff;
+  box-shadow: 0px 1px 2px hsl(180, 100%, 10%);
+  border-radius: 3px;
+}
+
+li.li-button:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 15px;
+
+  border-left: 15px solid hsl(210, 100%, 20%);
+  border-radius: 3px;
+
+  text-decoration: none;
+  color: rgb(96, 125, 139);
+  font-size: 13px;
+  font-weight: normal;
+}

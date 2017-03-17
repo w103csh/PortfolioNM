@@ -1,0 +1,174 @@
+
+/* ------------------ Master Styles ------------------ */
+body {
+  margin: 0;
+}
+
+main-app {
+  width: 100%;
+}
+
+div.content {
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px 0 20px;
+}
+
+div.flex-container-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* title bar flex css (should add better description to class name) */
+div.flex-left {
+  -webkit-flex: 1 0 0;
+  flex: 1 0 0;
+  display: flex;
+}
+div.flex-right {
+  -webkit-flex: 29 0 0;
+  flex: 29 0 0;
+  display: flex;
+  justify-content: left;
+}
+
+/* main app flex css */
+div.side-bar-wrapper {
+  -webkit-flex: 0 0 0;
+  flex: 0 0 0;
+  display: flex;
+}
+div.main-outlet-wrapper {
+  -webkit-flex: 1 0 0;
+  flex: 1 0 0;
+  display: flex;
+  justify-content: left;
+  padding: 10px 10px 0 10px;
+}
+
+/* ------------------ Layout styles ------------------ */
+/* --------- title bar ----------- */
+.title-bar {
+  background-color: hsl(150, 100%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(180, 100%, 10%), hsl(150, 100%, 30%));
+  /*box-shadow: 0px 1px 2px #006600;*/
+}
+
+div.flex-content-container {
+  vertical-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* ?????????????????????????? */
+div.flex-right {
+  background: transparent;  
+  border-bottom: 5px solid hsl(210, 100%, 20%);
+}
+
+div.title:hover {
+  cursor: pointer;
+}
+
+div.title {
+  margin: 12px 0 16px 5px;
+  /* border styles */
+  border-style: solid;
+  border-color: hsl(60, 55%, 90%);
+  border-width: 0 15px 5px 0;
+  border-radius: 3px;
+  box-shadow: 3px 3px hsl(180, 100%, 10%);
+  /* font styles */
+  font-size: 36px;
+  color: hsl(60, 55%, 90%);
+  text-shadow: 3px 3px hsl(180, 100%, 10%);
+}
+
+div.title span {
+  font-family: 'Rubik Mono One' !important;
+}
+
+span.title-end {
+  font-size: 46px;
+  padding: 0 15px 0 0;
+}
+
+/* --------- left filler ----------- */
+div.left-filler {
+  min-height: 100vh;
+  background-image: -webkit-linear-gradient(bottom, hsl(180, 100%, 10%), hsl(150, 100%, 30%));
+  border-right: 5px solid hsl(210, 100%, 20%);
+  z-index: 1;
+}
+
+.on-grey {
+  background-color: whitesmoke;
+  border-color: darkgray;
+}
+
+/* ------------------ Navigation link styles ------------------ */
+
+/* ------------------ items class ------------------ */
+/* chrome autofill password bug */
+.md-input[type=password]:-webkit-autofill ~ label:not(.md-no-float) {
+  transform: translate3d(0, 6px, 0) scale(0.75);
+  transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s, width cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s;
+  width: ~"calc((100% - 18px) / 0.75)";
+  color: rgba(0,0,0,0.54);
+}
+
+/* ------------------ everywhere else ------------------ */
+* {
+  font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+/* ------------------ angular material themes ------------------ */
+/* FIX THIS AND REMOVE FROM INDEX */
+@import url('stylesheets/green-deepteal.css');
+
+
+/*
+  * Below are some good styles that are great but I went a different direction 
+*/
+
+/*
+input[type='text'] {
+  display: inline-block;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(166, 166, 166);
+  */
+  /*
+  border-image-outset: 0px;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  */
+  /*
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, 0.498039) 0px 1px 0px 0px, rgba(0, 0, 0, 0.0666667) 0px 1px 0px 0px inset;
+  box-sizing: border-box;
+  color: rgb(17, 17, 17);
+  font-size: 13px;
+  height: 31px;
+  letter-spacing: normal;
+  line-height: normal;
+  margin: 0;
+  outline-color: rgb(17, 17, 17);
+  outline-style: none;
+  outline-width: 0px;
+  padding-bottom: 3px 7px 3px 7px;
+  text-align: start;
+  text-indent: 5px;
+  transition-delay: 0s;
+  transition-duration: 0.1s;
+  transition-property: all;
+  transition-timing-function: linear;
+  user-select: text;
+  vertical-align: middle;
+  word-spacing: 0px;
+  writing-mode: horizontal-tb;
+}
+*/

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href=''/>
+    <!-- used for aot compile -->
+    <!-- <script>window.module = 'aot';</script> -->
+    
+    <title><%= titleStart + titleEnd %></title>
+    <meta charset='UTF-8' >
+    <meta name='viewport' content='width=device-width, initial-scale=1' >
+    <link href='styles.css' rel='stylesheet' >
+
+    <!-- might be able to get these a different way -->
+    <link href='//fonts.googleapis.com/css?family=Rubik Mono One' rel='stylesheet' >
+    <!--<link href="https://unpkg.com/@angular/material/core/theming/prebuilt/indigo-pink.css" rel="stylesheet">-->
+    <link href="stylesheets/green-deepteal.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet' >
+
+    <!-- Polyfills -->
+    <script src='https://unpkg.com/core-js/client/shim.min.js' ></script>
+
+    <script src='https://unpkg.com/zone.js@0.7.4?main=browser' ></script>
+    <script src='https://unpkg.com/systemjs@0.19.39/dist/system.src.js' ></script>
+
+    <script src='systemjs.config.js' ></script>
+    <script>
+      System.import('main.ts').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+
+  <body>
+    <!-- title bar -->
+    <div class='flex-container-row title-bar' >
+      <div class='flex-left' ></div>
+      <div class='flex-right' >
+        <div class='title' href='/home' >
+          <span><%= titleStart %></span>
+          <span class='title-end' ><%= titleEnd %></span>
+        </div>
+      </div>
+    </div>
+    <!-- below title -->
+    <div class='flex-container-row below-title' >
+      <!-- left filler -->
+      <div class='flex-left left-filler' ></div>
+      <div class='flex-right' >
+        <!-- app location -->
+        <main-app>
+          <!-- This gets replaced by the app -->
+          <h1>Loading...<h1>
+        </main-app>
+      </div>
+    </div>
+  </body>
+</html>

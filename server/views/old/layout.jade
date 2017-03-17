@@ -1,0 +1,32 @@
+
+- var titleStart = 'portfolio'
+- var titleEnd = 'NM'
+
+doctype html
+html
+  head
+    title= titleStart+titleEnd
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='//fonts.googleapis.com/css?family=Rubik Mono One' rel='stylesheet')
+    script(type='text/javascript' src='http://code.jquery.com/jquery-latest.min.js')
+    script(type='text/javascript' src='javascripts/layout_.js')
+    script(type='text/javascript' src='javascripts/bundledComponents.js')
+  body
+    block script
+    #bodyHeader
+      #titleBar.flex-title-container
+        .flex-title-left
+        .flex-title-center
+          div.title
+            text.title.title-start= titleStart
+            text.title.title-end= titleEnd
+        .flex-title-right
+          #navBar
+              input.primary.nav-bar(type='button' name='home' value='Home')
+              if user
+                input.primary.nav-bar(type='button' name='account' value='Account')
+                input.primary.nav-bar(type='button' name='logout' value='Log out')
+              else
+                input.primary.nav-bar(type='button' name='login' value='Log In')
+    #bodyContent
+      block content

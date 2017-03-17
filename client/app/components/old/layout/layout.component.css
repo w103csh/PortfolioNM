@@ -1,0 +1,8 @@
+
+div.left-space {
+  min-height: 100vh;
+
+  background-image: -webkit-linear-gradient(bottom, hsl(180, 100%, 10%), hsl(150, 100%, 30%));
+  border-right: 5px solid hsl(210, 100%, 20%);
+  z-index: 1;
+}

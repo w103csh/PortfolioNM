@@ -1,0 +1,56 @@
+
+<div class='content-wrapper'>
+  <div class='form-container' >
+    <div class='form-title'>Sign up</div>
+    <form (ngSubmit)='onSubmit()' #signUpForm='ngForm' >
+
+      <md-input-container class='wide' >
+        <input mdInput placeholder='First name'
+          [(ngModel)]='model.firstName' 
+          name='firstName'
+          #firstName='ngModel' >
+      </md-input-container>
+      
+      <md-input-container class='wide' >
+        <input mdInput placeholder='Last name'
+            [(ngModel)]='model.lastName' 
+            name='lastName'
+            #lastName='ngModel' >
+      </md-input-container>
+
+      <md-input-container class='wide' >
+        <input mdInput placeholder='Email'
+            type='email'
+            [(ngModel)]='model.email' 
+            name='email'
+            required
+            #email='ngModel' >
+      </md-input-container>
+
+      <md-input-container class='wide' >
+        <input mdInput placeholder='Password'
+            type='password'
+            [(ngModel)]='model.password' 
+            name='password'
+            required
+            minLength='7'
+            #password='ngModel'>
+      </md-input-container>
+
+      <pre *ngIf='serverMsg' class='error'>{{serverMsg}}</pre>
+
+      <button md-raised-button color='primary'
+          type='submit' 
+          class='wide btn-success'>
+          Sign up
+      </button>
+
+      <div class='question-redir' >
+        <span>Already have an account?</span>
+        <a md-button color='accent' routerLink="/signin" >Sign in.</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
