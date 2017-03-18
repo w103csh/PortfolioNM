@@ -22,37 +22,34 @@
     <script src='https://unpkg.com/zone.js@0.7.4?main=browser' ></script>
     <script src='https://unpkg.com/systemjs@0.19.39/dist/system.src.js' ></script>
 
-    <!-- non-material control sources -->
-    <!--
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="http://bootsnipp.com/dist/scripts.min.js"></script>
-
-
-
-
-    -->
-
     <script src='systemjs.config.js' ></script>
-
     <script>
-      // window.onload = function () {
-      //   document.addEventListener('DOMNodeRemoved', function(e) {
-      //       console.log(e);
-      //   });
-      // };
       System.import('main.ts').catch(function(err){ console.error(err); });
     </script>
   </head>
 
   <body>
-    <main-app>
-      <!-- This gets replaced by the app -->
-      <div id='loadingContainer' class='loading-container' >
-        <h1>Loading...</h1>
-        <div class="spinner"></div>
+    <!-- title bar -->
+    <div class='flex-container-row title-bar' >
+      <div class='flex-left' ></div>
+      <div class='flex-right' >
+        <div class='title' href='/home' >
+          <span><%= titleStart %></span>
+          <span class='title-end' ><%= titleEnd %></span>
+        </div>
       </div>
-    </main-app>
+    </div>
+    <!-- below title -->
+    <div class='flex-container-row below-title' >
+      <!-- left filler -->
+      <div class='flex-left left-filler' ></div>
+      <div class='flex-right' >
+        <!-- app location -->
+        <main-app>
+          <!-- This gets replaced by the app -->
+          <h1>Loading...<h1>
+        </main-app>
+      </div>
+    </div>
   </body>
 </html>

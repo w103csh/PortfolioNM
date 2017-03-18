@@ -1,5 +1,22 @@
 
-<!-- mat-app-background is used for angular material theme -->
+
+<!-- title bar -->
+<div class='flex-container-row title-bar' >
+  <!--<div *ngIf="titleStart && titleEnd; then thenBlock else elseBlock" class='title' href='/home' >
+    <template #thenBlock>
+      <span>{{titleStart}}</span>
+      <span class='title-end' >{{titleEnd}}</span>
+    </template>
+    <template #elseBlock>
+      <span>{{title}}</span>
+    </template>
+  </div>-->
+  <div class='flex title-wrapper' >
+    <a md-button routerLink="/" disableRipple class='title' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></a>
+  </div>
+  <div class='flex-expand-full' ></div>
+</div>
+<!-- mat-app-background is used for angular material theme (TODO: test this) -->
 <div class='mat-app-background flex-container-row'>
     <div class='side-bar-wrapper' >
       <side-bar></side-bar>

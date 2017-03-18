@@ -17,22 +17,13 @@ export class AuthService {
   // TODO: url 
   private readonly baseUrl = 'http://localhost:3000/api/auth/';
 //   private readonly pubKey = `-----BEGIN PUBLIC KEY-----
-// MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5ROJdDuNL0k4/4aD1xTv
-// fm8ohHMMzCAQc4Bnt6Nx6bBtwOhd8NQrNew+E2lUBYyxf5XdrZLUDQX5w8m5FJRg
-// Ji96dh5H24f/RiDiBBsShIssZ6BmE45WZa14OJjPJH0GXa4zJbGDV0ds/A05igYk
-// r+k3IeJqhqPSlnSUolKKrsQCB+jfrXxR0EPPY5kUWKPrbDnymWFhYssQiBtd6sDS
-// 1ZLB9KSI140iBKVdIRRwh4tr5QCqU4jjQWM6xbyf/YPF1VgjCK/t0s6XeSdX9YCo
-// nsjdl6yhdxg2wH0FLLh1mamycjChp8F3GCFJNq2oExO4g4ci8IkiszCzVTEaCIhI
-// WQIDAQAB
 // -----END PUBLIC KEY-----`;
 
   isLoggedIn: boolean = false;
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor (private http: Http
-    //,private authModule: AuthModule
-    ) { }
+  constructor (private http: Http) { }
 
   signin(body: User): Observable<ResponseData> {
 
@@ -40,15 +31,14 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    // uses regular http
     return this.http.post(url, body, options)
                     .map((response: Response) => {
 
                       let data = response.json() && response.json().success && response.json().data;
-                      // TODO: proper session logic
+                      
                       if(data.token && data.subject) {
-                        localStorage.setItem('sessionToken', data.token);
-                        localStorage.setItem('sessionUser', JSON.stringify(data.subject));
+                        localStorage.setItem('token', data.token);
+                        localStorage.setItem('user', JSON.stringify(data.subject));
                       }
 
                       return response.json();
@@ -62,19 +52,20 @@ export class AuthService {
   verify(): Observable<boolean> {
 
     let type = 'User';
-    let user = JSON.parse(localStorage.getItem('sessionUser'));
-    let token = localStorage.getItem('sessionToken');
-    // TODO: public key & passphrase
+    let token = localStorage.getItem('token');
+    let user = JSON.parse(localStorage.getItem('user'));
 
     if (type && user && user._id && token) {
 
       let url = this.baseUrl + 'verify';
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
+
+      // TODO: Consider sending token verification info as headers
+
       //let body = { type: type, id: user._id, key: this.pubKey, token: token };
       let body = { type: type, id: user._id, token: token };
 
-      // uses regular http
       return this.http.post(url, body, options)
                       .map((response: Response) => response.json())
                       .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
@@ -85,6 +76,7 @@ export class AuthService {
   }
 
   signout(): void {
-    this.isLoggedIn = false;
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 }

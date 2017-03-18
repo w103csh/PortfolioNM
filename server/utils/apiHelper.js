@@ -61,14 +61,16 @@ module.exports = {
     * Required: 
     * Returns: 
   */
-  createJWT(subjectType, subjectId, algorithm, expiresIn, done) {
+  createJWT(args, done) {
 
-    if(subjectType && subjectId && algorithm && expiresIn) {
+    if(args.type && args.id && args.algo && args.exp) {
       try {
+
+        // TODO: consider adding machine id
 
         let payload, key, options = {};
 
-        switch(algorithm) {
+        switch(args.algo) {
           // This is not being used but should work. I saved it in case a private/public key situation presents itself.
           case 'RS256':
 
@@ -76,13 +78,13 @@ module.exports = {
             fs.readFile(path.join(__dirname, '../', 'portfolioNM.private.PEM'), (err, privateKey) => {
               if (err) throw err;
 
-              payload = { id: subjectId };
+              payload = { id: args.id };
               key     = { key: privateKey,
                           passphrase: process.env.JWT_RS256_KEY_PASSPHRASE };
-              options = { expiresIn: expiresIn,
-                          algorithm: algorithm,
+              options = { expiresIn: args.exp,
+                          algorithm: args.algo,
                           issuer: process.env.JWT_ISS,
-                          subject: subjectType, };
+                          subject: args.type, };
 
               jwt.sign(payload, key, options, (err, token) => {
                 if (err) {
@@ -104,12 +106,12 @@ module.exports = {
           // HS256
           default:
 
-            payload = { id: subjectId };
+            payload = { id: args.id };
             key     =   process.env.JWT_HS256_KEY;
-            options = { expiresIn: expiresIn,
+            options = { expiresIn: args.exp,
                         algorithm: 'HS256',
                         issuer: process.env.JWT_ISS,
-                        subject: subjectType, };
+                        subject: args.type, };
 
             jwt.sign(payload, key, options, (err, token) => {
               if (err) {
@@ -142,22 +144,22 @@ module.exports = {
     * Required: 
     * Returns: 
   */
-  verifyJWT(subjectType, subjectId, token, algorithm, done) {
+  verifyJWT(args, done) {
 
-    if(subjectType && subjectId && algorithm && token.token) {
+    if(args.token.type && args.token.id && args.token.token && args.algo ) {
       try {
 
         let key, options = {};
 
-        switch(algorithm) {
+        switch(args.algo) {
           // This is not being used but should work. I saved it in case a private/public key situation presents itself.
           case 'RS256':
 
-            options = { algorithms: ['RS256'],
+            options = { algorithms: [args.algo],
                         issuer: process.env.JWT_ISS,
-                        subject: subjectType };
+                        subject: args.token.type };
 
-            jwt.verify(token.token, token.key, options, (err, payload) => {
+            jwt.verify(args.token.token, args.token.key, options, (err, payload) => {
               if (err) {
                 // TODO: should probably log this somewhere eventually
                 console.log(err.message);
@@ -165,7 +167,7 @@ module.exports = {
 
                 return done(err, false);
               }
-              else if (payload.id !== subjectId) {
+              else if (payload.id !== args.token.id) {
                 return done(null, false);
               }
               else {
@@ -180,17 +182,18 @@ module.exports = {
             key     =   process.env.JWT_HS256_KEY;
             options = { algorithms: ['HS256'],
                         issuer: process.env.JWT_ISS,
-                        subject: subjectType };
+                        subject: args.token.type };
 
-            jwt.verify(token.token, key, options, (err, payload) => {
+            jwt.verify(args.token.token, key, options, (err, payload) => {
               if (err) {
                 // TODO: should probably log this somewhere eventually
+                // verify throws errors if it can't verify. There is not a message or something in the payload.
                 console.log(err.message);
                 console.log(err.stack);
 
                 return done(err, false);
               }
-              else if (payload.id !== subjectId) {
+              else if (payload.id !== args.token.id) {
                 return done(null, false);
               }
               else {

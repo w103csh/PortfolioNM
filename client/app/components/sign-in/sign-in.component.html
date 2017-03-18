@@ -21,7 +21,7 @@
             #password='ngModel'>
       </md-input-container>
       
-      <md-checkbox class='mat-checkbox' [(ngModel)]='rememberMe'name='rememberMe' >Remember me</md-checkbox>
+      <md-checkbox class='mat-checkbox' [(ngModel)]='model.rememberMe' name='rememberMe' >Remember me</md-checkbox>
 
       <pre *ngIf='serverMsg' class='error'>{{serverMsg}}</pre>
 
@@ -31,6 +31,8 @@
         <span>Don't have a username and password?</span>
         <a md-button color='accent' routerLink="/signup" >Sign up now.</a>
       </div>
+
+      <div id='progressBarTest' ></div>
 
       <!-- remove this when done -->
       <!--<p style='max-width:400px; overflow:auto;'>{{diagnostic}}</p>-->

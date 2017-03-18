@@ -30,6 +30,11 @@ router.post('/auth/authenticate', function(req, res) {
   var failureMsg = 'Authentication failed.';
   var user = req.body;
 
+  var usr_exp = process.env.JWT_HS256_USR_EXP;
+  var usr_rem_me_exp = process.env.JWT_HS256_USR_REM_ME_EXP;
+  // var xxx_exp = process.env.JWT_RS256_XXX_EXP;
+  // var xxx_rem_me_exp = process.env.JWT_RS256_XXX_REM_ME_EXP;
+
   // TODO: understand what commented out below really do and if you need them.
   // // catch unhandled exceptions (not sure if this does anything yet. might be able to remove it for default error handler in server-app.js)
   // process.on('uncaughtException', (unEx) => { apiUtils.processUncaughtException(unEx, failureMsg, res) })
@@ -41,13 +46,19 @@ router.post('/auth/authenticate', function(req, res) {
   if(user && user.email && user.password) {
 
     // async business logic
-    process.nextTick(function() {
-      modelHelper.validateUsernameAndPassword(user.email, user.password, function (err, data, info) {
+    process.nextTick(() => {
+      modelHelper.validateUsernameAndPassword(user.email, user.password, (err, data, info) => {
 
         // respond with any errors
         if (!apiHelper.processCaughtException(res, err, info, failureMsg)) {
           // create a jwt
-          apiHelper.createJWT('User', data.id.toString(), 'HS256', '1m', (err, token) => {
+          let args = {
+            type: 'User',
+            id: data.id,
+            algo: 'HS256',
+            exp: user.rememberMe ? usr_rem_me_exp : usr_exp,
+          };
+          apiHelper.createJWT(args, (err, token) => {
             if (err) throw err;
             // return token & subject data
             res.json({ success: true, message: successMsg, data: { token: token, subject: data } });
@@ -72,7 +83,7 @@ router.post('/auth/authenticate', function(req, res) {
   * Required: token.type, token.id, and token.token.
   * Returns:  boolean
 */
-router.post('/auth/verify', function(req, res) {
+router.post('/auth/verify', (req, res) => {
   // TODO: move common logic
   var successMsg = 'Verification successful.';
   var failureMsg = 'Verification failed.';
@@ -84,7 +95,11 @@ router.post('/auth/verify', function(req, res) {
     // async business logic
     process.nextTick(function() {
         // create a jwt
-        apiHelper.verifyJWT(token.type, token.id, token, 'HS256', (err, success) => {
+        let args = {
+            token: token,
+            algo: 'HS256',
+        };
+        apiHelper.verifyJWT(args, (err, success) => {
           // return verification
           res.json(success);
         });
@@ -109,7 +124,7 @@ router.post('/auth/verify', function(req, res) {
   * Required: user.email, and user.password.
   * Returns:  User
 */
-router.post('/user/create', function(req, res) {
+router.post('/user/create', (req, res) => {
   // TODO: move common logic
   var successMsg = 'Create user successful.';
   var failureMsg = 'Create user failed.';
@@ -120,7 +135,7 @@ router.post('/user/create', function(req, res) {
 
     // async business logic
     process.nextTick(() => {
-      modelHelper.createUser(user, function(err, data, info) {
+      modelHelper.createUser(user, (err, data, info) => {
         // respond with any errors
         if (!apiHelper.processCaughtException(res, err, info, failureMsg)) {
           // return user

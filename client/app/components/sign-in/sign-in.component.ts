@@ -20,9 +20,13 @@ export class SignInComponent{
   model = new User('', '', '');
   serverMsg = null;
 
-  constructor(private authService: AuthService, public router: Router) { }
+  constructor(private authService: AuthService, public router: Router) {
+
+  }
 
   ngOnInit() {
+    // TODO: check the local storage
+
     this.authService.signout();
   }
 
