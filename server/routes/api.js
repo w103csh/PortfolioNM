@@ -54,14 +54,19 @@ router.post('/auth/authenticate', function(req, res) {
           // create a jwt
           let args = {
             type: 'User',
-            id: data.id,
+            id: data._id,
             algo: 'HS256',
             exp: user.rememberMe ? usr_rem_me_exp : usr_exp,
           };
           apiHelper.createJWT(args, (err, token) => {
             if (err) throw err;
             // return token & subject data
-            res.json({ success: true, message: successMsg, data: { token: token, subject: data } });
+            var resData = {
+              token: token,
+              subject: { type: 'User', id: data._id },
+              user: data
+            }
+            res.json({ success: true, message: successMsg, data: resData });
           });
         }
 
@@ -94,15 +99,25 @@ router.post('/auth/verify', (req, res) => {
 
     // async business logic
     process.nextTick(function() {
-        // create a jwt
-        let args = {
-            token: token,
-            algo: 'HS256',
-        };
-        apiHelper.verifyJWT(args, (err, success) => {
-          // return verification
-          res.json(success);
-        });
+      // create a jwt
+      let args = {
+          token: token,
+          algo: 'HS256',
+      };
+      apiHelper.verifyJWT(args, (err, success) => {
+        // return verification
+        // TODO: this is now hardcoded for user
+        if (success) {
+          modelHelper.findUserById(token.id, (err, user) => {
+            // TODO: too lazy to deal with this at the moment
+            if(err) throw err;
+            else res.json({ success: success, data: user });
+          });
+        }
+        else {
+          res.json({ success: false });
+        }
+      });
     });
 
   }

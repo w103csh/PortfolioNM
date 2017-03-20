@@ -2,7 +2,11 @@
 import { NgModule }                 from '@angular/core';
 import { RouterModule, Routes }     from '@angular/router';
 
-import { AuthHomeComponent }        from './components/auth-home/auth-home.component';
+// TODO: put into separate routing module
+import { AuthHomeComponent }            from './components/auth-home/auth-home.component';
+import { AuthHomeChild1Component }      from './components/auth-home-child1/auth-home-child1.component';
+import { AuthHomeChild2Component }      from './components/auth-home-child2/auth-home-child2.component';
+
 import { HomeComponent }            from './components/home/home.component';
 import { SignInComponent }          from './components/sign-in/sign-in.component';
 import { SignUpComponent }          from './components/sign-up/sign-up.component';
@@ -11,13 +15,23 @@ import { AuthGuard }                from './services/auth-guard.service';
 
 const routes: Routes = [
    {
+     path: 'home', 
+     component: HomeComponent
+   }
+  ,{
      path: 'auth-home', 
      component: AuthHomeComponent,
      canActivate: [AuthGuard]
    }
   ,{
-     path: 'home', 
-     component: HomeComponent
+     path: 'auth-home-child1',
+     component: AuthHomeChild1Component,
+     canActivate: [AuthGuard]
+   }
+  ,{
+     path: 'auth-home-child2', 
+     component: AuthHomeChild2Component,
+     canActivate: [AuthGuard]
    }
   ,{
      path: 'signin',
@@ -27,6 +41,7 @@ const routes: Routes = [
      path: 'signup',
      component: SignUpComponent
    }
+  // These need to be at the bottom of the list. The router returns first match.
   ,{
      path: '', 
      redirectTo: '/home',

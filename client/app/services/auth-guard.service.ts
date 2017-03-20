@@ -8,48 +8,40 @@ import { Router,
          ActivatedRouteSnapshot,
          RouterStateSnapshot,
          NavigationExtras }         from '@angular/router';
+
 import { AuthService }              from './auth.service';
+import { Observable }               from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(localStorage.getItem('token')) {
-      return true;
-    }
-    this.router.navigate(['/signin']);
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    this.authService.redirectUrl = state.url;
+    // TODO: might need to move this logic into function;
+    return this.authService.verify()
+              .map((response) => {
+                if (!response) {
+                  this.authService.signout();
+                  this.router.navigate(['signin']);
+                }
+                return response;
+              })
+              .catch(() => {
+                this.authService.signout();
+                this.router.navigate(['signin']);
+                return Observable.of(false);
+              });
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     return this.canActivate(route, state);
   }
 
-  canLoad(route: Route): boolean {
-    let url = `/${route.path}`;
-
-    return this.checkLogin(url);
-  }
-
-  checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn) { return true; }
-
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
-
-    // Create a dummy session id
-    let sessionId = 123456789;
-
-    // Set our navigation extras object
-    // that contains our global query params and fragment
-    let navigationExtras: NavigationExtras = {
-      queryParams: { 'session_id': sessionId },
-      fragment: 'anchor'
-    };
-
-    // Navigate to the login page with extras
-    this.router.navigate(['/login'], navigationExtras);
-    return false;
+  canLoad(route: Route): Observable<boolean> |  boolean {
+    this.authService.redirectUrl  = `/${route.path}`;
+    return this.canActivate(null, null);
   }
 }

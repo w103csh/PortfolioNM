@@ -25,18 +25,16 @@ export class SignInComponent{
   }
 
   ngOnInit() {
-    // TODO: check the local storage
-
     this.authService.signout();
   }
 
   onSubmit() {
     this.serverMsg = null;
     
-    // loading
+    // TODO: loading
 
     this.authService.signin(this.model).subscribe(
-      response => {
+      (response) => {
         // TODO: move common logic
         if(response && response.success) {
           this.serverMsg = null;
@@ -49,7 +47,7 @@ export class SignInComponent{
           this.serverMsg = response.message || 'Unknown issue. Contact an administrator.';
         }
       },
-      err => {
+      (err) => {
         // TODO: log & something else
         console.log(err);
         this.serverMsg = 'Server error please try again. If the problem continues contact an administrator.';

@@ -7,6 +7,7 @@ var favicon = require('serve-favicon');
 var compression = require('compression');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var _ = require('lodash');
 
 var Promise = require('bluebird');
 var mongoose = Promise.promisifyAll(require('mongoose'));
@@ -61,7 +62,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 
   // if api error return json
-  if(url.parse(req.originalUrl).pathname && url.parse(req.originalUrl).pathname.split('/').filter(String)[0] === 'api') {
+  if(url.parse(req.originalUrl).pathname && _.head(url.parse(req.originalUrl).pathname.split('/').filter(String)) === 'api') {
     // TODO: error logging
     res.json({ success: false, message: 'UNCAUGHT EXCEPTION! ' + err.message, error: err });
   }

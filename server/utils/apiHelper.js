@@ -30,7 +30,7 @@ module.exports = {
     }
     else if (info) {
       // info messages should be ready to be display in the app
-      res.status().json({ success: false, message: info.message });
+      res.status(200).json({ success: false, message: info.message });
       return true;
     }
     else {

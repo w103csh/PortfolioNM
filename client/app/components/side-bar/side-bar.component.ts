@@ -1,25 +1,23 @@
+import { Component,
+         OnDestroy,
+         HostBinding }                from '@angular/core';
+import { Router }                     from '@angular/router';
 
-import { Component, HostBinding } from '@angular/core';
-
-import { slideRightLeftAnimation } from '../../../animations.ts';
-
-const anchors: [] = [
-  { text: 'HOME', href: '/home' },
-  { text: 'SIGN IN', href: '/signin' },
-  { text: 'SIGN UP', href: '/signup' }
-];
+import { AuthService }                from '../../services/auth.service';
+import { User }                       from '../../models/User';
 
 @Component({
   moduleId: module.id,
   selector: 'side-bar',
   templateUrl: './side-bar.component.html',
-  styleUrls: [ './side-bar.component.css' ],
-  animations: [ slideRightLeftAnimation ]
+  styleUrls: [ './side-bar.component.css' ]
 })
-export class SideBarComponent{
-  @HostBinding('@sideBarAnimation') sideBarAnimation = true;
-  // @HostBinding('style.display')   display = 'block';
-  // @HostBinding('style.position')  position = 'absolute';
+export class SideBarComponent {
+  
+  anchors: { text: string, href: string}[] = [
+    { text: 'HOME', href: '/home' },
+    { text: 'AUTH-HOME CHILD 1', href: '/auth-home-child1' },
+    { text: 'AUTH-HOME CHILD 2', href: '/auth-home-child2' }
+  ];
 
-  anchors = anchors;
 }

@@ -4,26 +4,36 @@ import { Http,
          Response,
          Headers,
          RequestOptions }   from '@angular/http';
+
 import { User }             from '../models/User';
 import { ResponseData }     from '../models/ResponseData';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { Observable }       from 'rxjs/Observable';
+import { BehaviorSubject }  from 'rxjs/BehaviorSubject';
+import                           'rxjs/add/operator/map';
+import                           'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
 
+  //private readonly pubKey = `-----BEGIN PUBLIC KEY-----
+  //-----END PUBLIC KEY-----`;
   // TODO: url 
   private readonly baseUrl = 'http://localhost:3000/api/auth/';
-//   private readonly pubKey = `-----BEGIN PUBLIC KEY-----
-// -----END PUBLIC KEY-----`;
+  public redirectUrl: string;
 
-  isLoggedIn: boolean = false;
-  // store the URL so we can redirect after logging in
-  redirectUrl: string;
+  // observable streams
+  private signedInUserSource = new BehaviorSubject<User>(null);
+  private isSignedInSource = new BehaviorSubject<boolean>(null);
+  public signedInUser$: Observable<User> = this.signedInUserSource.asObservable();
+  public isSignedIn$: Observable<boolean> = this.isSignedInSource.asObservable();
 
   constructor (private http: Http) { }
+
+  private updateUser(user: User) {
+    this.isSignedInSource.next(user ? true : false);
+    this.signedInUserSource.next(user);
+  }
 
   signin(body: User): Observable<ResponseData> {
 
@@ -36,9 +46,10 @@ export class AuthService {
 
                       let data = response.json() && response.json().success && response.json().data;
                       
-                      if(data.token && data.subject) {
-                        localStorage.setItem('token', data.token);
-                        localStorage.setItem('user', JSON.stringify(data.subject));
+                      if(data.token && data.subject && data.subject.type && data.subject.id && data.user) {
+                        this.updateUser(new User(data.user.email, data.user._id, data.user.firstName, data.user.lastName));
+                        delete data.user;
+                        localStorage.setItem('token', JSON.stringify(data));
                       }
 
                       return response.json();
@@ -49,13 +60,16 @@ export class AuthService {
   }
 
   // should be as lightweight as possible
-  verify(): Observable<boolean> {
+  verify(): Observable<Boolean> {
 
-    let type = 'User';
-    let token = localStorage.getItem('token');
-    let user = JSON.parse(localStorage.getItem('user'));
+    let token = JSON.parse(localStorage.getItem('token'));
+    let user = this.signedInUserSource.getValue();
 
-    if (type && user && user._id && token) {
+    // If there is a signed in user check that the local token subject id && type match the user (could be overkill)
+    // but,
+    // need to also let users who check the remember me box to go through as well.
+    if(( user && token.subject.id === user.id && token.subject.type === 'User') ||
+       (!user && token)) {
 
       let url = this.baseUrl + 'verify';
       let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -64,19 +78,28 @@ export class AuthService {
       // TODO: Consider sending token verification info as headers
 
       //let body = { type: type, id: user._id, key: this.pubKey, token: token };
-      let body = { type: type, id: user._id, token: token };
+      let body = { type: token.subject.type, id: token.subject.id, token: token.token };
 
       return this.http.post(url, body, options)
-                      .map((response: Response) => response.json())
+                      .map((response: Response) => {
+                        // TODO: make a bool that tells the api to return a user or just a bool
+                        let success = response.json() && response.json().success;
+                        let data = response.json() && response.json().success && response.json().data;
+                        if(data) {
+                          this.updateUser(new User(data.email, data._id, data.firstName, data.lastName));
+                        }
+                        return success;
+                      })
                       .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
 
     }
-
-    return Observable.of(false);     
+    else {
+      return Observable.of(false);   
+    }  
   }
 
   signout(): void {
+    this.updateUser(null);
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
   }
 }

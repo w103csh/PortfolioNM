@@ -2,10 +2,13 @@
 /* ------------------ Master Styles ------------------ */
 body {
   margin: 0;
+  /*background-color: rgb(250, 250, 250);*/
+  height: 105vh;
 }
 
 main-app {
   width: 100%;
+  height: 100%;
 }
 
 /* Loading spinner */
@@ -37,29 +40,40 @@ main-app {
 }
 /* Loading spinner */
 
-/* general flex classes */
+/* START general flex classes */
 div.flex-container-row {
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-direction: row;
   flex-direction: row;
 }
 
-div.flex-container-col {
+div.flex-container-column {
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
 }
 
 .flex {
+  display: -webkit-flex;
   display: flex;
   -webkit-flex: 0 1 auto;
   flex: 0 1 auto;
 }
 
+.flex-just-cen {
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
 div.flex-expand-full {
+  display: -webkit-flex;
   display: flex;
   -webkit-flex: 1 1 100%;
   flex: 1 1 100%;
 }
-/* general flex classes */
+/* END general flex classes */
 
 div.content {
   width: 100%;
@@ -68,7 +82,7 @@ div.content {
 }
 
 /* ------------------ Layout styles ------------------ */
-/* title bar */
+/* START title bar */
 .title-bar {
   background-color: hsl(150, 100%, 30%);
   background-image: -webkit-linear-gradient(right, hsl(180, 100%, 10%), hsl(150, 100%, 30%));
@@ -106,28 +120,31 @@ a.title * {
 span.title-end {
   font-size: 46px;
 }
-/* title bar */
+/* END title bar */
 
 .on-grey {
   background-color: whitesmoke;
   border-color: darkgray;
 }
 
-/* main app flex css */
+/* START main app flex css */
 div.side-bar-wrapper {
   -webkit-flex: 0 0 0;
   flex: 0 0 0;
+  display: -webkit-flex;
   display: flex;
 }
 
 div.main-outlet-wrapper {
+  height: 100%;
   -webkit-flex: 1 0 0;
   flex: 1 0 0;
+  display: -webkit-flex;
   display: flex;
   justify-content: left;
   padding: 10px 10px 0 10px;
 }
-/* main app flex css */
+/* END main app flex css */
 
 /* ------------------ Navigation link styles ------------------ */
 
@@ -150,9 +167,7 @@ div.main-outlet-wrapper {
 @import url('stylesheets/green-deepteal.css');
 
 
-/*
-  * Below are some good styles but I went a different direction 
-*/
+/* Below are some good styles but I went a different direction */
 
 /*
 input[type='text'] {
