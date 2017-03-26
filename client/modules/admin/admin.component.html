@@ -1,0 +1,31 @@
+
+<div class='content' >
+
+  <h2>ADMIN</h2>
+
+  <div class='below-header' >
+    
+      <nav md-tab-nav-bar>
+        <a md-tab-link
+            *ngFor='let link of navLinks'
+            [routerLink]='link.href'
+            routerLinkActive
+            #rla='routerLinkActive'
+            [active]='rla.isActive' >
+          {{link.label}}
+        </a>
+      </nav>
+      <router-outlet></router-outlet>
+
+      <!--<md-tab-group>
+        <md-tab label="Account">
+          <account></account>
+        </md-tab>
+        <md-tab label="Users">
+          <users></users>
+        </md-tab>
+      </md-tab-group>-->
+    
+  </div>
+
+</div>

@@ -1,11 +1,12 @@
 
 // Angular modules
-import { NgModule }                     from '@angular/core';
-import { BrowserModule }                from '@angular/platform-browser';
+import { NgModule }                       from '@angular/core';
+import { BrowserModule }                  from '@angular/platform-browser';
+import { BrowserAnimationsModule }        from '@angular/platform-browser/animations';
 import { HashLocationStrategy
         ,Location
-        ,LocationStrategy }             from '@angular/common';
-import { FormsModule }                  from '@angular/forms';
+        ,LocationStrategy }               from '@angular/common';
+import { FormsModule }                    from '@angular/forms';
 import { HttpModule }                     from '@angular/http';
 import { MaterialModule }                 from '@angular/material';
 
@@ -17,9 +18,9 @@ import { AuthHomeChild1Component }        from './components/auth-home-child1/au
 import { AuthHomeChild2Component }        from './components/auth-home-child2/auth-home-child2.component';
 
 // App defined services
-import { UserService }                    from './services/user.service';
-import { AuthService }                    from './services/auth.service';
-import { AuthGuard }                      from './services/auth-guard.service';
+import { UserService }                    from '../services/user.service';
+import { AuthService }                    from '../services/auth.service';
+import { AuthGuard }                      from '../services/auth-guard.service';
 
 // App defined components
 import { AppComponent }                   from './app.component';
@@ -37,10 +38,11 @@ import 'hammerjs';
 @NgModule({
   imports: [
     BrowserModule
+    ,BrowserAnimationsModule
     ,FormsModule
     ,HttpModule
-    ,AppRoutingModule
     ,MaterialModule
+    ,AppRoutingModule
   ],
   declarations: [
     AppComponent
@@ -55,7 +57,7 @@ import 'hammerjs';
     ,PageNotFoundComponent
   ],
   providers: [ 
-    Location, { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // Location, { provide: LocationStrategy, useClass: HashLocationStrategy }
     ,UserService
     ,AuthService
     ,AuthGuard

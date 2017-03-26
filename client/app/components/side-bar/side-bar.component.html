@@ -1,8 +1,22 @@
 
 <div id='sideBar' >
   <ul class='side-bar-list' >
-    <li *ngFor='let anchor of anchors' class='li-button' >
-      <a routerLink='{{anchor.href}}' routerLinkActive='active' >{{anchor.text}}</a>
+    <li *ngFor='let link of navLinks' >
+      <!--BIG TODO: why isn't active working. I think it has something to do with the hash location-->
+      <a md-raised-button 
+          routerLink='{{link.href}}'
+          routerLinkActive
+          #rla='routerLinkActive'
+          active='rla.isActive'
+          class='wide' >
+        {{link.label}}
+      </a>
+      <!--<a md-raised-button 
+          routerLink='{{link.href}}'
+          routerLinkActive='active'
+          class='wide' >
+        {{link.label}}
+      </a>-->
     </li>
   </ul>
 </div>

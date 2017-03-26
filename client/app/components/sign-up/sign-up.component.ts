@@ -1,16 +1,16 @@
 
-import { Component }        from '@angular/core';
+import { Component }          from '@angular/core';
 import { Router,
-         NavigationExtras } from '@angular/router';
-import { UserService }      from '../../services/user.service';
+         NavigationExtras }   from '@angular/router';
+import { UserService }        from '../../../services/user.service';
 
-import { User } from '../../models/User';
+import { User }               from '../../../models/User';
 
 @Component({
   moduleId: module.id,
   selector: 'sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: [ '../../shared-css/form.css', './sign-up.component.css' ]
+  styleUrls: [ '../../../shared-css/form.css', './sign-up.component.css' ]
 })
 export class SignUpComponent{
 

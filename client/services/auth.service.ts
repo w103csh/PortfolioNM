@@ -7,6 +7,7 @@ import { Http,
 
 import { User }             from '../models/User';
 import { ResponseData }     from '../models/ResponseData';
+import { __apiUrl }         from '../../APP_CONFIG.ts';
 
 import { Observable }       from 'rxjs/Observable';
 import { BehaviorSubject }  from 'rxjs/BehaviorSubject';
@@ -19,7 +20,7 @@ export class AuthService {
   //private readonly pubKey = `-----BEGIN PUBLIC KEY-----
   //-----END PUBLIC KEY-----`;
   // TODO: url 
-  private readonly baseUrl = 'http://localhost:3000/api/auth/';
+  private readonly baseUrl = __apiUrl + 'auth/';
   public redirectUrl: string;
 
   // observable streams
@@ -71,14 +72,21 @@ export class AuthService {
     if(( user && token.subject.id === user.id && token.subject.type === 'User') ||
        (!user && token)) {
 
-      let url = this.baseUrl + 'verify';
+      let url = this.baseUrl + 'verifyToken';
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
       // TODO: Consider sending token verification info as headers
 
       //let body = { type: type, id: user._id, key: this.pubKey, token: token };
-      let body = { type: token.subject.type, id: token.subject.id, token: token.token };
+      let body = { 
+        type: token.subject.type, 
+        id: token.subject.id, 
+        token: token.token, 
+        // Need to re-get user info when browser resets obeservable streams, but 
+        // there is still a jwt in local storage (i.e., remember me is checked)
+        includeSubject: (!user && token) 
+      };
 
       return this.http.post(url, body, options)
                       .map((response: Response) => {

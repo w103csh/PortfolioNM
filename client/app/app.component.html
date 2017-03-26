@@ -19,21 +19,33 @@
   </div>
 </div>
 <!-- mat-app-background is used for angular material theme (TODO: test this) -->
-<div class='flex-container-row' >
-    <md-sidenav-container class='example-sidenav-fab-container'>
-      <md-sidenav #sidenav mode='side' opened='true'>
-        <button md-mini-fab class='example-fab' (click)='sidenav.toggle()'>
-          <md-icon>add</md-icon>
-        </button>
+<div class='flex-container-row below-title' >
+
+    <!--<md-sidenav-container *ngIf='isSignedIn' >
+      <md-sidenav #sidenav mode='side' opened='true' >
         <div class='side-bar-wrapper' >
-          <side-bar *ngIf='isSignedIn' ></side-bar>
+          <side-bar ></side-bar>
         </div>
       </md-sidenav>
-      <button md-mini-fab class='example-fab' (click)='sidenav.toggle()'>
+    </md-sidenav-container>
+
+    <div class='side-nav-closer' >
+      <button md-mini-fab (click)='sidenav.open()' >
         <md-icon>add</md-icon>
       </button>
-    </md-sidenav-container>
-    <div class='main-outlet-wrapper flex' >
+      <br />
+      <button md-mini-fab color='darkgrey' (click)='sidenav.close()' >
+        <md-icon>remove</md-icon>
+      </button>
+    </div>-->
+
+    <!-- TODO: animate this again -->
+    <div  *ngIf='isSignedIn' class='side-bar-wrapper' >
+      <side-bar ></side-bar>
+    </div>
+
+    <div class='main-outlet-wrapper' >
       <router-outlet></router-outlet>
     </div>
+
 </div>

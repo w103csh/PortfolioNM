@@ -47,7 +47,7 @@ app.use(favicon(path.join(__dirname, '../server', 'public', 'images', 'favicon-1
 app.use('/api', require('./routes/api'));
 
 // just serving the one page now for angular
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.render('index', { titleStart: 'portfolio', titleEnd: 'NM' })
 });
 

@@ -7,18 +7,18 @@
     <button md-icon-button [mdMenuTriggerFor]='menu' >
       <md-icon>menu</md-icon>
     </button>
-    <md-menu #menu='mdMenu'>
-      <button md-menu-item>
+    <md-menu #menu='mdMenu' x-position='before' [overlapTrigger]='false' >
+      <button md-menu-item (click)='clickAccount()' >
         <md-icon>account_circle</md-icon>
         <span>Account</span>
       </button>
-      <button md-menu-item disabled>
-        <md-icon>warning</md-icon>
-        <span>Admin</span>
+      <button md-menu-item disabled (click)='clickUsers()' >
+        <md-icon>people</md-icon>
+        <span>Users</span>
       </button>
     </md-menu>
   </div>
   <div class='flex button-container' >
-    <a md-raised-button routerLink='/auth-home-child2' color=primary (click)='signInOrOut()' >{{ user ? 'Sign out' : 'Sign in' }}</a>
+    <button md-raised-button color=primary (click)='signInOrOut()' >{{ user ? 'Sign out' : 'Sign in' }}</button>
   </div>
 </div>

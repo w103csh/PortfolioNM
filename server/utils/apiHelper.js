@@ -18,7 +18,19 @@ const path = require('path');
 
 module.exports = {
 
-  /* PROCESSCAUGHTEXCEPTION
+  /* createResponseData
+    *
+  */  
+  createResponseData(success, msg, data) {
+    return {
+      success: success,
+      message: msg,
+      data: data
+    };
+  },
+
+
+  /* processCaughtException
     *
     * TODO: The logic here is screwy
   */  
@@ -30,7 +42,8 @@ module.exports = {
     }
     else if (info) {
       // info messages should be ready to be display in the app
-      res.status(200).json({ success: false, message: info.message });
+      let resData = apiHelper.createResponseData(false, info.message, null);
+      res.status(200).json(resData);
       return true;
     }
     else {
@@ -40,7 +53,7 @@ module.exports = {
   },
   
 
-  /* PROCESSUNCAUGHTEXCEPTION
+  /* processUncaughtException
     *
     * Not used atm
   */
@@ -189,7 +202,7 @@ module.exports = {
                 // TODO: should probably log this somewhere eventually
                 // verify throws errors if it can't verify. There is not a message or something in the payload.
                 console.log(err.message);
-                console.log(err.stack);
+                //console.log(err.stack);
 
                 return done(err, false);
               }

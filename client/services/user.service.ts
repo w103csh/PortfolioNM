@@ -8,6 +8,7 @@ import { Router }                 from '@angular/router';
 //import { AuthModule }           from '../modules/auth.module';
 import { User }                   from '../models/User';
 import { ResponseData }           from '../models/ResponseData';
+import { __apiUrl }              from '../../APP_CONFIG.ts';
 
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -17,7 +18,7 @@ import 'rxjs/add/operator/catch';
 export class UserService {
   
   // TODO: url
-  private readonly baseUrl = 'http://localhost:3000/api/user';
+  private readonly baseUrl = __apiUrl + 'user/';
   
   constructor (private http: Http
     //,private authModule: AuthModule

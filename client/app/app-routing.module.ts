@@ -1,19 +1,19 @@
 
-import { NgModule }                 from '@angular/core';
-import { RouterModule, Routes }     from '@angular/router';
+import { NgModule }                     from '@angular/core';
+import { RouterModule, Routes }         from '@angular/router';
 
 // TODO: put into separate routing module
 import { AuthHomeComponent }            from './components/auth-home/auth-home.component';
 import { AuthHomeChild1Component }      from './components/auth-home-child1/auth-home-child1.component';
 import { AuthHomeChild2Component }      from './components/auth-home-child2/auth-home-child2.component';
 
-import { HomeComponent }            from './components/home/home.component';
-import { SignInComponent }          from './components/sign-in/sign-in.component';
-import { SignUpComponent }          from './components/sign-up/sign-up.component';
-import { PageNotFoundComponent }    from './components/page-not-found/page-not-found.component';
-import { AuthGuard }                from './services/auth-guard.service';
+import { HomeComponent }                from './components/home/home.component';
+import { SignInComponent }              from './components/sign-in/sign-in.component';
+import { SignUpComponent }              from './components/sign-up/sign-up.component';
+import { PageNotFoundComponent }        from './components/page-not-found/page-not-found.component';
+import { AuthGuard }                    from '../services/auth-guard.service';
 
-const routes: Routes = [
+const appRoutes: Routes = [
    {
      path: 'home', 
      component: HomeComponent
@@ -33,6 +33,11 @@ const routes: Routes = [
      component: AuthHomeChild2Component,
      canActivate: [AuthGuard]
    }
+  ,{
+    path: 'admin',
+    loadChildren: 'app/modules/admin/admin.module#AdminModule',
+    canLoad: [AuthGuard]
+  }
   ,{
      path: 'signin',
      component: SignInComponent,
@@ -54,7 +59,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(appRoutes) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

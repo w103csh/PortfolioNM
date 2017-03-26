@@ -4,15 +4,15 @@ import { Component,
 import { Router,
          NavigationExtras }   from '@angular/router';
 
-import { AuthService }        from '../../services/auth.service';
-import { User }               from '../../models/User';
-import { ResponseData }       from '../../models/ResponseData';
+import { AuthService }        from '../../../services/auth.service';
+import { User }               from '../../../models/User';
+import { ResponseData }       from '../../../models/ResponseData';
 
 @Component({
   moduleId: module.id,
   selector: 'sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: [ '../../shared-css/form.css', './sign-in.component.css' ]
+  styleUrls: [ '../../../shared-css/form.css', './sign-in.component.css' ]
 })
 export class SignInComponent{
 

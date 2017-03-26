@@ -3,8 +3,8 @@ import { Component,
          OnDestroy }        from '@angular/core';
 import { Router }           from '@angular/router';
 
-import { AuthService }      from '../../services/auth.service';
-import { User }             from '../../models/User';
+import { AuthService }      from '../../../services/auth.service';
+import { User }             from '../../../models/User';
 
 import { Subscription }     from 'rxjs/Subscription';
 
@@ -25,6 +25,14 @@ export class TitleBarButtonGroupComponent{
         this.user = user;
       }
     )
+  }
+
+  clickAccount() {
+    this.router.navigate(['admin/account']);
+  }
+
+  clickUsers() {
+    this.router.navigate(['admin/users']);
   }
 
   signInOrOut() {

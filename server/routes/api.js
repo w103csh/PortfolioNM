@@ -7,7 +7,7 @@ const modelHelper = require('../utils').modelHelper;
 // API routes
 // -------------------------------------------------------------------------
 
-// TODO better routing logic instead of dumping all the requests here
+// TODO: better routing logic instead of dumping all the requests here
 
 // comment template
 /* function_name
@@ -17,6 +17,7 @@ const modelHelper = require('../utils').modelHelper;
   * Required: 
   * Returns: 
 */
+
 
 /* POST authenticate (only setup for user so far)
   *
@@ -47,26 +48,27 @@ router.post('/auth/authenticate', function(req, res) {
 
     // async business logic
     process.nextTick(() => {
-      modelHelper.validateUsernameAndPassword(user.email, user.password, (err, data, info) => {
+      modelHelper.validateUsernameAndPassword(user.email, user.password, (err, user, info) => {
 
         // respond with any errors
         if (!apiHelper.processCaughtException(res, err, info, failureMsg)) {
           // create a jwt
           let args = {
             type: 'User',
-            id: data._id,
+            id: user._id,
             algo: 'HS256',
             exp: user.rememberMe ? usr_rem_me_exp : usr_exp,
           };
           apiHelper.createJWT(args, (err, token) => {
             if (err) throw err;
             // return token & subject data
-            var resData = {
+            let data = {
               token: token,
-              subject: { type: 'User', id: data._id },
-              user: data
-            }
-            res.json({ success: true, message: successMsg, data: resData });
+              subject: { type: 'User', id: user._id },
+              user: user
+            };
+            let resData = apiHelper.createResponseData(true, successMsg, data);
+            res.json(resData);
           });
         }
 
@@ -77,21 +79,23 @@ router.post('/auth/authenticate', function(req, res) {
   }
   // request validation failed
   else {
-    res.status(400).json({ success: false, message: failureMsg + ' Email and password not available in request.' });
+    let resData = apiHelper.createResponseData(false, failureMsg + ' Email and password not available in request.', null);
+    res.status(400).json(resData);
   }
 
 });
 
-/* POST verify (only setup for user so far)
+
+/* POST verifyToken (only setup for user so far)
   *
   * Receives: req.body should be an object with subject type, id, ?public key & jwt token. 
   * Required: token.type, token.id, and token.token.
   * Returns:  boolean
 */
-router.post('/auth/verify', (req, res) => {
+router.post('/auth/verifyToken', (req, res) => {
   // TODO: move common logic
-  var successMsg = 'Verification successful.';
-  var failureMsg = 'Verification failed.';
+  var successMsg = 'Verify token successful.';
+  var failureMsg = 'Verify token failed.';
   var token = req.body;
 
   // validate req data
@@ -106,16 +110,21 @@ router.post('/auth/verify', (req, res) => {
       };
       apiHelper.verifyJWT(args, (err, success) => {
         // return verification
-        // TODO: this is now hardcoded for user
-        if (success) {
+        // If we don't need subject info, or it failed to verify just send success value
+        if (!token.includeSubject || !success) {
+          let resData = apiHelper.createResponseData(success, null, null);
+          res.json(resData);
+        }
+        // else send the subject info (i.e., remember me is checked)
+        else {
           modelHelper.findUserById(token.id, (err, user) => {
             // TODO: too lazy to deal with this at the moment
-            if(err) throw err;
-            else res.json({ success: success, data: user });
+            if(err) { throw err; }
+            else {
+              let resData = apiHelper.createResponseData(success, null, user);
+              res.json(resData);
+            }
           });
-        }
-        else {
-          res.json({ success: false });
         }
       });
     });
@@ -123,10 +132,12 @@ router.post('/auth/verify', (req, res) => {
   }
   // request validation failed
   else {
-    res.status(400).json({ success: false, message: failureMsg + ' Invalid request token.' });
+    let resData = apiHelper.createResponseData(false, failureMsg + ' Invalid request token.', null);
+    res.status(400).json(resData);
   }
 
 });
+
 
 // -------------------------------------------------------------------------
 // User api
@@ -150,11 +161,12 @@ router.post('/user/create', (req, res) => {
 
     // async business logic
     process.nextTick(() => {
-      modelHelper.createUser(user, (err, data, info) => {
+      modelHelper.createUser(user, (err, user, info) => {
         // respond with any errors
         if (!apiHelper.processCaughtException(res, err, info, failureMsg)) {
           // return user
-          res.json({ success: true, message: successMsg, data: data });
+          let resData = apiHelper.createResponseData(true, successMsg, user);
+          res.json(resData);
         }
       });
     });
@@ -162,7 +174,8 @@ router.post('/user/create', (req, res) => {
   }
   // request validation failed
   else {
-    res.status(400).json({ success: false, message: failureMsg + ' Email and password not available in request.' });
+    let resData = apiHelper.createResponseData(false, failureMsg + ' Email and password not available in request.', null);
+    res.status(400).json(resData);
   }
 
 });

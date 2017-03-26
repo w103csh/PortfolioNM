@@ -3,8 +3,8 @@ import { Component,
          HostBinding }                from '@angular/core';
 import { Router }                     from '@angular/router';
 
-import { AuthService }                from '../../services/auth.service';
-import { User }                       from '../../models/User';
+import { AuthService }                from '../../../services/auth.service';
+import { User }                       from '../../../models/User';
 
 @Component({
   moduleId: module.id,
@@ -14,10 +14,10 @@ import { User }                       from '../../models/User';
 })
 export class SideBarComponent {
   
-  anchors: { text: string, href: string}[] = [
-    { text: 'HOME', href: '/home' },
-    { text: 'AUTH-HOME CHILD 1', href: '/auth-home-child1' },
-    { text: 'AUTH-HOME CHILD 2', href: '/auth-home-child2' }
+  navLinks: { label: string, href: string}[] = [
+    { label: 'AUTH-HOME', href: '/auth-home' },
+    { label: 'AUTH-HOME CHILD 1', href: '/auth-home-child1' },
+    { label: 'AUTH-HOME CHILD 2', href: '/auth-home-child2' }
   ];
 
 }
