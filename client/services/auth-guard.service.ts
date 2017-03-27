@@ -18,19 +18,13 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    // BIG TODO: make the redirects work
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot, redirectUrl?: string): Observable<boolean> | boolean {
 
-    // if (state && this.authService.redirectUrl) {
-    //   state.url = this.authService.redirectUrl;
-    // }
-
-    // TODO: might need to move this logic into function;
     return this.authService.verify()
               .map((response) => {
                 if (!response) {
                   this.authService.signout();
-                  this.router.navigate(['signin']);
+                  this.router.navigate(['signin'], { queryParams: { redirectUrl: redirectUrl || state.url } });
                 }
                 return response;
               })
@@ -39,6 +33,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
                 this.router.navigate(['signin']);
                 return Observable.of(false);
               });
+
   }
 
   // BIG TODO: this is not being called for some reason. 
@@ -47,7 +42,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   canLoad(route: Route): Observable<boolean> | boolean {
-    this.authService.redirectUrl  = `/${route.path}`;
-    return this.canActivate(null, null);
+    // TODO: maybe setup for more than the one part (e.g., /admin/users gets redirected to /admin)
+    return this.canActivate(null, null, `/${route.path}`);
   }
 }

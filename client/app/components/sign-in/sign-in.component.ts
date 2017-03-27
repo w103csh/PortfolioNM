@@ -2,6 +2,7 @@
 import { Component,
          OnInit }             from '@angular/core';
 import { Router,
+         ActivatedRoute,
          NavigationExtras }   from '@angular/router';
 
 import { AuthService }        from '../../../services/auth.service';
@@ -16,21 +17,19 @@ import { ResponseData }       from '../../../models/ResponseData';
 })
 export class SignInComponent{
 
-  // TODO TODO TODO TODO TODO TODO TODO TODO: RemeberMeToken
-  model = new User('', '', '');
-  serverMsg = null;
+  private redirectUrl: string;
+  private model: User = new User('', '', '');
+  private serverMsg: string = null;
 
-  constructor(private authService: AuthService, public router: Router) {
-
-  }
+  constructor(private authService: AuthService, private route: ActivatedRoute, public router: Router) { }
 
   ngOnInit() {
     this.authService.signout();
+    this.redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/auth-home';
   }
 
   onSubmit() {
     this.serverMsg = null;
-    
     // TODO: loading
 
     this.authService.signin(this.model).subscribe(
@@ -38,7 +37,7 @@ export class SignInComponent{
         // TODO: move common logic
         if(response && response.success) {
           this.serverMsg = null;
-          this.router.navigate(['/auth-home']);
+          this.router.navigate([this.redirectUrl]);
         }
         // show message from the server
         else {

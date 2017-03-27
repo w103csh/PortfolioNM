@@ -47,8 +47,15 @@ app.use(favicon(path.join(__dirname, '../server', 'public', 'images', 'favicon-1
 app.use('/api', require('./routes/api'));
 
 // just serving the one page now for angular
+app.get('/', function(req, res) {
+  var urlParts = url.parse(req.url, true);
+  res.render('index', { titleStart: 'portfolio', titleEnd: 'NM', redirectUrl: urlParts.query.redirectUrl });
+});
+
+// TODO: Make sure this is not catching the errors, or anything else it shouldn't.
+// redirect all traffic to our one route above
 app.get('*', function(req, res) {
-  res.render('index', { titleStart: 'portfolio', titleEnd: 'NM' })
+  res.redirect('/?redirectUrl=' + encodeURIComponent(req.url));
 });
 
 // TODO: better understand below, and setup server restarter on actual server.

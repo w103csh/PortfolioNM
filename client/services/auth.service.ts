@@ -29,7 +29,9 @@ export class AuthService {
   public signedInUser$: Observable<User> = this.signedInUserSource.asObservable();
   public isSignedIn$: Observable<boolean> = this.isSignedInSource.asObservable();
 
-  constructor (private http: Http) { }
+  constructor (private http: Http) {
+    let x = 1+1;
+  }
 
   private updateUser(user: User) {
     this.isSignedInSource.next(user ? true : false);

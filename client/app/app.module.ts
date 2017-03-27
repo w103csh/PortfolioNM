@@ -1,11 +1,13 @@
 
 // Angular modules
-import { NgModule }                       from '@angular/core';
+import { NgModule,
+         APP_INITIALIZER }                from '@angular/core';
 import { BrowserModule }                  from '@angular/platform-browser';
 import { BrowserAnimationsModule }        from '@angular/platform-browser/animations';
-import { HashLocationStrategy
-        ,Location
-        ,LocationStrategy }               from '@angular/common';
+// import { PathLocationStrategy
+//         ,HashLocationStrategy
+//         ,Location
+//         ,LocationStrategy }               from '@angular/common';
 import { FormsModule }                    from '@angular/forms';
 import { HttpModule }                     from '@angular/http';
 import { MaterialModule }                 from '@angular/material';
@@ -18,6 +20,7 @@ import { AuthHomeChild1Component }        from './components/auth-home-child1/au
 import { AuthHomeChild2Component }        from './components/auth-home-child2/auth-home-child2.component';
 
 // App defined services
+//import { ConfigService }                  from '../services/config.service';
 import { UserService }                    from '../services/user.service';
 import { AuthService }                    from '../services/auth.service';
 import { AuthGuard }                      from '../services/auth-guard.service';
@@ -35,32 +38,44 @@ import { PageNotFoundComponent }          from './components/page-not-found/page
 // other libraries
 import 'hammerjs';
 
+// function configServiceFactory (config: ConfigService) {
+//   return () => config.load();
+// }
+
 @NgModule({
   imports: [
-    BrowserModule
-    ,BrowserAnimationsModule
-    ,FormsModule
-    ,HttpModule
-    ,MaterialModule
-    ,AppRoutingModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpModule,
+    MaterialModule,
+    AppRoutingModule
   ],
   declarations: [
-    AppComponent
-    ,AuthHomeComponent
-    ,AuthHomeChild1Component
-    ,AuthHomeChild2Component
-    ,TitleBarButtonGroupComponent
-    ,SideBarComponent
-    ,HomeComponent
-    ,SignInComponent
-    ,SignUpComponent
-    ,PageNotFoundComponent
+    AppComponent,
+    AuthHomeComponent,
+    AuthHomeChild1Component,
+    AuthHomeChild2Component,
+    TitleBarButtonGroupComponent,
+    SideBarComponent,
+    HomeComponent,
+    SignInComponent,
+    SignUpComponent,
+    PageNotFoundComponent
   ],
   providers: [ 
     // Location, { provide: LocationStrategy, useClass: HashLocationStrategy }
-    ,UserService
-    ,AuthService
-    ,AuthGuard
+    // Location, { provide: LocationStrategy, useClass: PathLocationStrategy }
+    // ConfigService, 
+    // { 
+    //   provide: APP_INITIALIZER, 
+    //   useFactory: configServiceFactory, 
+    //   deps: [ConfigService],
+    //   multi: true
+    // },
+    UserService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [ AppComponent ]
 })
