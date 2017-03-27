@@ -60,7 +60,7 @@ export class AppComponent {
     this.titleStart = __titleStart;
     this.titleEnd = __titleEnd;
     this.title = __titleStart + __titleEnd;
-    this.titleService.setTitle(this.title);
+    this.titleService.setTitle(' \\o/ ' + this.title);
   }
 
   ngOnDestroy() {
