@@ -11,7 +11,7 @@ import { HomeComponent }                from './components/home/home.component';
 import { SignInComponent }              from './components/sign-in/sign-in.component';
 import { SignUpComponent }              from './components/sign-up/sign-up.component';
 import { PageNotFoundComponent }        from './components/page-not-found/page-not-found.component';
-import { AuthGuard }                    from '../services/auth-guard.service';
+import { AuthGuard }                    from '../shared-services/auth-guard.service';
 
 const appRoutes: Routes = [
    {

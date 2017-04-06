@@ -1,0 +1,11 @@
+
+.gen-info {
+  max-width: 800px;
+  padding: 0 12px 12px 12px;
+}
+
+.panel-btn-edit {
+  float: right;
+  /*margin-right: 5px;*/
+  /*margin-top: 5px;*/
+}

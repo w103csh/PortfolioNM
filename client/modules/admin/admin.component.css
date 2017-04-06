@@ -1,5 +1,7 @@
 
 .below-header {
   height: 100%;
-  margin: 35px 50px;
+  margin: 25px 30px;
+  padding: 10px 20px;  
+  background-color: rgb(255, 255, 255);
 }

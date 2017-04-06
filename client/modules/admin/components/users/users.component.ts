@@ -5,16 +5,10 @@ import { Component }          from '@angular/core';
   moduleId: module.id,
   selector: 'users',
   templateUrl: './users.component.html',
-  styleUrls: [ '../../../../shared-css/admin-tab.css', './users.component.css' ]
+  styleUrls: [ './users.component.css' ]
 })
 export class UsersComponent {
 
-  private description: string = 'Approve users, administrate their roles, and configure thier editable options.'
-  private panes = {
-    userList: {
-      title: 'User List',
-      isEditable: true
-    }
-  };
+  private description: string = 'Approve users, administrate their roles, and configure editable options.';
 
 }

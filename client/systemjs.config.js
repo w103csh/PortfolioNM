@@ -26,8 +26,9 @@
     },
     // map tells the System loader where to look for things
     map: {
-      // our app in the client folder (path for import)
-      app: './',
+      app:          './',
+      // services:     './shared-services',
+      dialogs:      './shared-services/dialogs',
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -58,6 +59,14 @@
     packages: {
       app: {
         main: './main.ts',
+        defaultExtension: 'ts'
+      },
+      // services: {
+      //   main: 'index.d.ts',
+      //   defaultExtension: 'ts'
+      // },
+      dialogs: {
+        main: 'index.d.ts',
         defaultExtension: 'ts'
       },
       rxjs: {

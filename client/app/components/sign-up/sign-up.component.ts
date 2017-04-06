@@ -2,7 +2,7 @@
 import { Component }          from '@angular/core';
 import { Router,
          NavigationExtras }   from '@angular/router';
-import { UserService }        from '../../../services/user.service';
+import { UserService }        from '../../../shared-services/user.service';
 
 import { User }               from '../../../models/User';
 

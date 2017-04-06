@@ -3,7 +3,7 @@ import { Component,
          OnDestroy }        from '@angular/core';
 import { Router }           from '@angular/router';
 
-import { AuthService }      from '../../../services/auth.service';
+import { AuthService }      from '../../../shared-services/auth.service';
 import { User }             from '../../../models/User';
 
 import { Subscription }     from 'rxjs/Subscription';

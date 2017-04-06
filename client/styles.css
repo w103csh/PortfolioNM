@@ -6,6 +6,11 @@ body {
   height: 105vh;
 }
 
+h1 {
+  font-size: 30px;
+  font-weight: normal;
+}
+
 h2 {
   color: rgb(255, 255, 230);
   font-size: 1.4em;
@@ -13,7 +18,22 @@ h2 {
   -webkit-margin-before: 0; 
   -webkit-margin-after: 0;
   margin: 0;
-  padding:20px 0 25px 40px;
+  padding: 20px 0 25px 40px;
+  background-color: hsl(150, 100%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(150, 100%, 30%), hsl(160, 80%, 20%));
+}
+
+h3 {
+  color: hsl(210, 100%, 20%) !important;
+  font-weight: bold;
+}
+
+.header {
+  color: rgb(255, 255, 230);
+  -webkit-margin-before: 0; 
+  -webkit-margin-after: 0;
+  margin: 0;
+  padding: 32px 48px 48px 48px;
   background-color: hsl(150, 100%, 30%);
   background-image: -webkit-linear-gradient(right, hsl(150, 100%, 30%), hsl(160, 80%, 20%));
 }
@@ -115,6 +135,10 @@ a.title {
   text-shadow: 3px 3px hsl(180, 100%, 10%);
 }
 
+a.title:hover {
+  text-decoration: none;
+}
+
 a.title * {
   font-family: 'Rubik Mono One' !important;
   color: hsl(60, 55%, 90%);
@@ -203,10 +227,14 @@ div.content {
   color: rgba(0,0,0,0.54);
 }*/
 
-/* ------------------ everywhere else ------------------ */
-* {
-  font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+.panel {
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
+
+/* ------------------ everywhere else ------------------ */
+/** {
+  font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}*/
 
 /* ------------------ angular material themes ------------------ */
 /* FIX THIS AND REMOVE FROM INDEX */

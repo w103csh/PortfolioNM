@@ -1,6 +1,42 @@
 
 <tab-content-container [description]='description' >
-  <pane [title]='panes.genInfo.title' [editable]='panes.genInfo.isEditable' >
+
+  <div class='panel panel-default gen-info' >
+    <h4>
+      General Infomation
+      <button md-mini-fab class='panel-btn panel-btn-edit' (click)='genInfoClick()' ><md-icon>edit</md-icon></button>
+    </h4>
+    <div class='panel-body' >
+      <div>
+        <div>
+          Yo Mama 1
+        </div>
+        <div>
+          Yo Mama 2
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class='panel panel-default' >
+    <div class='panel-heading' >
+      <h3 class='panel-title' >Password Management</h3>
+    </div>
+    <div class='panel-body' >
+      <div>
+        <div>
+          Yo Mama 3
+        </div>
+        <div>
+          Yo Mama 4
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--<pane [title]='panels.genInfo.title' [editable]='panels.genInfo.isEditable' >
     <div>
       <div>
         Yo Mama 1
@@ -15,7 +51,7 @@
         Yo Mama 4
       </div>
     </div>
-  </pane>
+  </pane>-->
 
   <!--<div class='banner' >
     <p>General Information</p>

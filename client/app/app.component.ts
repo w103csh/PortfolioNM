@@ -7,7 +7,7 @@ import { //ActivatedRoute,
 import { Title }                      from '@angular/platform-browser';
 import { Location }                   from '@angular/common';
 
-import { AuthService }                from '../services/auth.service';
+import { AuthService }                from '../shared-services/auth.service';
 import { User }                       from '../models/User';
 import { __titleStart }               from '../APP_CONFIG.ts';
 import { __titleEnd }                 from '../APP_CONFIG.ts';
@@ -28,6 +28,9 @@ export class AppComponent {
   // service sub members
   private sub: Subscription;
   private isSignedIn: boolean;
+
+  signIn: string = 'here';
+  editable: boolean = false;
 
   constructor(
     private authService: AuthService,

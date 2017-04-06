@@ -19,11 +19,12 @@ import { AuthHomeComponent }              from './components/auth-home/auth-home
 import { AuthHomeChild1Component }        from './components/auth-home-child1/auth-home-child1.component';
 import { AuthHomeChild2Component }        from './components/auth-home-child2/auth-home-child2.component';
 
-// App defined services
-//import { ConfigService }                  from '../services/config.service';
-import { UserService }                    from '../services/user.service';
-import { AuthService }                    from '../services/auth.service';
-import { AuthGuard }                      from '../services/auth-guard.service';
+// App defined shared-services
+//import { ConfigService }                  from '../shared-services/config.service';
+import { UserService }                    from '../shared-services/user.service';
+//import { DialogService }                  from '../shared-services/dialog.service';
+import { AuthService }                    from '../shared-services/auth.service';
+import { AuthGuard }                      from '../shared-services/auth-guard.service';
 
 // App defined components
 import { AppComponent }                   from './app.component';
@@ -74,6 +75,7 @@ import 'hammerjs';
     //   multi: true
     // },
     UserService,
+    //DialogService,
     AuthService,
     AuthGuard
   ],

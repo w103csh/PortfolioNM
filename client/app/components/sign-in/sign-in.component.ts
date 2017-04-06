@@ -5,7 +5,7 @@ import { Router,
          ActivatedRoute,
          NavigationExtras }   from '@angular/router';
 
-import { AuthService }        from '../../../services/auth.service';
+import { AuthService }        from '../../../shared-services/auth.service';
 import { User }               from '../../../models/User';
 import { ResponseData }       from '../../../models/ResponseData';
 
@@ -16,6 +16,9 @@ import { ResponseData }       from '../../../models/ResponseData';
   styleUrls: [ '../../../shared-css/form.css', './sign-in.component.css' ]
 })
 export class SignInComponent{
+
+  // layout
+  private isPopup: boolean = false;
 
   private redirectUrl: string;
   private model: User = new User('', '', '');

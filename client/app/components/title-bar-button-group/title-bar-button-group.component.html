@@ -1,7 +1,7 @@
 
 <div id='titlebar-button-group' class='flex-container-row flex-right' >
   <div *ngIf='user' class='flex button-container greeting' >
-    <pre>Hello, {{ user?.firstName }}</pre>
+    <span>Hello, {{ user?.firstName }}</span>
   </div>
   <div *ngIf='user' class='flex button-container' >
     <button md-icon-button [mdMenuTriggerFor]='menu' >
