@@ -12,21 +12,21 @@ import { FormsModule }                    from '@angular/forms';
 import { HttpModule }                     from '@angular/http';
 import { MaterialModule }                 from '@angular/material';
 
-// App defined modules
+// Modules
 import { AppRoutingModule }               from './app-routing.module';
 // TODO: should put below into a module
 import { AuthHomeComponent }              from './components/auth-home/auth-home.component';
 import { AuthHomeChild1Component }        from './components/auth-home-child1/auth-home-child1.component';
 import { AuthHomeChild2Component }        from './components/auth-home-child2/auth-home-child2.component';
 
-// App defined shared-services
+// Services
 //import { ConfigService }                  from '../shared-services/config.service';
 import { UserService }                    from '../shared-services/user.service';
 //import { DialogService }                  from '../shared-services/dialog.service';
 import { AuthService }                    from '../shared-services/auth.service';
 import { AuthGuard }                      from '../shared-services/auth-guard.service';
 
-// App defined components
+// Components
 import { AppComponent }                   from './app.component';
 import { TitleBarButtonGroupComponent }   from './components/title-bar-button-group/title-bar-button-group.component';
 import { SideBarComponent }               from './components/side-bar/side-bar.component';

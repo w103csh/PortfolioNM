@@ -26,9 +26,9 @@
     },
     // map tells the System loader where to look for things
     map: {
-      app:          './',
+      app:      './',
       // services:     './shared-services',
-      dialogs:      './shared-services/dialogs',
+      // dialogs:      './shared-services/dialogs',
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -65,10 +65,10 @@
       //   main: 'index.d.ts',
       //   defaultExtension: 'ts'
       // },
-      dialogs: {
-        main: 'index.d.ts',
-        defaultExtension: 'ts'
-      },
+      // dialogs: {
+      //   main: 'index.d.ts',
+      //   defaultExtension: 'ts'
+      // },
       rxjs: {
         defaultExtension: 'js'
       }

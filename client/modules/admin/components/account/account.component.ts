@@ -1,7 +1,9 @@
 
-import { Component }          from '@angular/core';
+import { Component, }          from '@angular/core';
 
-import { DialogService }      from '../../../../shared-services/dialog.service'
+import { DialogService, }      from '../../../dialog/dialog.module';
+import { YesNoDialogConfig, }  from '../../../dialog/dialog.module';
+
 
 @Component({
   moduleId: module.id,
@@ -11,12 +13,26 @@ import { DialogService }      from '../../../../shared-services/dialog.service'
 })
 export class AccountComponent {
 
+  selectedOption: any;
+
   private description: string = 'View and edit your account information.';
 
   constructor(public dialogService: DialogService) { }
 
-  genInfoClick() {
-    this.dialogService.openDialog();
+  genInfoEdit() {
+
+    let data = {
+      title: 'Edit',
+      message: 'Are you sure that you are sure about that?',
+      confirm:'Hell yes!'
+    };
+
+    let dialogRef = this.dialogService.openDialog(data);
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.selectedOption = result;
+    });
+    
   }
   
 }

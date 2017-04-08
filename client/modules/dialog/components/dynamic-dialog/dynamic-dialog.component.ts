@@ -8,7 +8,7 @@ import { Component
          ,ReflectiveInjector
          ,ComponentFactoryResolver }          from '@angular/core';
 
-import { YesNoDialogComponent }                from 'dialogs';
+import { YesNoDialogComponent }               from '../yes-no-dialog/yes-no-dialog.component';
 // import WorldHelloComponent                   from './world-hello-component';
 
 @Component({
@@ -19,15 +19,14 @@ import { YesNoDialogComponent }                from 'dialogs';
   ],
   template: `<div #dynamicComponentContainer></div>`,
 })
-export default class DynamicDialogComponent {
-  currentComponent = null;
+export class DynamicDialogComponent {
+  currentComponent: any = null;
 
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer: ViewContainerRef;
   
   // component: Class for the component you want to create
   // inputs: An object with key/value pairs mapped to input name/input value
   @Input() set componentData(data: {component: any, inputs: any }) {
-
     if (!data) return;
 
     // Inputs need to be in the following format to be resolved properly

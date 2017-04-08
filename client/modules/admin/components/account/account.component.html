@@ -4,10 +4,13 @@
   <div class='panel panel-default gen-info' >
     <h4>
       General Infomation
-      <button md-mini-fab class='panel-btn panel-btn-edit' (click)='genInfoClick()' ><md-icon>edit</md-icon></button>
+      <button md-mini-fab class='panel-btn panel-btn-edit' (click)='genInfoEdit()' ><md-icon>edit</md-icon></button>
     </h4>
     <div class='panel-body' >
       <div>
+        <div>
+          <label>Selected Option:</label>{{selectedOption}}
+        </div>
         <div>
           Yo Mama 1
         </div>
