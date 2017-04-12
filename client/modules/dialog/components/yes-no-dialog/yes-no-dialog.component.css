@@ -1,4 +1,12 @@
 
+md-icon {
+  float: right;
+}
+
+md-icon:hover {
+  cursor: pointer;
+}
+
 md-dialog-content {
   font-size: 14px;
   font-weight: 500;

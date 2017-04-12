@@ -9,17 +9,17 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 
-var Promise = require('bluebird');
-var mongoose = Promise.promisifyAll(require('mongoose'));
+// var Promise = require('bluebird');
+// var mongoose = Promise.promisifyAll(require('mongoose'));
 
-// db connection
-var connectionString = 'mongodb://'
-  + (process.env.DB_USER ? process.env.DB_USER + ':' : '')
-  + (process.env.DB_PASS ? process.env.DB_PASS + '@' : '')
-  +  process.env.DB_HOST + ':'
-  +  process.env.DB_PORT + '/'
-  +  process.env.DB_NAME;
-mongoose.connect(connectionString);
+// // db connection
+// var connectionString = 'mongodb://'
+//   + (process.env.DB_USER ? process.env.DB_USER + ':' : '')
+//   + (process.env.DB_PASS ? process.env.DB_PASS + '@' : '')
+//   +  process.env.DB_HOST + ':'
+//   +  process.env.DB_PORT + '/'
+//   +  process.env.DB_NAME;
+// mongoose.connect(connectionString);
 
 var app = express();
 

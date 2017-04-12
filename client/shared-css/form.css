@@ -13,10 +13,6 @@ form {
   padding: 10px 25px 16px 25px;
 }
 
-.mat-input-container.wide {
-  width: 100%;
-}
-
 .mat-checkbox {
   display: flex;
   align-content: center;
@@ -27,7 +23,6 @@ form {
 
 button.wide {
   display: block;
-  width: 100%;
 }
 
 div.question-redir {

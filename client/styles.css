@@ -23,11 +23,6 @@ h2 {
   background-image: -webkit-linear-gradient(right, hsl(150, 100%, 30%), hsl(160, 80%, 20%));
 }
 
-h3 {
-  color: hsl(210, 100%, 20%) !important;
-  font-weight: bold;
-}
-
 .header {
   color: rgb(255, 255, 230);
   -webkit-margin-before: 0; 
@@ -135,7 +130,7 @@ a.title {
   text-shadow: 3px 3px hsl(180, 100%, 10%);
 }
 
-a.title:hover {
+a.title:hover, a.title:focus {
   text-decoration: none;
 }
 
@@ -219,16 +214,22 @@ div.content {
 /* ------------------ Navigation link styles ------------------ */
 
 /* ------------------ items class ------------------ */
-/* chrome autofill password bug */
-/*.md-input[type=password]:-webkit-autofill ~ label:not(.md-no-float) {
-  transform: translate3d(0, 6px, 0) scale(0.75);
-  transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s, width cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s;
-  width: ~"calc((100% - 18px) / 0.75)";
-  color: rgba(0,0,0,0.54);
-}*/
+code {
+  background-color: #ecf2f9;
+  color: hsl(210, 100%, 20%);
+}
+
+.wide {
+  width: 100%;
+}
 
 .panel {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.panel-heading > h3 {
+  color: hsl(210, 100%, 20%) !important;
+  font-weight: bold;
 }
 
 /* ------------------ everywhere else ------------------ */
@@ -236,8 +237,12 @@ div.content {
   font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }*/
 
+h1, h2, h3, h4, h4, h6 {
+  -webkit-font-smoothing: antialiased;
+}
+
 /* ------------------ angular material themes ------------------ */
-/* FIX THIS AND REMOVE FROM INDEX */
+/* TODO: FIX THIS AND REMOVE FROM INDEX */
 @import url('stylesheets/green-deepteal.css');
 
 

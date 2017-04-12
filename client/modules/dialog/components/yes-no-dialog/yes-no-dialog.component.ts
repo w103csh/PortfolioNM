@@ -22,14 +22,12 @@ export class YesNoDialogComponent {
     this.config = data || {};
 
     // defaults
-    if(!this.config.title)
-      this.config.title = 'Question';
-    if(!this.config.message)
-      this.config.message = 'Are you sure?';
     if(!this.config.cancel)
       this.config.confirm = 'Confirm';
     if(!this.config.cancel)
       this.config.cancel = 'Cancel';
+    if(!this.config.showClear)
+      this.config.showClear = false;
   }
 
   yes() {

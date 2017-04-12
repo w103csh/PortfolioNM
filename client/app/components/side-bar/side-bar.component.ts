@@ -14,7 +14,7 @@ import { User }                       from '../../../models/User';
 })
 export class SideBarComponent {
   
-  navLinks: { label: string, href: string}[] = [
+  private navLinks: { label: string, href: string }[] = [
     { label: 'AUTH-HOME', href: '/auth-home' },
     { label: 'AUTH-HOME CHILD 1', href: '/auth-home-child1' },
     { label: 'AUTH-HOME CHILD 2', href: '/auth-home-child2' }

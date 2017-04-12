@@ -11,13 +11,16 @@
 
     <!-- TODO: might be able to get these a different way -->
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+      integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+    <!--<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+      integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>-->
     <!-- google -->
     <link href='//fonts.googleapis.com/css?family=Rubik Mono One' rel='stylesheet' >
     <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet' >
+
+    <link href='stylesheets/green-deepteal.css' rel='stylesheet'>
+    <link href='styles.css' rel='stylesheet' >
 
     <!-- Polyfills -->
     <script src='https://unpkg.com/core-js/client/shim.min.js' ></script>
@@ -27,16 +30,21 @@
 
     <!-- non-material control sources -->
     <!--
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="http://bootsnipp.com/dist/scripts.min.js"></script>
-
+    <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <script src='//code.jquery.com/jquery-1.11.0.min.js'></script>
+    <script src='//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+    <script src='http://bootsnipp.com/dist/scripts.min.js'></script>
 
     -->
 
-    <link href='styles.css' rel='stylesheet' >
-    <link href="stylesheets/green-deepteal.css" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+      crossorigin="anonymous"></script>
+    <script 
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"></script>
 
     <script src='systemjs.config.js' ></script>
 
@@ -50,12 +58,12 @@
     </script>
   </head>
 
-  <body class='mat-app-background' >
+  <body class='mat-app-background'>
     <main-app redirectUrl='<%= redirectUrl %>' >
       <!-- This gets replaced by the app -->
       <div id='loadingContainer' class='loading-container' >
         <h1>Loading...</h1>
-        <div class="spinner"></div>
+        <div class='spinner'></div>
       </div>
     </main-app>
   </body>

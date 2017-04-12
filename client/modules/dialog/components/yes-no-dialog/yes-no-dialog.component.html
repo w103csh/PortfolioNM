@@ -1,8 +1,11 @@
-<h3 *ngIf='config?.title' md-dialog-title >{{config?.title}}</h3>
-<md-dialog-content>
+<h3 *ngIf='config?.title' md-dialog-title >
+  {{config?.title}}
+    <md-icon *ngIf='showClear' color='accent' (click)='no()' >remove</md-icon>
+</h3>
+<md-dialog-content *ngIf='config?.message' >
   {{config?.message}}
 </md-dialog-content>
 <md-dialog-actions>
-  <button md-button tabindex='2' (click)='yes()' >{{config?.confirm}}</button>
-  <button md-button tabindex='1' (click)='no()' >{{config?.cancel}}</button>
+  <button md-button (click)='no()' >{{config?.cancel}}</button>
+  <button md-button color='primary' (click)='yes()' >{{config?.confirm}}</button>
 </md-dialog-actions>

@@ -21,6 +21,7 @@ export class AccountComponent {
 
   genInfoEdit() {
 
+    // TODO: this doesn't work now for some reason.
     let data = {
       title: 'Edit',
       message: 'Are you sure that you are sure about that?',
