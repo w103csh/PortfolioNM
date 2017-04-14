@@ -26,7 +26,7 @@
       
       <md-checkbox class='mat-checkbox' [(ngModel)]='model.rememberMe' name='rememberMe' >Remember me</md-checkbox>
 
-      <pre *ngIf='serverMsg' class='error'>{{serverMsg}}</pre>
+      <p *ngIf='serverMsg' class='error'>{{serverMsg}}</p>
 
       <button md-raised-button color='primary' class='wide' >Sign in</button>
 

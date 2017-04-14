@@ -1,5 +1,4 @@
 <div class='content'>
-
   <div class='flex-container-row'>
     <div *ngIf='!user' class='side'></div>
     <div class='main'>
@@ -27,142 +26,131 @@
           </li>
         </ul>
 
-        <!-- sections -->
-        <!-- TODO: make section a component -->
-        <div *ngFor='let section of sections' >
-          <a id='{{section.ref}}'></a>
-          <h2>{{section.title}}</h2>
-          <!--<p>{{section.description}}</p>-->
-          <div [ngSwitch]='section.ref'>
+        <div class='sections' >
 
-            <!-- Site -->
-            <div *ngSwitchCase='"site"' >
-              <!-- Site start -->
-              <p *ngFor='let p of siteStart' [innerHTML]='p'></p>
+          <!-- sections -->
+          <!-- TODO: make section a component -->
+          <div *ngFor='let section of sections' >
+            <a id='{{section.ref}}'></a>
+            <h2>{{section.title}}</h2>
+            <!--<p>{{section.description}}</p>-->
+            <div [ngSwitch]='section.ref'>
 
-              <!-- Site details -->
-              <!-- TODO: make show/hide button and target a component -->
-              <button md-button #siteListToggleBtn id='siteListToggleBtn' color='primary' (click)='showDetails(siteListToggleBtn)'
-                data-toggle='collapse' data-target='#siteList' aria-expanded='true' aria-controls='siteList' toggle='false' >
-                {{ siteToggle ? 'Hide details' : 'Show details' }}
-                <md-icon *ngIf='!siteToggle' >add_circle</md-icon>
-                <md-icon *ngIf='siteToggle' >remove_circle</md-icon>
-              </button><br />
-              <div class='collapse in' id='siteList'>
-                <br />
-                <ul>
-                  <li>Server</li>
-                  <ul >
-                    <li *ngFor='let bullet of serverBullets' [innerHTML]='bullet' ></li>
+              <!-- Site -->
+              <div *ngSwitchCase='"site"' >
+                <!-- Site start -->
+                <p *ngFor='let p of siteStart' [innerHTML]='p'></p>
+                <!-- Site details -->
+                <collapsible-button [expand]='true' [showIcon]='true' >
+                  <ul>
+                    <li>Server</li>
+                    <ul >
+                      <li *ngFor='let bullet of serverBullets' [innerHTML]='bullet' ></li>
+                    </ul>
+                    <li>Database</li>
+                    <ul >
+                      <li *ngFor='let bullet of dbBullets' [innerHTML]='bullet' ></li>
+                    </ul>
+                    <li>Client</li>
+                    <ul >
+                      <li *ngFor='let bullet of clientBullets' [innerHTML]='bullet' ></li>
+                    </ul>
+                    <li>Development Environment</li>
+                    <ul >
+                      <li *ngFor='let bullet of deBullets' [innerHTML]='bullet' ></li>
+                    </ul>
                   </ul>
-                  <li>Database</li>
-                  <ul >
-                    <li *ngFor='let bullet of dbBullets' [innerHTML]='bullet' ></li>
-                  </ul>
-                  <li>Client</li>
-                  <ul >
-                    <li *ngFor='let bullet of clientBullets' [innerHTML]='bullet' ></li>
-                  </ul>
-                  <li>Development Environment</li>
-                  <ul >
-                    <li *ngFor='let bullet of deBullets' [innerHTML]='bullet' ></li>
-                  </ul>
-                </ul>
-                <br />
-                <!-- Site end 1 -->
-                <p *ngIf='siteEnd?.length > 0' [innerHTML]='siteEnd[0]'></p>
-                <!-- Disclaimer 2 -->
-                <blockquote *ngIf='disclaimers?.site' [innerHTML]='disclaimers?.site' ></blockquote>
-                <!-- Site end 2 -->
-                <!--<p *ngIf='siteEnd?.length > 1' [innerHTML]='siteEnd[1]'></p>-->
+                  <br />
+                  <!-- Site end 1 -->
+                  <p *ngIf='siteEnd?.length > 0' [innerHTML]='siteEnd[0]'></p>
+                  <!-- Disclaimer 2 -->
+                  <blockquote *ngIf='disclaimers?.site' [innerHTML]='disclaimers?.site' ></blockquote>
+                  <!-- Site end 2 -->
+                  <!--<p *ngIf='siteEnd?.length > 1' [innerHTML]='siteEnd[1]'></p>-->
+                </collapsible-button>
               </div>
-            </div>
 
-            <!-- Experience -->
-            <div *ngSwitchCase='"experience"' >
-
-              <!-- Experience details -->
-              <!-- TODO: make show/hide button and target a component -->
-              <button md-button #expListToggleBtn id='expListToggleBtn' color='primary' (click)='showDetails(expListToggleBtn)'
-                data-toggle='collapse' data-target='#expList' aria-expanded='true' aria-controls='siteList' toggle='false' >
-                {{ expToggle ? 'Hide details' : 'Show details' }}
-                <md-icon *ngIf='!expToggle' >add_circle</md-icon>
-                <md-icon *ngIf='expToggle' >remove_circle</md-icon>
-              </button><br />
-              <div class='collapse in' id='expList'>
-
+              <!-- Experience -->
+              <div *ngSwitchCase='"experience"' >
+                <!-- Experience start -->
+                <p *ngFor='let p of expStart' [innerHTML]='p'></p>
+                <!-- Experience details -->
+                <collapsible-button [expand]='true' [showIcon]='true' [breakBeforeTarget]=false >
+                  <div *ngFor='let exp of experience' >
+                    <h3>{{exp.title}}</h3>
+                    <label>{{exp.description}}</label>
+                    <ul>
+                      <li *ngFor='let bullet of exp.bullets' >{{bullet}}</li>
+                    </ul>
+                  </div>
+                </collapsible-button>
               </div>
-              
-            </div>
 
-            <!-- Skills -->
-            <div *ngSwitchCase='"skills"' >
-              <p *ngIf='skills?.first' [innerHTML]='skills?.first' ></p>
-
-              <!-- Skills details -->
-              <!-- TODO: make show/hide button and target a component -->
-              <button md-button #skillListToggleBtn id='skillListToggleBtn' color='primary' (click)='showDetails(skillListToggleBtn)'
-                data-toggle='collapse' data-target='#skillList' aria-expanded='true' aria-controls='siteList' toggle='false' >
-                {{ skillToggle ? 'Hide details' : 'Show details' }}
-                <md-icon *ngIf='!skillToggle' >add_circle</md-icon>
-                <md-icon *ngIf='skillToggle' >remove_circle</md-icon>
-              </button><br />
-              <div class='collapse in' id='skillsList'>
-                <br />
-                <ul>
-                  <li><strong>Object-oriented languages</strong></li>
+              <!--Skills -->
+              <div *ngSwitchCase='"skills"' >
+                <!-- Skills start -->
+                <p *ngIf='skills?.first' [innerHTML]='skills?.first' ></p>
+                <!-- Skills details -->
+                <collapsible-button [expand]='true' [showIcon]='true' >
                   <ul>
-                    <li>
-                      C#, Java, C/C++ STL
-                    </li>
+                    <li><strong>Object-oriented languages</strong></li>
+                    <ul>
+                      <li>
+                        C#, Java, C/C++ STL
+                      </li>
+                    </ul>
+                    <li><strong>Scripting languages</strong></li>
+                    <ul>
+                      <li>
+                        JavaScript, TypeScript, Node.js, ECMAScript 2015 (ES2015), JQuery
+                      </li>
+                    </ul>
+                    <li><strong>Database</strong></li>
+                    <ul>
+                      <li>
+                        Microsoft SQL Server, MongoDB, MySQL
+                      </li>
+                    </ul>
+                    <li><strong>Frontend Application Frameworks</strong></li>
+                    <ul>
+                      <li>
+                        Angular, ASP.NET MVC 4/5 , ASP.NET, ASP Classic, Castle Monorail
+                      </li>
+                    </ul>
+                    <li><strong>Miscellaneous</strong></li>
+                    <ul>
+                      <li>HTML/HTML5, CSS/CSS3, XML, JSON</li>
+                      <li>.NET, MEAN, LAMP</li>
+                      <li>Razor, nVelocity, EJS, JADE</li>
+                      <li>Entity Framework, nHibernate</li>
+                      <li>ArcGIS, Telerik, Bootstrap, ReactiveX, lodash</li>
+                      <li>RESTful web services, WCF, AJAX, XHR</li>
+                      <li>Windows Forms, Android, Java Foundation Classes</li>
+                      <li>Git, Team Foundation Services, Subversion, Tortoise SVN, SourceGear Vault, GitHub</li>
+                      <li>IIS, Azure, Apache, Nginx</li>
+                      <li>Windows, Linux, Bash, PowerShell</li>
+                      <li>Visual Studio, Eclipse, Visual Studio Code, SQL Sever Management Studio</li>
+                    </ul>
                   </ul>
-                  <li><strong>Scripting</strong></li>
+                  <p *ngIf='skills?.second' [innerHTML]='skills?.second' ></p>
                   <ul>
-                    <li>
-                      JavaScript, TypeScript, JQuery
-                    </li>
+                    <li><strong>Old friends</strong></li>
+                    <ul>
+                      <li>
+                        VBScript, JScript, PHP, Perl
+                      </li>
+                    </ul>
                   </ul>
-                  <li><strong>Database</strong></li>
-                  <ul>
-                    <li>
-                      Microsoft SQL Server, MongoDB, MySQL
-                    </li>
-                  </ul>
-                  <li><strong>Templating Engines</strong></li>
-                  <ul>
-                    <li>
-                      Razor, ASP.NET, nVelocity, ASP Classic
-                    </li>
-                  </ul>
-                  <li><strong>Miscellaneous</strong></li>
-                  <ul>
-                    <li>HTML/HTML5, CSS/CSS3, XML, JSON</li>
-                    <li>MVC 5, MEAN, Castle Monorail, LAMP, Angular, Node.js</li>
-                    <li>Entity Framework, Telerik</li>
-                    <li>RESTful web services, WCF, AJAX, XHR</li>
-                    <li>Windows Forms, Android, Java Foundation Classes</li>
-                    <li>Git, GitHub, Team Foundation Services, Subversion, Tortoise SVN, SourceGear Vault</li>
-                    <li>IIS, Azure, Apache, NGINX</li>
-                    <li>Windows, Linux, bash, power shell</li>
-                    <li>Visual Studio, Eclipse, Visual Studio Code, SQL Sever Management Studio</li>
-                  </ul>
-                </ul>
-                <p *ngIf='skills?.second' [innerHTML]='skills?.second' ></p>
-                <ul>
-                  <li><strong>Old friends</strong></li>
-                  <ul>
-                    <li>
-                      VBScript, JScript, PHP, Perl
-                    </li>
-                  </ul>
-                </ul>
+                </collapsible-button>
               </div>
+
             </div>
+            <a md-button color='accent' href='#toc'  >Back to top</a>
 
           </div>
-          <a md-button color='accent' href='#toc'  >Back to top</a>
-        </div>
 
+        </div>
+        
       </div>
     </div>
     <div *ngIf='!user' class='side'></div>

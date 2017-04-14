@@ -14,8 +14,8 @@ import { User }               from '../../../models/User';
 })
 export class SignUpComponent{
 
-  model = new User('', '', '');
-  serverMsg = null;
+  model: User = new User('', '', '');
+  serverMsg: string = null;
 
   constructor(private userService: UserService, public router: Router) { }
 

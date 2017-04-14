@@ -16,19 +16,21 @@ const path = require('path');
     * Returns: 
   */
 
+
+/* createResponseData
+  *
+*/  
+function createResponseData(success, msg, data) {
+  return {
+    success: success,
+    message: msg,
+    data: data
+  };
+};
+
 module.exports = {
-
-  /* createResponseData
-    *
-  */  
-  createResponseData(success, msg, data) {
-    return {
-      success: success,
-      message: msg,
-      data: data
-    };
-  },
-
+  
+  createResponseData: createResponseData,
 
   /* processCaughtException
     *
@@ -42,7 +44,7 @@ module.exports = {
     }
     else if (info) {
       // info messages should be ready to be display in the app
-      let resData = apiHelper.createResponseData(false, info.message, null);
+      let resData = createResponseData(false, info.message, null);
       res.status(200).json(resData);
       return true;
     }

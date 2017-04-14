@@ -1,0 +1,115 @@
+
+:host {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+}
+
+.title-bar {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+
+  background-color: hsl(150, 100%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 100%, 30%));
+  /*background-image: -webkit-linear-gradient(right, hsl(120, 100%, 25%), hsl(150, 100%, 30%));*/
+  /*box-shadow: 0px 1px 2px #006600;*/
+  border-bottom: 1px solid hsl(210, 100%, 20%);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.137255) 0px 6px 10px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 18px 0px;
+}
+
+a.title {
+  margin: 16px 0 16px 16px;
+  padding: 0 10px 0 0;
+  width: auto;
+
+  /* border styles */
+  border-style: solid;
+  border-color: hsl(60, 55%, 90%);
+  border-width: 0 10px 4px 0;
+  border-radius: 3px;
+  box-shadow: 3px 3px hsl(180, 100%, 10%);
+
+  /* font styles */
+  line-height: 28px;
+  color: hsl(60, 55%, 90%);
+  text-shadow: 3px 3px hsl(180, 100%, 10%);
+}
+
+a.title:hover, a.title:focus {
+  text-decoration: none;
+}
+
+a.title, a.title * {
+  font-family: 'Rubik Mono One' !important;
+  color: hsl(60, 55%, 90%);
+  text-shadow: 3px 3px hsl(180, 100%, 10%);
+}
+
+a.title > span {
+  font-size: 20px;
+}
+
+span.title-end {
+  font-size: 24px;
+}
+
+.below-title {
+  display: flex;
+  flex: auto;
+  -webkit-box-direction: normal;
+  -webkit-box-flex: 1;
+  overflow-y: hidden;
+}
+
+/* START side-nav */
+/*md-sidenav-container {
+  height: 100%;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex: 0 1 auto !important;
+  flex: 0 1 auto !important;
+}
+
+.side-nav-closer {
+  height: 100%;
+  padding: 0 3px 0 3px;
+  display: inline-block;
+  background-color: #fff;
+  background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(60, 55%, 90%));
+  border-right: 3px solid;
+  border-color: hsl(150, 100%, 30%);
+}
+
+.side-nav-closer > button {
+  margin-top: 2px;
+  height: 24px;
+  width: 24px;
+  background-color: darkgrey;
+  border-radius: 2px;
+}
+
+.side-nav-closer > button > span > md-icon {
+  padding: 1px 0 1px 0 !important;
+}*/
+/* END side-nav */
+
+div.side-bar-wrapper {
+  -webkit-flex: 0 0 0;
+  flex: 0 0 0;
+  display: -webkit-flex;
+  display: flex;
+}
+
+div.main-outlet-wrapper {
+  width: 100%;
+  display: inline-block;
+  justify-content: center;
+  overflow-y: auto;
+}

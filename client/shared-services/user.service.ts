@@ -27,7 +27,7 @@ export class UserService {
   // create user
   create(body: User): Observable<ResponseData> {
 
-    let url = this.baseUrl + '/create';
+    let url = this.baseUrl + 'create';
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 

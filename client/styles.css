@@ -3,7 +3,6 @@
 body {
   margin: 0;
   /*background-color: rgb(250, 250, 250);*/
-  height: 105vh;
 }
 
 h1 {
@@ -31,11 +30,6 @@ h2 {
   padding: 32px 48px 48px 48px;
   background-color: hsl(150, 100%, 30%);
   background-image: -webkit-linear-gradient(right, hsl(150, 100%, 30%), hsl(160, 80%, 20%));
-}
-
-main-app {
-  width: 100%;
-  height: 100%;
 }
 
 /* Loading spinner */
@@ -102,108 +96,8 @@ div.flex-expand-full {
 }
 /* END general flex classes */
 
-/* ------------------ Layout styles ------------------ */
-/* START title bar */
-.title-bar {
-  background-color: hsl(150, 100%, 30%);
-  background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 100%, 30%));
-  /*background-image: -webkit-linear-gradient(right, hsl(120, 100%, 25%), hsl(150, 100%, 30%));*/
-  /*box-shadow: 0px 1px 2px #006600;*/
-  border-bottom: 5px solid hsl(210, 100%, 20%);
-}
-
-a.title {
-  margin: 16px 0 16px 16px;
-  padding: 0 10px 0 0;
-  width: auto;
-
-  /* border styles */
-  border-style: solid;
-  border-color: hsl(60, 55%, 90%);
-  border-width: 0 10px 4px 0;
-  border-radius: 3px;
-  box-shadow: 3px 3px hsl(180, 100%, 10%);
-
-  /* font styles */
-  line-height: 28px;
-  color: hsl(60, 55%, 90%);
-  text-shadow: 3px 3px hsl(180, 100%, 10%);
-}
-
-a.title:hover, a.title:focus {
-  text-decoration: none;
-}
-
-a.title * {
-  font-family: 'Rubik Mono One' !important;
-  color: hsl(60, 55%, 90%);
-  text-shadow: 3px 3px hsl(180, 100%, 10%);
-}
-
-a.title > span {
-  font-size: 20px;
-}
-
-span.title-end {
-  font-size: 24px;
-  /*font-size: 30px;*/
-}
-/* END title bar */
-
-.below-title {
-  height: 100%;
-}
-
-/* START side-nav */
-md-sidenav-container {
-  height: 100%;
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-flex: 0 1 auto !important;
-  flex: 0 1 auto !important;
-}
-
-.side-nav-closer {
-  height: 100%;
-  padding: 0 3px 0 3px;
-  display: inline-block;
-  background-color: #fff;
-  background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(60, 55%, 90%));
-  border-right: 3px solid;
-  border-color: hsl(150, 100%, 30%);
-}
-
-.side-nav-closer > button {
-  margin-top: 2px;
-  height: 24px;
-  width: 24px;
-  background-color: darkgrey;
-  border-radius: 2px;
-}
-
-.side-nav-closer > button > span > md-icon {
-  padding: 1px 0 1px 0 !important;
-}
-/* END side-nav */
-
-/* START main app flex css */
-div.side-bar-wrapper {
-  -webkit-flex: 0 0 0;
-  flex: 0 0 0;
-  display: -webkit-flex;
-  display: flex;
-}
-
-div.main-outlet-wrapper {
-  width: 100%;
-  display: inline-block;
-  justify-content: center;
-}
-/* END main app flex css */
-
 div.content {
   width: 100%;
-  height: 100%;
 }
 
 .on-grey {
@@ -211,7 +105,7 @@ div.content {
   border-color: darkgray;
 }
 
-/* ------------------ Navigation link styles ------------------ */
+/* ------------------ Layout styles ------------------ */
 
 /* ------------------ items class ------------------ */
 code {

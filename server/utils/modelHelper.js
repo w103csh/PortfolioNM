@@ -133,8 +133,12 @@ module.exports = {
           });
         }
       })
-      .error((err) => { return done(err, null); })
-      .catch((err) => { return done(err, null); });
+      .error((err) => { 
+        return done(err, null); 
+      })
+      .catch((err) => { 
+        return done(err, null); 
+      });
   },
 
 }

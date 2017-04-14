@@ -17,7 +17,8 @@ import { Subscription }               from 'rxjs/Subscription';
 @Component({
   moduleId: module.id,
   selector: 'main-app',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.css' ]
 })
 export class AppComponent {
 

@@ -1,7 +1,6 @@
 
 :host {
   width: 265px;
-  min-height: 100vh;
   margin: 0;
   background-color: #fff;
   background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(60, 55%, 90%));

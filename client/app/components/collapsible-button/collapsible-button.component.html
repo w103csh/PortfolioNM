@@ -1,0 +1,18 @@
+  
+<button md-button
+  color='{{color}}'
+  (click)='toggle()'
+  data-toggle='collapse'
+  [attr.data-target]='"#"+targetId'
+  [attr.aria-expanded]='expand'
+  [attr.aria-controls]='siteList'
+  [attr.toggle]='!expand' >
+  {{ expand ? collapseText : expandText }}
+  <md-icon *ngIf='showIcon && expand' >add_circle</md-icon>
+  <md-icon *ngIf='showIcon && !expand' >remove_circle</md-icon>
+</button>
+<br />
+<div [ngClass]='toggleClasses' [id]='targetId'>
+  <br *ngIf='breakBeforeTarget' />
+  <ng-content></ng-content>
+</div>

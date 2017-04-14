@@ -31,6 +31,7 @@ import { AppComponent }                   from './app.component';
 import { TitleBarButtonGroupComponent }   from './components/title-bar-button-group/title-bar-button-group.component';
 import { SideBarComponent }               from './components/side-bar/side-bar.component';
 import { HomeComponent }                  from './components/home/home.component';
+import { CollapsibleButtonComponent }     from './components/collapsible-button/collapsible-button.component';
 import { SignInComponent }                from './components/sign-in/sign-in.component';
 import { SignUpComponent }                from './components/sign-up/sign-up.component';
 import { PageNotFoundComponent }          from './components/page-not-found/page-not-found.component';
@@ -60,6 +61,7 @@ import 'hammerjs';
     TitleBarButtonGroupComponent,
     SideBarComponent,
     HomeComponent,
+    CollapsibleButtonComponent,
     SignInComponent,
     SignUpComponent,
     PageNotFoundComponent

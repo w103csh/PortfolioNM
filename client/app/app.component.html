@@ -4,11 +4,10 @@
   <div class='flex title-wrapper' >
     <a md-button routerLink='/' disableRipple class='title' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></a>
   </div>
-  <div class='flex-expand-full' >
-    <title-bar-button-group class='flex' ></title-bar-button-group>
-  </div>
+  <title-bar-button-group class='flex' ></title-bar-button-group>
 </div>
-<div class='flex-container-row below-title' >
+<!--<div class='flex-container-row below-title' >-->
+<div class='below-title' >
 
     <!--<md-sidenav-container *ngIf='isSignedIn' >
       <md-sidenav #sidenav mode='side' opened='true' >
@@ -29,7 +28,7 @@
     </div>-->
 
     <!-- TODO: animate this again -->
-    <div  *ngIf='isSignedIn' class='side-bar-wrapper' >
+    <div *ngIf='isSignedIn' class='side-bar-wrapper' >
       <side-bar ></side-bar>
     </div>
 

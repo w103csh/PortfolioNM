@@ -32,7 +32,6 @@ export class SignInComponent{
   }
 
   onSubmit() {
-    this.serverMsg = null;
     // TODO: loading
 
     this.authService.signin(this.model).subscribe(

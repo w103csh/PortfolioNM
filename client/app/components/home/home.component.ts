@@ -31,7 +31,7 @@ export class HomeComponent {
     dotnet: '<a target="_blank" href="https://www.microsoft.com/net">.NET</a>',
     // server
     ubuntuS: '<a target="_blank" href="https://www.ubuntu.com/server"><strong>Ubuntu (server)</strong></a>',
-    nginx: '<a target="_blank" href="https://www.nginx.com/resources/wiki/"><strong>NGINX</strong></a>',
+    nginx: '<a target="_blank" href="https://www.nginx.com/resources/wiki/"><strong>Nginx</strong></a>',
     node2: '<a target="_blank" href="https://nodejs.org"><strong>Node.js</strong></a>',
     express: '<a target="_blank" href="https://expressjs.com/"><strong>Express</strong></a>',
     // database
@@ -146,9 +146,8 @@ export class HomeComponent {
 
   // Skills
   private skills: any = {
-    first: `I would be remissed without the obligatory skills section. The technologies listed below are all things that
-    I have either worked with professionally, or used during my undergraduate studies. I have only listed things 
-    that I used to accomplish some kind of goal. In other words, I would be ready to start using any, and all of these
+    first: `I would be remissed without including a skills section. The technologies listed below are all skills with
+    which I am an expert (or at least very proficient). In other words, I would be ready to start using any, and all of these 
     technologies immediately upon request with little to no refreshement.`
     ,
     second: `Here is a list of techologies that I have used in the past that I don't really remember that much about. 
@@ -157,6 +156,71 @@ export class HomeComponent {
   };
 
   // Experience
+  private expStart: string[] = [
+    `Here is a break down of all of my professional experience so far. Listed is a quick overview of the required duties, along with
+    a few project <mark>highlights</mark>.`
+    ,
+  ]
+
+  private experience: { title: string, description: string, bullets: string[] }[] = [
+    { 
+      title: '.NET/WEB DEVELOPER',
+      description: 'Ramboll Environ, Denver, CO – October 2015 – Present', 
+      bullets: [ 
+        `Delivered multiple projects that I developed from conception to final release; talked with clients about the scope and 
+        purpose of a project, wrote time and cost estimates based on the guidelines, and then worked with a small team or individually
+        to create the final release within the given budget.`
+        ,
+        `Developed a tool that would let entities collect their greenhouse gas inventories into a central database using many different
+        methods (forms, bulk uploads from various file formats, etc.). The user could then use the interface to aggregate and display 
+        the data dynamically using criteria of their choosing.`
+        ,
+        `Created websites integrated with ArcGIS maps that would allow the users to alter the map layer information, and subsequently
+        see the changes in real time.`
+        ,
+        `Core applications development was done using ASP.NET MVC 4/5, and ASP.NET.`
+        ,
+      ]
+    },
+    { 
+      title: 'SOFTWARE ENGINEER',
+      description: 'Adeptive Software, Louisville, CO – May 2014 – July 2015', 
+      bullets: [
+        `Developed a multitude of enhancements, plugins, and bug fixes for ResWare (Adeptive Software’s core application), which is an all-encompassing real estate industry software solution.`
+        ,
+        `Consistently delivered pieces of larger projects in an agile environment on time and within estimations.`
+        ,
+        `Developed multiple bank wire integration plugins. Typically the wire transfers used proprietary file formats, encryption, and SFTP.`
+        ,
+        `Core applications development was done in WinForms, and ASP.NET, with primary web service development being done using WCF, and RESTful.`
+        ,
+      ]
+    },
+    { 
+      title: 'SOFTWARE DEVELOPER/HELP DESK SPECIALIST',
+      description: 'Dimension Technology Solutions, Littleton, CO – Feb 2014 – April 2014', 
+      bullets: [
+        `Developed the procedures and tools that allowed eMESA to seamlessly integrate with existing ERP systems such as Ellipse, Oracle, and SunSystems.`
+        ,
+        `Day to day maintenance of around a dozen websites that used Dimension Technology Solution’s core web application eMESA.`
+        ,
+        `Routinely fixed bugs for legacy versions of eMESA that had been outstanding for years.`
+        ,
+        `Communicated directly with clients to resolve any issues.`
+        ,
+        `Core development was done using a proprietary setup of Castle Monorail (C#, nVelocity, nHibernate, MS SQL).`
+        ,
+      ]
+    },
+    { 
+      title: 'JUNIOR SOFTWARE DEVELOPER',
+      description: 'Dimension Technology Solutions, Littleton, CO – Feb 2014 – April 2014', 
+      bullets: [
+        `All of the same responsibilities listed above with a lesser role in day to day communication with clients.`
+        ,
+      ]
+    },
+  ];
 
   private sections: {
     title: string,
@@ -164,17 +228,17 @@ export class HomeComponent {
     ref: string,
   }[] = [
     {
-      title: `About this website`,
+      title: `About This Website`,
       description: `Here is a short description.`,
       ref: `site`,
     },
     {
-      title: `Professional experience`,
+      title: `Professional Experience`,
       description: `Here is a short description.`,
       ref: `experience`,
     },
     {
-      title: `Skills & knowledge`,
+      title: `Skills & Knowledge`,
       description: `Here is a short description.`,
       ref: `skills`,
     },
