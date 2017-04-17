@@ -7,11 +7,11 @@ import { AuthService }        from '../../../shared-services/auth.service';
   moduleId: module.id,
   selector: 'auth-home',
   templateUrl: './auth-home.component.html',
-  styleUrls: [ './auth-home.component.css' ]
+  styleUrls: [ './auth-home.component.css', '../../../shared-css/doc.css' ]
 })
 export class AuthHomeComponent{
 
-  verifyMsg = null;
+  private verifyMsg: string = null;
 
   constructor(private authService: AuthService) { }
 
@@ -19,7 +19,7 @@ export class AuthHomeComponent{
 
     // loading
 
-    this.authService.verify().subscribe(response => { this.verifyMsg = response },
+    this.authService.verify().subscribe(response => { this.verifyMsg = response.toString() },
       err => {
         // TODO: log & something else
         console.log(err);

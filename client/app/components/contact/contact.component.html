@@ -1,0 +1,29 @@
+
+<div class='content' [ngClass]=signedInClasses >
+  <div class='header'><h1>CONTACT</h1></div>
+  <div class='content-wrapper' >
+    <p>My name is Colin Hughes. You can contact me using the links below.</p>
+    <md-list>
+      <md-list-item>
+        <a md-button target='_blank' href='https://www.linkedin.com/in/colin-hughes-15047a7a' ><img src='images/linkedin-box-black.png' />Linked In</a>
+        <span>See my profile.</span>
+      </md-list-item>
+      <md-list-item>
+          <a md-button target='_blank' href='https://github.com/w103csh/PortfolioNM' ><img src='images/github-circle-black.png' />GitHub</a>
+          <span>View, or clone the source code for this website.</span>
+      </md-list-item>
+      <md-list-item>
+          <a md-button target='_blank' [attr.href]=fileLocationPDF ><img src='images/file-pdf-black.png' />Résumé PDF</a>
+          <span>Download a PDF.</span>
+      </md-list-item>
+      <md-list-item>
+          <a md-button target='_blank' [attr.href]=fileLocationDOCX ><img src='images/file-word-box-black.png' />Résumé Word</a>
+          <span>Download a Word document.</span>
+      </md-list-item>
+      <md-list-item>
+          <a md-button target='_blank' href='https://docs.google.com/document/d/1LVWKC3lJRgdu8HdQDb4YiU6YNmQfQs6OuXbKisX8eac/edit?usp=sharing' ><img src='images/google-drive-black.png' />Google Doc</a>
+          <span>See my resume as a google document.</span>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

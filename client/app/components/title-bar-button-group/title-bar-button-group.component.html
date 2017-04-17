@@ -1,9 +1,9 @@
 
-<div id='titlebar-button-group' class='flex-container-row flex-right' >
-  <div *ngIf='user' class='flex button-container greeting' >
+<div class='flex-container-row just-cen' >
+  <div *ngIf='user' class='button-container greeting' >
     <span>Hello, {{ user?.firstName }}</span>
   </div>
-  <div *ngIf='user' class='flex button-container' >
+  <div *ngIf='user' class='button-container' >
     <button md-icon-button [mdMenuTriggerFor]='menu' >
       <md-icon>menu</md-icon>
     </button>
@@ -18,7 +18,7 @@
       </button>
     </md-menu>
   </div>
-  <div class='flex button-container' >
+  <div class='button-container' >
     <button md-raised-button color=primary (click)='signInOrOut()' >{{ user ? 'Sign out' : 'Sign in' }}</button>
   </div>
 </div>

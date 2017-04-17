@@ -53,6 +53,7 @@
       'ts':                         'npm:plugin-typescript@5.2.7/lib/plugin.js',
       'typescript':                 'npm:typescript@2.0.10/lib/typescript.js',
       'hammerjs':                   'npm:hammerjs@2.0.8/hammer.js',
+      // 'lodash':                     '../node_modules/lodash/lodash.min',
 
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -71,7 +72,7 @@
       // },
       rxjs: {
         defaultExtension: 'js'
-      }
+      },
     }
   });
 

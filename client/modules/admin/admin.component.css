@@ -1,4 +1,8 @@
 
+:host {
+  margin-bottom: auto;
+}
+
 .below-header {
   height: 100%;
   margin: 25px 30px;

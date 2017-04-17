@@ -1,19 +1,42 @@
 
-import { Component, } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component,
+         Input,
+         DoCheck,
+         OnChanges,
+         OnDestroy, }       from '@angular/core';
 
-import { AuthService } from '../../../shared-services/auth.service';
-import { User } from '../../../models/User';
-
-import { Subscription } from 'rxjs/Subscription';
+import { AuthService }      from '../../../shared-services/auth.service';
+import { Subscription }     from 'rxjs/Subscription';
 
 @Component({
   moduleId: module.id,
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css', '../../../shared-css/doc.css']
 })
 export class HomeComponent {
+
+  private sub: Subscription;
+  private isSignedIn: boolean;
+  private readonly _notSignedInClasses: string[] = [ 'side-margin' ];
+  private signedInClasses: string[];
+
+  constructor(private authService: AuthService) {
+    this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
+    this.checkSignedIn();
+  }
+
+  checkSignedIn() {
+    this.signedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
+  }
+
+  ngDoCheck() {
+    this.checkSignedIn();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   // Links
   private links: any = {
@@ -243,31 +266,5 @@ export class HomeComponent {
       ref: `skills`,
     },
   ];
-
-  private sub: Subscription;
-  private user: User;
-
-  constructor(private authService: AuthService, private router: Router) {
-    this.sub = authService.signedInUser$.subscribe(
-      (user: User) => {
-        this.user = user;
-      }
-    )
-  }
-
-  signIn() {
-    this.router.navigate(['signin']);
-  }
-
-  private siteToggle: boolean = true;
-  private skillsToggle: boolean = true;
-
-  showDetails(template: any) {
-    let id = template._elementRef.nativeElement.getAttribute('id');
-    switch (id) {
-      case 'siteListToggleBtn': this.siteToggle = !this.siteToggle; break;
-      case 'skillsListToggleBtn': this.skillsToggle = !this.skillsToggle; break;
-    }
-  }
 
 }

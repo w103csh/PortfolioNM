@@ -1,8 +1,7 @@
 
 :host {
-  width: 100%;
-  display: -webkit-flex;
-  display: flex;
+  display: block;
+  margin: auto;
   -webkit-justify-content: center;
   justify-content: center;
   margin-top: 10px;

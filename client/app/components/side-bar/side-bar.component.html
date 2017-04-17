@@ -1,21 +1,18 @@
 
-<!-- TODO: Pin this in place, remove the background gradient or alter it. -->
-<ul class='side-bar-list' >
-  <li *ngFor='let link of navLinks' >
-    <!--BIG TODO: why isn't active working. I think it has something to do with the hash location-->
-    <a md-raised-button 
-        routerLink='{{link.href}}'
-        routerLinkActive
-        #rla='routerLinkActive'
-        active='rla.isActive'
-        class='wide' >
-      {{link.label}}
-    </a>
-    <!--<a md-raised-button 
-        routerLink='{{link.href}}'
-        routerLinkActive='active'
-        class='wide' >
-      {{link.label}}
-    </a>-->
-  </li>
-</ul>
+
+<div class='nav-list-wrapper' >
+  <ul class='side-bar-list' >
+    <li *ngFor='let link of navLinks' >
+      <!--BIG TODO: why isn't active working. I think it has something to do with the hash location-->
+      <a md-raised-button 
+          routerLink='{{link.href}}'
+          routerLinkActive
+          #rla='routerLinkActive'
+          active='rla.isActive'
+          class='wide' >
+        {{link.text}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div *ngIf='false' >Here</div>

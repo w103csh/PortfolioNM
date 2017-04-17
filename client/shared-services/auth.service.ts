@@ -20,7 +20,7 @@ export class AuthService {
   //private readonly pubKey = `-----BEGIN PUBLIC KEY-----
   //-----END PUBLIC KEY-----`;
   // TODO: url 
-  private readonly baseUrl = __apiUrl + 'auth/';
+  private readonly baseUrl = __apiUrl + '/auth';
   public redirectUrl: string;
 
   // observable streams
@@ -38,7 +38,7 @@ export class AuthService {
 
   signin(body: User): Observable<ResponseData> {
 
-    let url = this.baseUrl + 'authenticate';
+    let url = this.baseUrl + '/authenticate';
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -72,7 +72,7 @@ export class AuthService {
     if(( user && token.subject.id === user.id && token.subject.type === 'User') ||
        (!user && token)) {
 
-      let url = this.baseUrl + 'verifyToken';
+      let url = this.baseUrl + '/verifyToken';
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
@@ -88,7 +88,7 @@ export class AuthService {
         includeSubject: (!user && token) 
       };
 
-      return this.http.post(url, body, options)
+      return this.http.post(url, JSON.stringify(body), options)
                       .map((response: Response) => {
                         // TODO: make a bool that tells the api to return a user or just a bool
                         let success = response.json() && response.json().success;
@@ -98,7 +98,9 @@ export class AuthService {
                         }
                         return success;
                       })
-                      .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
+                      .catch((error: any, caught) => 
+                        Observable.throw(error.json().message || 'Server error')
+                      );
 
     }
     else {

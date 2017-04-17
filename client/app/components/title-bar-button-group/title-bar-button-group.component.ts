@@ -38,11 +38,8 @@ export class TitleBarButtonGroupComponent{
   signInOrOut() {
     if(this.user) {
       this.authService.signout();
-      this.router.navigate(['home']);
     }
-    else {
-      this.router.navigate(['signin']);
-    }
+    this.router.navigate(['signin']);
   }
 
   ngOnDestroy() {

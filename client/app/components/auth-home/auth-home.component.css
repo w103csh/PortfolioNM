@@ -1,4 +1,4 @@
 
-/*:host {
-  width: 100%;
-}*/
+:host {
+  margin-bottom: auto;
+}

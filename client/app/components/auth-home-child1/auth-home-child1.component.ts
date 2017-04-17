@@ -7,7 +7,7 @@ import { Router,
   moduleId: module.id,
   selector: 'auth-home',
   templateUrl: './auth-home-child1.component.html',
-  styleUrls: [ './auth-home-child1.component.css' ]
+  styleUrls: [ './auth-home-child1.component.css', '../../../shared-css/doc.css' ]
 })
 export class AuthHomeChild1Component{
 

@@ -18,7 +18,7 @@ import 'rxjs/add/operator/catch';
 export class UserService {
   
   // TODO: url
-  private readonly baseUrl = __apiUrl + 'user/';
+  private readonly baseUrl = __apiUrl + '/user';
   
   constructor (private http: Http
     //,private authModule: AuthModule
@@ -27,7 +27,7 @@ export class UserService {
   // create user
   create(body: User): Observable<ResponseData> {
 
-    let url = this.baseUrl + 'create';
+    let url = this.baseUrl + '/create';
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 

@@ -1,0 +1,36 @@
+
+/*:host {
+  position: relative;
+}*/
+
+footer {
+  width: 100%;
+  padding: 40px 40px 20px 40px;
+  -webkit-box-direction: normal;
+
+  color: lightgrey;
+
+/*
+  border-top: 1px solid hsl(210, 100%, 20%);
+  background-color: hsl(150, 100%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 100%, 30%));*/
+
+  border-top: 1px solid hsl(150, 100%, 30%);
+  background-color: hsl(180, 76%, 15%);
+  /*background-color: hsl(158, 76%, 15%);*/
+
+  /*border-top: 1px solid hsl(160, 80%, 20%);
+  background-color: hsl(210, 100%, 40%);
+  background-image: -webkit-linear-gradient(right, hsl(210, 100%, 20%), hsl(210, 100%, 40%));*/
+}
+
+.center {
+  align-items: center;
+}
+
+.indent {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 90%;
+  margin: auto;
+}

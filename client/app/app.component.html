@@ -1,39 +1,13 @@
 
-<!-- title bar -->
-<div class='flex-container-row title-bar' >
-  <div class='flex title-wrapper' >
-    <a md-button routerLink='/' disableRipple class='title' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></a>
-  </div>
-  <title-bar-button-group class='flex' ></title-bar-button-group>
-</div>
-<!--<div class='flex-container-row below-title' >-->
+<title-bar [titleStart]=titleStart [titleEnd]=titleEnd [isSignedIn]='isSignedIn' ></title-bar>
 <div class='below-title' >
-
-    <!--<md-sidenav-container *ngIf='isSignedIn' >
-      <md-sidenav #sidenav mode='side' opened='true' >
-        <div class='side-bar-wrapper' >
-          <side-bar ></side-bar>
-        </div>
-      </md-sidenav>
-    </md-sidenav-container>
-
-    <div class='side-nav-closer' >
-      <button md-mini-fab (click)='sidenav.open()' >
-        <md-icon>add</md-icon>
-      </button>
-      <br />
-      <button md-mini-fab color='darkgrey' (click)='sidenav.close()' >
-        <md-icon>remove</md-icon>
-      </button>
-    </div>-->
-
-    <!-- TODO: animate this again -->
-    <div *ngIf='isSignedIn' class='side-bar-wrapper' >
-      <side-bar ></side-bar>
-    </div>
-
-    <div class='main-outlet-wrapper' >
-      <router-outlet></router-outlet>
-    </div>
-
+  <!-- TODO: animate this again -->
+  <div *ngIf='isSignedIn' class='side-bar-wrapper' >
+    <side-bar></side-bar>
+  </div>
+  <div class='main-outlet-wrapper' >
+    <router-outlet></router-outlet>
+    <div stlye='display: flex; flex-grow: 1; flex:basis: 100%; flex-shrink: 0;' ></div>
+    <app-footer [isSignedIn]='isSignedIn' ></app-footer>
+  </div>
 </div>

@@ -1,7 +1,10 @@
 
 import { Component,
          ElementRef,
-         OnDestroy }                  from '@angular/core';
+         OnDestroy,
+         OnInit,
+         OnChanges }                  from '@angular/core';
+
 import { //ActivatedRoute, 
          Router }                     from '@angular/router';
 import { Title }                      from '@angular/platform-browser';
@@ -9,10 +12,11 @@ import { Location }                   from '@angular/common';
 
 import { AuthService }                from '../shared-services/auth.service';
 import { User }                       from '../models/User';
-import { __titleStart }               from '../APP_CONFIG.ts';
-import { __titleEnd }                 from '../APP_CONFIG.ts';
 
 import { Subscription }               from 'rxjs/Subscription';
+
+import { __titleStart }               from '../APP_CONFIG.ts';
+import { __titleEnd }                 from '../APP_CONFIG.ts';
 
 @Component({
   moduleId: module.id,
@@ -25,13 +29,12 @@ export class AppComponent {
   private titleStart: string
   private titleEnd: string;
   private title: string;
+  private version: string;
+  private contextClasses: string[] = ['below-title', 'flex-container-column'];
 
   // service sub members
   private sub: Subscription;
   private isSignedIn: boolean;
-
-  signIn: string = 'here';
-  editable: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -47,6 +50,11 @@ export class AppComponent {
       }
     );
 
+    if (this.isSignedIn)
+      this.contextClasses = ['below-title', 'flex-container-row'];
+    else
+      this.contextClasses = ['below-title', 'flex-container-column'];
+
     this.setTitle();
 
     // Should only be set when browser is refreshed, or
@@ -60,14 +68,26 @@ export class AppComponent {
       this.router.navigate([redirectUrl]);
   }
 
+  ngOnInit() {
+    if (localStorage.getItem('token'))
+      this.authService.verify().subscribe();
+  }
+
+  ngOnChanges() {
+    if (this.isSignedIn)
+      this.contextClasses = ['below-title', 'flex-container-row'];
+    else
+      this.contextClasses = ['below-title', 'flex-container-column'];
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
   public setTitle() {
     this.titleStart = __titleStart;
     this.titleEnd = __titleEnd;
     this.title = __titleStart + __titleEnd;
     this.titleService.setTitle(' \\o/ ' + this.title);
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 }

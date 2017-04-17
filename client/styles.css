@@ -2,7 +2,7 @@
 /* ------------------ Master Styles ------------------ */
 body {
   margin: 0;
-  /*background-color: rgb(250, 250, 250);*/
+  /*background-image: url("images/VerticalBanners_High13.jpg");*/
 }
 
 h1 {
@@ -55,11 +55,23 @@ h2 {
   animation: spin 2s linear infinite;
 }
 
+.spin {
+  animation: spin 6s linear infinite; 
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 /* Loading spinner */
+
+.side {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1 0 5%;
+  flex: 1 0 5%;
+  /*background-color: white;*/
+}
 
 /* START general flex classes */
 div.flex-container-row {
@@ -83,6 +95,17 @@ div.flex-container-column {
   flex: 0 1 auto;
 }
 
+.flex-end {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex: 1 1 0%;
+  /*height:38px;*/
+  justify-content: flex-end;
+  -webkit-box-direction: normal;
+  -webkit-box-flex: 1;
+  -webkit-box-pack: end;
+}
+
 .flex-just-cen {
   -webkit-justify-content: center;
   justify-content: center;
@@ -96,8 +119,10 @@ div.flex-expand-full {
 }
 /* END general flex classes */
 
-div.content {
+.content {
+  height: 100%;
   width: 100%;
+  background-color: rgb(250, 250, 250);
 }
 
 .on-grey {
@@ -126,14 +151,12 @@ code {
   font-weight: bold;
 }
 
-/* ------------------ everywhere else ------------------ */
-/** {
-  font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-}*/
-
 h1, h2, h3, h4, h4, h6 {
   -webkit-font-smoothing: antialiased;
 }
+
+
+/* ------------------ everywhere else ------------------ */
 
 /* ------------------ angular material themes ------------------ */
 /* TODO: FIX THIS AND REMOVE FROM INDEX */

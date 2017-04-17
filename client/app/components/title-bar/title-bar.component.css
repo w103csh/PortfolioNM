@@ -1,0 +1,91 @@
+
+:host {
+  position: relative;
+  z-index: 10;
+
+  background-color: hsl(150, 100%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 100%, 30%));
+  /*background-image: -webkit-linear-gradient(right, hsl(120, 100%, 25%), hsl(150, 100%, 30%));*/
+  /*box-shadow: 0px 1px 2px #006600;*/
+  border-bottom: 1px solid hsl(210, 100%, 20%);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.137255) 0px 6px 10px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 18px 0px;
+}
+
+.title-wrapper {
+  width: 245px;
+  text-align: center;
+}
+
+/*a.title {
+  margin: 16px 0 16px 16px;
+  padding: 0 10px 0 0;
+  width: auto;
+
+  border-style: solid;
+  border-color: hsl(60, 55%, 90%);
+  border-width: 0 10px 4px 0;
+  border-radius: 3px;
+  box-shadow: 3px 3px hsl(180, 100%, 10%);
+
+  line-height: 28px;
+  color: hsl(60, 55%, 90%);
+  text-shadow: 3px 3px hsl(180, 100%, 10%);
+}
+
+a.title:hover, a.title:focus {
+  text-decoration: none;
+}
+
+a.title, a.title * {
+  font-family: 'Rubik Mono One' !important;
+  color: hsl(60, 55%, 90%);
+  text-shadow: 3px 3px hsl(180, 100%, 10%);
+}*/
+
+button.title {
+  margin: 16px 0 16px 16px;
+  padding: 0 10px 0 0;
+  width: auto;
+  
+  border-style: solid;
+  border-color: hsl(60, 55%, 90%);
+  border-width: 0 10px 4px 0;
+  border-radius: 3px;
+  box-shadow: 3px 3px hsl(180, 100%, 10%);
+  
+  line-height: 28px;
+  color: hsl(60, 55%, 90%);
+  text-shadow: 3px 3px hsl(180, 100%, 10%);
+}
+
+button.title:hover, button.title:focus {
+  text-decoration: none;
+}
+
+button.title, button.title * {
+  font-family: 'Rubik Mono One' !important;
+  color: hsl(60, 55%, 90%);
+  text-shadow: 3px 3px hsl(180, 100%, 10%);
+}
+
+span.title-end {
+  font-size: 24px;
+}
+
+.nav-container {
+  margin: auto;
+}
+
+a.nav {
+  /*color: rgb(250, 250, 250);*/
+  color: hsl(60, 55%, 90%) !important;
+  text-decoration: none;
+}
+
+a.nav:hover {
+  text-decoration: none;
+}
+
+title-bar-button-group {
+  padding-right: 40px;
+}

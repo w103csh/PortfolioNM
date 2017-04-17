@@ -1,0 +1,30 @@
+
+:host {
+  margin-bottom: auto;
+}
+
+.content-wrapper {
+  -webkit-font-smoothing: antialiased;
+  padding: 36px 58px;
+  max-width: 1300px;
+}
+
+.container {
+  width: 500px;
+  margin-left: 12px;
+}
+
+a {
+  width: 150px;
+  text-align: left;
+}
+
+img {
+  position: relative;
+  top: -1px;
+  padding-right: 4px;
+}
+
+span {
+  margin-left: 24px;
+}
