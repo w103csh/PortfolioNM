@@ -17,6 +17,7 @@
 a {
   width: 150px;
   text-align: left;
+  color: hsl(210, 100%, 20%);
 }
 
 img {

@@ -18,18 +18,22 @@ h2 {
   -webkit-margin-after: 0;
   margin: 0;
   padding: 20px 0 25px 40px;
-  background-color: hsl(150, 100%, 30%);
-  background-image: -webkit-linear-gradient(right, hsl(150, 100%, 30%), hsl(160, 80%, 20%));
+  background-color: hsl(150, 90%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(150, 90%, 30%), hsl(160, 80%, 20%));
 }
 
 .header {
   color: rgb(255, 255, 230);
+
   -webkit-margin-before: 0; 
   -webkit-margin-after: 0;
   margin: 0;
   padding: 32px 48px 48px 48px;
-  background-color: hsl(150, 100%, 30%);
-  background-image: -webkit-linear-gradient(right, hsl(150, 100%, 30%), hsl(160, 80%, 20%));
+
+  -webkit-box-direction: normal;
+
+  background-color: hsl(150, 90%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(150, 90%, 30%), hsl(160, 80%, 20%));
 }
 
 /* Loading spinner */
@@ -93,6 +97,17 @@ div.flex-container-column {
   display: flex;
   -webkit-flex: 0 1 auto;
   flex: 0 1 auto;
+}
+
+.flex-start {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex: 1 1 0%;
+  /*height:38px;*/
+  justify-content: flex-start;
+  -webkit-box-direction: normal;
+  -webkit-box-flex: 1;
+  -webkit-box-pack: start;
 }
 
 .flex-end {

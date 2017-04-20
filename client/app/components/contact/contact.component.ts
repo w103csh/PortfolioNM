@@ -18,7 +18,7 @@ export class ContactComponent{
 
   private sub: Subscription;
   private isSignedIn: boolean;
-  private readonly _notSignedInClasses: string[] = [ 'side-margin' ];
+  private readonly _notSignedInClasses: string[];
   private signedInClasses: string[];
 
   // File download strings
@@ -27,6 +27,10 @@ export class ContactComponent{
   private fileLocationDOCX = this.url + __resDOCX;
 
   constructor(private authService: AuthService) {
+    // defaults
+    this.isSignedIn= false;
+    this._notSignedInClasses = [ 'side-margin' ];
+
     this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
     this.checkSignedIn();
   }

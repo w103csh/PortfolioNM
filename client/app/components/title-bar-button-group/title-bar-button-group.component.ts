@@ -1,12 +1,22 @@
 
-import { Component,
-         OnDestroy }        from '@angular/core';
-import { Router }           from '@angular/router';
+import {
+  Component,
+  OnDestroy
+} from '@angular/core';
+import {
+  Router
+} from '@angular/router';
 
-import { AuthService }      from '../../../shared-services/auth.service';
-import { User }             from '../../../models/User';
+import {
+  AuthService
+} from '../../../shared-services/auth.service';
+import {
+  User
+} from '../../../models/User';
 
-import { Subscription }     from 'rxjs/Subscription';
+import {
+  Subscription
+} from 'rxjs/Subscription';
 
 @Component({
   moduleId: module.id,
@@ -20,11 +30,7 @@ export class TitleBarButtonGroupComponent{
   private user: User;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.sub = authService.signedInUser$.subscribe(
-      (user: User) => {
-        this.user = user;
-      }
-    )
+    this.sub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
   }
 
   clickAccount() {

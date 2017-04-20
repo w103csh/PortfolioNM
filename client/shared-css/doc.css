@@ -32,9 +32,8 @@
 }
 
 .doc-content {
-  -webkit-font-smoothing: antialiased;
   font-size: 16px;
-  padding: 36px 58px;
+  padding: 36px 58px 58px 58px;
   max-width: 1300px;
 }
 
@@ -49,6 +48,10 @@
 
 .doc-content h1, h2, h3, h4, h4, h6, .banner {
   color: hsl(210, 100%, 20%);
+}
+
+.doc-content h1, h2, h3, h4, h4, h6, p, span, label, blockquote, a {
+  -webkit-font-smoothing: antialiased;
 }
 
 .doc-content h1, h2 {

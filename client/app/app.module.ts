@@ -1,17 +1,31 @@
 
 // Angular modules
-import { NgModule,
-         APP_INITIALIZER,
-         OnInit }                           from '@angular/core';
-import { BrowserModule, }                   from '@angular/platform-browser';
-import { BrowserAnimationsModule, }         from '@angular/platform-browser/animations';
-// import { //PathLocationStrategy,
-//          HashLocationStrategy,
-//          Location,
-//          LocationStrategy, }                from '@angular/common';
-import { FormsModule, }                     from '@angular/forms';
-import { HttpModule, }                      from '@angular/http';
-import { MaterialModule, }                  from '@angular/material';
+import {
+  NgModule,
+  APP_INITIALIZER,
+  OnInit
+} from '@angular/core';
+import {
+  BrowserModule,
+} from '@angular/platform-browser';
+import {
+  BrowserAnimationsModule,
+} from '@angular/platform-browser/animations';
+// import { 
+// PathLocationStrategy,
+// HashLocationStrategy,
+// Location,
+// LocationStrategy,
+// } from '@angular/common';
+import {
+  FormsModule,
+} from '@angular/forms';
+import {
+  HttpModule,
+} from '@angular/http';
+import {
+  MaterialModule,
+} from '@angular/material';
 
 // Modules
 import { AppRoutingModule, }                from './app-routing.module';
@@ -26,9 +40,9 @@ import { AuthGuard, }                       from '../shared-services/auth-guard.
 
 // Components
 import { AppComponent, }                    from './app.component';
-import { AuthHomeComponent, }               from './components/auth-home/auth-home.component';
-import { AuthHomeChild1Component, }         from './components/auth-home-child1/auth-home-child1.component';
-import { AuthHomeChild2Component, }         from './components/auth-home-child2/auth-home-child2.component';
+import { DashboardComponent, }              from './components/dashboard/dashboard.component';
+import { TestAuthComponent, }               from './components/test-auth/test-auth.component';
+import { TestTitleComponent, }              from './components/test-title/test-title.component';
 import { TitleBarComponent, }               from './components/title-bar/title-bar.component';
 import { TitleBarButtonGroupComponent, }    from './components/title-bar-button-group/title-bar-button-group.component';
 import { SideBarComponent, }                from './components/side-bar/side-bar.component';
@@ -61,9 +75,9 @@ import 'hammerjs';
   ],
   declarations: [
     AppComponent,
-    AuthHomeComponent,
-    AuthHomeChild1Component,
-    AuthHomeChild2Component,
+    DashboardComponent,
+    TestAuthComponent,
+    TestTitleComponent,
     TitleBarButtonGroupComponent,
     TitleBarComponent,
     SideBarComponent,

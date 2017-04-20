@@ -2,7 +2,7 @@
 import { Component, }          from '@angular/core';
 
 import { DialogService, }      from '../../../dialog/dialog.module';
-import { YesNoDialogConfig, }  from '../../../dialog/dialog.module';
+// import { YesNoDialogConfig, }  from '../../../dialog/dialog.module';
 
 
 @Component({
@@ -15,9 +15,12 @@ export class AccountComponent {
 
   selectedOption: any;
 
-  private description: string = 'View and edit your account information.';
+  private description: string;
 
-  constructor(public dialogService: DialogService) { }
+  constructor(public dialogService: DialogService) { 
+    //defaults
+    this.description = 'View and edit your account information.';
+  }
 
   genInfoEdit() {
 

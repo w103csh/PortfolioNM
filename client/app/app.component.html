@@ -1,13 +1,15 @@
 
 <title-bar [titleStart]=titleStart [titleEnd]=titleEnd [isSignedIn]='isSignedIn' ></title-bar>
-<div class='below-title' >
-  <!-- TODO: animate this again -->
-  <div *ngIf='isSignedIn' class='side-bar-wrapper' >
-    <side-bar></side-bar>
-  </div>
-  <div class='main-outlet-wrapper' >
-    <router-outlet></router-outlet>
-    <div stlye='display: flex; flex-grow: 1; flex:basis: 100%; flex-shrink: 0;' ></div>
-    <app-footer [isSignedIn]='isSignedIn' ></app-footer>
+<div class='below-title-wrapper' >
+  <div class='below-title-container'>
+    <div class='backdrop' ></div>
+    <!-- TODO: animate this again -->
+    <side-bar *ngIf='isSignedIn' ></side-bar>
+    <div class='main-content' [ngClass]=signedInClasses >
+      <div class='main-outlet-wrapper'>
+        <router-outlet></router-outlet>
+        <app-footer [isSignedIn]='isSignedIn' ></app-footer>
+      </div>
+    </div>
   </div>
 </div>

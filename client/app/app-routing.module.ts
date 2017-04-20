@@ -3,9 +3,9 @@ import { NgModule }                     from '@angular/core';
 import { RouterModule, Routes }         from '@angular/router';
 
 // TODO: put into separate routing module
-import { AuthHomeComponent }            from './components/auth-home/auth-home.component';
-import { AuthHomeChild1Component }      from './components/auth-home-child1/auth-home-child1.component';
-import { AuthHomeChild2Component }      from './components/auth-home-child2/auth-home-child2.component';
+import { DashboardComponent }           from './components/dashboard/dashboard.component';
+import { TestAuthComponent }            from './components/test-auth/test-auth.component';
+import { TestTitleComponent }           from './components/test-title/test-title.component';
 
 import { HomeComponent }                from './components/home/home.component';
 import { AboutComponent }               from './components/about/about.component';
@@ -29,18 +29,18 @@ const appRoutes: Routes = [
      component: ContactComponent,
    }
   ,{
-     path: 'auth-home', 
-     component: AuthHomeComponent,
+     path: 'dashboard', 
+     component: DashboardComponent,
      canActivate: [AuthGuard]
    }
   ,{
-     path: 'auth-home-child1',
-     component: AuthHomeChild1Component,
+     path: 'test-auth',
+     component: TestAuthComponent,
      canActivate: [AuthGuard]
    }
   ,{
-     path: 'auth-home-child2', 
-     component: AuthHomeChild2Component,
+     path: 'test-title', 
+     component: TestTitleComponent,
      canActivate: [AuthGuard]
    }
   ,{

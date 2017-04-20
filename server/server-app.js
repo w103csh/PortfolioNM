@@ -49,8 +49,14 @@ app.use('/api', require('./routes/api'));
 
 // just serving the one page now for angular
 app.get('/', function(req, res) {
+
+  let data = { titleStart: 'portfolio', titleEnd: 'NM', redirectUrl: undefined };
   var urlParts = url.parse(req.url, true);
-  res.render('index', { titleStart: 'portfolio', titleEnd: 'NM', redirectUrl: urlParts.query.redirectUrl });
+
+  if (urlParts.query.redirectUrl)
+    data.redirectUrl = urlParts.query.redirectUrl;
+
+  res.render('index', data);
 });
 
 // TODO: Make sure this is not catching the errors, or anything else it shouldn't.

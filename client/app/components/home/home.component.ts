@@ -1,12 +1,22 @@
 
-import { Component,
-         Input,
-         DoCheck,
-         OnChanges,
-         OnDestroy, }       from '@angular/core';
+import { 
+  Component,
+  Input,
+  DoCheck,
+  OnChanges,
+  OnDestroy,
+}                         from '@angular/core';
+import { 
+  Router,
+}                         from '@angular/router';
 
-import { AuthService }      from '../../../shared-services/auth.service';
-import { Subscription }     from 'rxjs/Subscription';
+import {
+  AuthService
+}                         from '../../../shared-services/auth.service';
+
+import {
+  Subscription
+}                         from 'rxjs/Subscription';
 
 @Component({
   moduleId: module.id,
@@ -15,13 +25,20 @@ import { Subscription }     from 'rxjs/Subscription';
   styleUrls: ['./home.component.css', '../../../shared-css/doc.css']
 })
 export class HomeComponent {
+  
+  private fragmentIdPrefix: string;
 
   private sub: Subscription;
   private isSignedIn: boolean;
-  private readonly _notSignedInClasses: string[] = [ 'side-margin' ];
+  private readonly _notSignedInClasses: string[];
   private signedInClasses: string[];
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
+    // defaults
+    this.isSignedIn= false;
+    this._notSignedInClasses = [ 'side-margin' ];
+    this.fragmentIdPrefix = this.router.url + '#';
+
     this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
     this.checkSignedIn();
   }
@@ -86,8 +103,8 @@ export class HomeComponent {
   private disclaimers: any = {
     intro: `<strong>Note</strong> - This site is a work in progress. I could be working on it right now...<br />
     <br />
-    <i>Also, some of my programmer musings are gated behind the sign in button in the top right. There might be some cool stuff
-    behind there, or not. It depends on what I am currently toying around with. If you want, make an account, and see.</i>`
+    <i>Also, some of my programmer musings are gated behind the sign in button in the top right. There should be some cool
+    stuff behind there. Really, it just depends on what I am currently toying around with. If you want, make an account, and see.</i>`
     ,
     site: `<strong>Note</strong> - If you clone the repository you have to have ` + this.links.npm + `, and ` + this.links.node1 + `
     installed. Then just run <code>npm install</code>. Also, the RESTful api that the 

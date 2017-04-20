@@ -14,10 +14,13 @@ import { User }               from '../../../models/User';
 })
 export class SignUpComponent{
 
-  model: User = new User('', '', '');
-  serverMsg: string = null;
+  private model: User;
+  private serverMsg: string;
 
-  constructor(private userService: UserService, public router: Router) { }
+  constructor(private userService: UserService, public router: Router) {
+    // defaults
+    this.model = new User('', '', '');
+  }
 
   onSubmit() {
 

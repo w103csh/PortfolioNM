@@ -1,9 +1,13 @@
 
-import { Component,
-         Input,
-         OnChanges }            from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges
+} from '@angular/core';
 
-import { __version }            from '../../../APP_CONFIG.ts';
+import {
+  __version
+} from '../../../APP_CONFIG';
 
 @Component({
   moduleId: module.id,
@@ -16,9 +20,11 @@ export class AppFooterComponent{
   @Input() isSignedIn: boolean = false;
 
   private version: string;
-  private footerClasses: string[] = ['flex-container-row', 'center', 'indent'];
+  private footerClasses: string[];
 
   constructor() {
+    // defaults
+    this.footerClasses = ['flex-container-row', 'center', 'indent'];
     this.version = __version;
   }
 

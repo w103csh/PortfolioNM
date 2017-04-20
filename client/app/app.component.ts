@@ -3,7 +3,7 @@ import { Component,
          ElementRef,
          OnDestroy,
          OnInit,
-         OnChanges }                  from '@angular/core';
+         DoCheck }                    from '@angular/core';
 
 import { //ActivatedRoute, 
          Router }                     from '@angular/router';
@@ -30,11 +30,11 @@ export class AppComponent {
   private titleEnd: string;
   private title: string;
   private version: string;
-  private contextClasses: string[] = ['below-title', 'flex-container-column'];
 
-  // service sub members
   private sub: Subscription;
   private isSignedIn: boolean;
+  private readonly _notSignedInClasses: string[] = [ 'signed-in' ];
+  private signedInClasses: string[];
 
   constructor(
     private authService: AuthService,
@@ -44,16 +44,11 @@ export class AppComponent {
     private titleService: Title
     ) {
 
-    this.sub = authService.isSignedIn$.subscribe(
-      (isSignedIn: boolean) => {
-        this.isSignedIn = isSignedIn;
-      }
-    );
+    // defaults
+    this.isSignedIn = false;
 
-    if (this.isSignedIn)
-      this.contextClasses = ['below-title', 'flex-container-row'];
-    else
-      this.contextClasses = ['below-title', 'flex-container-column'];
+    this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
+    this.checkSignedIn();
 
     this.setTitle();
 
@@ -68,16 +63,18 @@ export class AppComponent {
       this.router.navigate([redirectUrl]);
   }
 
+  checkSignedIn() {
+    this.signedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
+  }
+
+  ngDoCheck() {
+    this.checkSignedIn();
+  }
+
+
   ngOnInit() {
     if (localStorage.getItem('token'))
       this.authService.verify().subscribe();
-  }
-
-  ngOnChanges() {
-    if (this.isSignedIn)
-      this.contextClasses = ['below-title', 'flex-container-row'];
-    else
-      this.contextClasses = ['below-title', 'flex-container-column'];
   }
 
   ngOnDestroy() {

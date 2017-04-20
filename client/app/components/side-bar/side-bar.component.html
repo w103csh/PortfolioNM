@@ -2,17 +2,32 @@
 
 <div class='nav-list-wrapper' >
   <ul class='side-bar-list' >
-    <li *ngFor='let link of navLinks' >
-      <!--BIG TODO: why isn't active working. I think it has something to do with the hash location-->
+    <li class='category' >
+      <span>GENERAL</span>
+    </li>
+    <li *ngFor='let link of genNavLinks' >
+      <!--BIG TODO: why isn't active working.-->
       <a md-raised-button 
           routerLink='{{link.href}}'
           routerLinkActive
           #rla='routerLinkActive'
           active='rla.isActive'
           class='wide' >
-        {{link.text}}
+        {{ link.text | titlecase }}
+      </a>
+    </li>
+    <li class='category'>
+      <span>TESTS</span>
+    </li>
+    <li *ngFor='let link of testNavLinks' >
+      <a md-raised-button 
+          routerLink='{{link.href}}'
+          routerLinkActive
+          #rla='routerLinkActive'
+          active='rla.isActive'
+          class='wide' >
+        {{ link.text | titlecase }}
       </a>
     </li>
   </ul>
 </div>
-<div *ngIf='false' >Here</div>

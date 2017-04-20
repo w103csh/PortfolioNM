@@ -1,7 +1,7 @@
 
-/*:host {
-  position: relative;
-}*/
+:host {
+  -webkit-box-direction: normal;
+}
 
 footer {
   width: 100%;
@@ -12,10 +12,10 @@ footer {
 
 /*
   border-top: 1px solid hsl(210, 100%, 20%);
-  background-color: hsl(150, 100%, 30%);
-  background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 100%, 30%));*/
+  background-color: hsl(150, 90%, 30%);
+  background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 90%, 30%));*/
 
-  border-top: 1px solid hsl(150, 100%, 30%);
+  border-top: 1px solid hsl(150, 90%, 30%);
   background-color: hsl(180, 76%, 15%);
   /*background-color: hsl(158, 76%, 15%);*/
 

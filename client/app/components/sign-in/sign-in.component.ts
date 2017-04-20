@@ -18,17 +18,21 @@ import { ResponseData }       from '../../../models/ResponseData';
 export class SignInComponent{
 
   // layout
-  private isPopup: boolean = false;
+  private isPopup: boolean;
 
   private redirectUrl: string;
-  private model: User = new User('', '', '');
-  private serverMsg: string = null;
+  private model: User;
+  private serverMsg: string;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, public router: Router) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, public router: Router) {
+    // defaults
+    this.isPopup = false;
+    this.model = new User('', '', '');
+  }
 
   ngOnInit() {
     this.authService.signout();
-    this.redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/auth-home';
+    this.redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/dashboard';
   }
 
   onSubmit() {

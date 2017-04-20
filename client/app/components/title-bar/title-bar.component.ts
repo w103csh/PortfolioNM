@@ -1,7 +1,11 @@
 
-import { Component,
-         Input }        from '@angular/core';
-import { Router }       from '@angular/router';
+import {
+  Component,
+  Input
+} from '@angular/core';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -21,11 +25,14 @@ export class TitleBarComponent{
     { text: 'CONTACT', href: '/contact' },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    // defaults
+    this.isSignedIn = false;
+  }
 
   titleClick() {
     if(this.isSignedIn)
-      this.router.navigate(['auth-home']);
+      this.router.navigate(['dashboard']);
     else
       this.router.navigate(['home']);
   }
