@@ -9,3 +9,19 @@
   /*margin-right: 5px;*/
   /*margin-top: 5px;*/
 }
+
+.toolbar-panel {
+  margin-bottom: 24px;
+}
+
+.toolbar-content {
+  padding: 18px 8px;
+}
+
+.toolbar-row-icon-button {
+  margin-right: 14px;
+}
+
+.toolbar-row-spacer {
+  flex: 1 1 auto;
+}

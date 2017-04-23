@@ -17,7 +17,8 @@ import {
 })
 export class AccountComponent {
 
-  selectedOption: any;
+  private genInfoShow: boolean = false;
+  private selectedOption: any;
 
   private description: string;
 
@@ -27,12 +28,14 @@ export class AccountComponent {
   }
 
   genInfoEdit() {
+    this.genInfoShow = !this.genInfoShow;
+  }
 
-    // TODO: this doesn't work now for some reason.
+  genInfoEdit2() {
     let data = {
       title: 'Edit',
       message: 'Are you sure that you are sure about that?',
-      confirm:'Hell yes!'
+      confirm:'Of course!'
     };
 
     let dialogRef = this.dialogService.openDialog(data);
@@ -40,7 +43,6 @@ export class AccountComponent {
     dialogRef.afterClosed().subscribe((result: any) => {
       this.selectedOption = result;
     });
-    
   }
   
 }

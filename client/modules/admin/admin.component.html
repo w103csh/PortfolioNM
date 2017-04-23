@@ -1,18 +1,29 @@
-
 <div class='content' >
 
   <div class='header'><h1>ADMINISTRATION</h1></div>
 
   <div class='below-header' >
+    
+      <nav md-tab-nav-bar>
+        <a md-tab-link
+            *ngFor='let link of navLinks'
+            [routerLink]='link.href'
+            routerLinkActive
+            #rla='routerLinkActive'
+            [active]='rla.isActive' >
+          {{link.label}}
+        </a>
+      </nav>
+      <router-outlet></router-outlet>
 
-      <md-tab-group dynamicHeight=true >
+      <!--<md-tab-group dynamicHeight=true >
         <md-tab label="Account">
           <account></account>
         </md-tab>
         <md-tab label="Users">
           <users></users>
         </md-tab>
-      </md-tab-group>
+      </md-tab-group>-->
     
   </div>
 

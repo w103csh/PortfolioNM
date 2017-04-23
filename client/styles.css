@@ -4,6 +4,8 @@
 /*--main: hsl(150, 90%, 29%);*/
 /*--main-accent: hsl(160, 80%, 20%);*/
 /*--secondary: hsl(210, 100%, 20%);*/
+/*--secondary-secondary: rgb(13, 71, 161);*/
+/*--secondary-thirdiary: cadetblue;*/
 /*--third: hsl(0, 0%, 95%);*/
 /*--footer: hsl(190, 76%, 15%);*/
 /*--background: rgb(250, 250, 250);*/
@@ -62,7 +64,7 @@ h2 {
 
 .spinner {
   margin: 0 auto;
-  border: 16px solid hsl(0, 0%, 95%);
+  border: 16px solid lightgray;
   border-top: 16px solid hsl(150, 90%, 29%);
   border-radius: 50%;
   width: 80px;
@@ -170,6 +172,10 @@ code {
 
 .half {
   width: 50%;
+}
+
+.third {
+  width: 33.3%;
 }
 
 .panel {

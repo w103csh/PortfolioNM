@@ -1,24 +1,34 @@
 
 <tab-content-container [description]='description' >
 
+  <div class='toolbar-panel' >
+
+    <md-toolbar color='primary'>
+        <span>General Information</span>
+        <span class='toolbar-row-spacer'></span>
+        <button md-mini-fab class='toolbar-row-icon-button' (click)='genInfoEdit()' ><md-icon>edit</md-icon></button>
+    </md-toolbar>
+
+    <div *ngIf='genInfoShow' class='toolbar-content' >
+      <div>
+        <p><strong>There is nothing here yet.</strong></p>
+        <p><small>Testing a different panel style!</small></p>
+        <p><small>Testing a different panel style!</small></p>
+      </div>
+    </div>
+
+  </div>
+
   <div class='panel panel-default gen-info' >
     <h4>
       General Infomation
-      <button md-mini-fab class='panel-btn panel-btn-edit' (click)='genInfoEdit()' ><md-icon>edit</md-icon></button>
+      <button md-mini-fab class='panel-btn panel-btn-edit' (click)='genInfoEdit2()' ><md-icon>edit</md-icon></button>
     </h4>
     <div class='panel-body' >
-      <div>
-        <div>
-          <label>Selected Option:</label>{{selectedOption}}
-        </div>
-        <div>
-          Yo Mama 1
-        </div>
-        <div>
-          Yo Mama 2
-        </div>
-      </div>
-
+      <p><strong>There is nothing here yet.</strong></p>
+      <label>Selected Option:</label>{{selectedOption}}
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
     </div>
   </div>
 
@@ -27,14 +37,25 @@
       <h3 class='panel-title' >Password Management</h3>
     </div>
     <div class='panel-body' >
-      <div>
-        <div>
-          Yo Mama 3
-        </div>
-        <div>
-          Yo Mama 4
-        </div>
-      </div>
+
+      <p><strong>There is nothing here yet.</strong></p>
+
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
+      <p><small>Testing a different panel style!</small></p>
 
     </div>
   </div>
