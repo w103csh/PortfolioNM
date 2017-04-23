@@ -90,7 +90,7 @@ export class AboutComponent{
   // Site details
   private serverBullets: string[] = [
     this.links.ubuntuS + ` - OS.`,
-    this.links.nginx + ` - Runs a reverse proxy and SSL link.`,
+    this.links.nginx + ` - Runs a reverse proxy and SSL encryption.`,
     this.links.node2 + ` - Server runtime.`,
     this.links.express + ` - ` + this.links.node1 + ` web application framework that is used as a router for the RESTful API.`,
   ];
