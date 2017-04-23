@@ -1,8 +1,13 @@
 
-import { Component,
-         Input,
-         Injectable, }         from '@angular/core';
-import { MdDialogRef }      from '@angular/material';
+import {
+  Component,
+  Input,
+  Injectable,
+  OnInit,
+} from '@angular/core';
+import {
+  MdDialogRef
+} from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +20,8 @@ export class YesNoDialogComponent {
   private config: any;
 
   constructor(public dialogRef: MdDialogRef<YesNoDialogComponent>) {
-    this.setData(this.dialogRef.config && this.dialogRef.config.data);
+    let data = this.dialogRef._containerInstance.dialogConfig && this.dialogRef._containerInstance.dialogConfig.data;
+    this.setData(data);
   }
 
   setData(data: any) {
@@ -26,7 +32,7 @@ export class YesNoDialogComponent {
       this.config.confirm = 'Confirm';
     if(!this.config.cancel)
       this.config.cancel = 'Cancel';
-    if(!this.config.showClear)
+    if(typeof this.config.showClear === undefined || typeof this.config.showClear === null)
       this.config.showClear = false;
   }
 

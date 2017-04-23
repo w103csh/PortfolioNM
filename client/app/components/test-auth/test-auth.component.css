@@ -2,3 +2,12 @@
 :host {
   margin-bottom: auto;
 }
+
+md-list {
+  padding: 32px;
+}
+
+label {
+  width: 220px;
+  margin-bottom: 0;
+}

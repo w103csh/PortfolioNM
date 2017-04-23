@@ -1,13 +1,19 @@
-import { Component,
-         ViewContainerRef,
-         ViewChild,
-         ReflectiveInjector,
-         Injectable }                    from '@angular/core';
-import { MdDialog,
-         MdDialogRef,
-         MdDialogConfig }                from '@angular/material';
+import {
+  Component,
+  ViewContainerRef,
+  ViewChild,
+  ReflectiveInjector,
+  Injectable
+} from '@angular/core';
+import {
+  MdDialog,
+  MdDialogRef,
+  MdDialogConfig
+} from '@angular/material';
 
-import { YesNoDialogComponent, }         from './dialog.module';
+import {
+  YesNoDialogComponent,
+} from './components/yes-no-dialog/yes-no-dialog.component';
 
 @Injectable()
 export class DialogService {

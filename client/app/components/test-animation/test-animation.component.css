@@ -1,0 +1,30 @@
+
+:host {
+  margin-bottom: auto;
+}
+
+.img-container {
+  padding-top: 24px;
+  min-height: 676px;
+}
+
+.ani-img {
+  height: 500px;
+  max-height: 600px;
+  max-width: 100%;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 10px;
+}

@@ -34,9 +34,11 @@ export class SideBarComponent {
   ];
   
   private testNavLinks: { text: string, href: string }[] = [
-    { text: 'authorization test', href: '/test-auth'  },
-    { text: 'title test', href: '/test-title' },
-    { text: 'animation test', href: '/test-animation' },
+    { text: 'authorization ', href: '/test-auth'  },
+    { text: 'dialog ', href: '/test-dialog' },
+    { text: 'animation ', href: '/test-animation' },
+    { text: 'title ', href: '/test-title' },
+    { text: 'page not found ', href: '/non-existent' },
   ];
 
 }

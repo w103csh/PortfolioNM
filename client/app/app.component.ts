@@ -1,22 +1,37 @@
 
-import { Component,
-         ElementRef,
-         OnDestroy,
-         OnInit,
-         DoCheck }                    from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  DoCheck
+} from '@angular/core';
 
-import { //ActivatedRoute, 
-         Router }                     from '@angular/router';
-import { Title }                      from '@angular/platform-browser';
-import { Location }                   from '@angular/common';
+import {
+  Router
+} from '@angular/router';
+import {
+  Title
+} from '@angular/platform-browser';
+import {
+  Location
+} from '@angular/common';
 
-import { AuthService }                from '../shared-services/auth.service';
-import { User }                       from '../models/User';
+import {
+  AuthService
+} from '../shared-services/auth.service';
+import {
+  User
+} from '../models/User';
 
-import { Subscription }               from 'rxjs/Subscription';
+import {
+  Subscription
+} from 'rxjs/Subscription';
 
-import { __titleStart }               from '../APP_CONFIG.ts';
-import { __titleEnd }                 from '../APP_CONFIG.ts';
+import {
+  __titleStart,
+  __titleEnd
+} from '../APP_CONFIG';
 
 @Component({
   moduleId: module.id,

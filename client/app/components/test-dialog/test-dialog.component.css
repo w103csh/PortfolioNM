@@ -1,0 +1,22 @@
+
+:host {
+  margin-bottom: auto;
+}
+
+.controls {
+  font-size: 14px;
+  padding: 12px 24px;
+}
+
+.indent {
+  padding-left: 16px;
+}
+
+md-checkbox {
+  margin-left: 24px;
+}
+
+label {
+  width: 100px;
+  margin-bottom: 0;
+}

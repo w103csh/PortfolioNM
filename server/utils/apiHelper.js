@@ -93,7 +93,8 @@ module.exports = {
             fs.readFile(path.join(__dirname, '../', 'portfolioNM.private.PEM'), (err, privateKey) => {
               if (err) throw err;
 
-              payload = { id: args.id };
+              payload = { id: args.id,
+                          rememberMe: args.rememberMe };
               key     = { key: privateKey,
                           passphrase: process.env.JWT_RS256_KEY_PASSPHRASE };
               options = { expiresIn: args.exp,
@@ -121,7 +122,8 @@ module.exports = {
           // HS256
           default:
 
-            payload = { id: args.id };
+            payload = { id: args.id,
+                        rememberMe: args.rememberMe };
             key     =   process.env.JWT_HS256_KEY;
             options = { expiresIn: args.exp,
                         algorithm: 'HS256',

@@ -29,19 +29,22 @@ import {
 
 // Modules
 import { AppRoutingModule, }                from './app-routing.module';
+import { DialogModule }                    from '../modules/dialog/dialog.module';
 
-// Services
-// import { ConfigService, }                   from '../shared-services/config.service';
+// // Services
+// // import { ConfigService, }                   from '../shared-services/config.service';
+// // import { DownloadService, }                 from '../shared-services/download.service';
 import { UserService, }                     from '../shared-services/user.service';
-// import { DialogService, }                   from '../shared-services/dialog.service';
-// import { DownloadService, }                 from '../shared-services/download.service';
 import { AuthService, }                     from '../shared-services/auth.service';
 import { AuthGuard, }                       from '../shared-services/auth-guard.service';
+import { DialogService }                    from '../modules/dialog/dialog.module';
 
 // Components
 import { AppComponent, }                    from './app.component';
 import { DashboardComponent, }              from './components/dashboard/dashboard.component';
 import { TestAuthComponent, }               from './components/test-auth/test-auth.component';
+import { TestAnimationComponent, }          from './components/test-animation/test-animation.component';
+import { TestDialogComponent, }             from './components/test-dialog/test-dialog.component';
 import { TestTitleComponent, }              from './components/test-title/test-title.component';
 import { TitleBarComponent, }               from './components/title-bar/title-bar.component';
 import { TitleBarButtonGroupComponent, }    from './components/title-bar-button-group/title-bar-button-group.component';
@@ -71,12 +74,15 @@ import 'hammerjs';
     FormsModule,
     HttpModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DialogModule,
   ],
   declarations: [
     AppComponent,
     DashboardComponent,
     TestAuthComponent,
+    TestAnimationComponent,
+    TestDialogComponent,
     TestTitleComponent,
     TitleBarButtonGroupComponent,
     TitleBarComponent,
@@ -100,11 +106,12 @@ import 'hammerjs';
     //   deps: [ConfigService],
     //   multi: true
     // },
-    UserService,
     // DialogService,
     // DownloadService,
+    UserService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    DialogService,
   ],
   bootstrap: [ AppComponent ]
 })

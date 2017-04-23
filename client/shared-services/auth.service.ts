@@ -17,7 +17,7 @@ import {
 } from '../models/ResponseData';
 import {
   __apiUrl
-} from '../../APP_CONFIG.ts';
+} from '../APP_CONFIG';
 
 import {
   Observable

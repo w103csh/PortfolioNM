@@ -1,0 +1,48 @@
+<div class='content'>
+  <div class='header'><h1>{{ header | uppercase }}</h1></div>
+  <div class='doc-content' >
+
+    <p>Our fancy pictures are back! Now you can use them to test Angular animations.</p>
+
+    <blockquote>
+      <small>
+        Hover over the images to see them do tiny animations too!
+      </small>
+    </blockquote>
+
+    <section class='section'>
+      <label class='example-margin'>Animation:</label>
+      <md-radio-group [(ngModel)]='animation'>
+        <md-radio-button class='example-margin' value='shrink'>
+          Shrink
+        </md-radio-button>
+        <md-radio-button class='example-margin' value='shift'>
+          Shift
+        </md-radio-button>
+      </md-radio-group>
+    </section>
+    <br />
+
+    <div>
+      <button md-raised-button color='primary' (click)='toggleStates()' >Toggle</button>
+    </div>
+
+    <div class='flex-container-row flex-start img-container' >
+      <img (mouseover)='embiggen($event)'
+        (mouseout)='enlittle($event)'
+        [id]='"img1"'
+        [@embiggen]='img1Embiggen'
+        [@shiftSideToSide]='shiftDec'
+        class='ani-img'
+        src='images/VerticalBanners_Low01.jpg' />
+      <img (mouseover)='embiggen($event)'
+        (mouseout)='enlittle($event)'
+        [id]='"img2"'
+        [@embiggen]='img2Embiggen'
+        [@shiftSideToSide]='shiftDec'
+        class='ani-img'
+        src='images/VerticalBanners_Low13.jpg' />
+    </div>
+
+  </div>
+</div>

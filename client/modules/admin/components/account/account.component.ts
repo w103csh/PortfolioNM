@@ -1,7 +1,11 @@
 
-import { Component, }          from '@angular/core';
+import {
+  Component,
+} from '@angular/core';
 
-import { DialogService, }      from '../../../dialog/dialog.module';
+import {
+  DialogService,
+} from '../../../dialog/dialog.module';
 // import { YesNoDialogConfig, }  from '../../../dialog/dialog.module';
 
 

@@ -1,4 +1,14 @@
 
+
+/* ------------------ Global replacements (still need to use something like Pure eventually) ------------------ */
+/*--main: hsl(150, 90%, 29%);*/
+/*--main-accent: hsl(160, 80%, 20%);*/
+/*--secondary: hsl(210, 100%, 20%);*/
+/*--footer: hsl(190, 76%, 15%);*/
+/*--background: hsl(150, 90%, 29%);*/
+/*--background-secondary: hsl(60, 55%, 90%);*/
+
+
 /* ------------------ Master Styles ------------------ */
 body {
   margin: 0;
@@ -18,8 +28,8 @@ h2 {
   -webkit-margin-after: 0;
   margin: 0;
   padding: 20px 0 25px 40px;
-  background-color: hsl(150, 90%, 30%);
-  background-image: -webkit-linear-gradient(right, hsl(150, 90%, 30%), hsl(160, 80%, 20%));
+  background-color: hsl(150, 90%, 29%);
+  background-image: -webkit-linear-gradient(right, hsl(150, 90%, 29%), hsl(160, 80%, 20%));
 }
 
 .header {
@@ -32,8 +42,8 @@ h2 {
 
   -webkit-box-direction: normal;
 
-  background-color: hsl(150, 90%, 30%);
-  background-image: -webkit-linear-gradient(right, hsl(150, 90%, 30%), hsl(160, 80%, 20%));
+  background-color: hsl(150, 90%, 29%);
+  background-image: -webkit-linear-gradient(right, hsl(150, 90%, 29%), hsl(160, 80%, 20%));
 }
 
 /* Loading spinner */
@@ -51,8 +61,8 @@ h2 {
 
 .spinner {
   margin: 0 auto;
-  border: 16px solid hsl(60, 55%, 90%); /* Light grey */
-  border-top: 16px solid rgb(0, 204, 102); /* Blue */
+  border: 16px solid hsl(60, 55%, 90%);
+  border-top: 16px solid hsl(150, 90%, 29%);
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -155,6 +165,10 @@ code {
 
 .wide {
   width: 100%;
+}
+
+.half {
+  width: 50%;
 }
 
 .panel {

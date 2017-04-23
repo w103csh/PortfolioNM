@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 // Component transition animations
+
 export const leftSlideInOutAnimation: AnimationEntryMetadata =
   trigger('leftSlideInOut', [
     state('*',
@@ -30,6 +31,63 @@ export const leftSlideInOutAnimation: AnimationEntryMetadata =
         transform: 'translateX(-100%)'
       }))
     ])
+  ]);
+
+export const embiggen: AnimationEntryMetadata =
+  trigger('embiggen', [
+    state('big',
+      style({
+        height: '500px',
+      })
+    ),
+    state('bigger',
+      style({
+        height: '600px',
+      })
+    ),
+    state('small',
+      style({
+        height: '250px',
+      })
+    ),
+    state('smaller',
+      style({
+        height: '200px',
+      })
+    ),
+    transition('big <=> bigger', animate('200ms ease-in')),
+    transition('smaller <=> small', animate('200ms ease-in')),
+    transition('big <=> smaller', animate('300ms ease-out')),
+  ]);
+
+export const beshrinketh: AnimationEntryMetadata =
+  trigger('beshrinketh', [
+    state('smaller',
+      style({
+        height: '200px',
+      })
+    ),
+    state('small',
+      style({
+        height: '500px',
+      })
+    ),
+    transition('smaller <=> small', animate('250ms ease')),
+  ]);
+
+export const shiftSideToSide: AnimationEntryMetadata =
+  trigger('shiftSideToSide', [
+    state('left',
+      style({
+        transform: 'translateX(0)'
+      })
+    ),
+    state('right',
+      style({
+        transform: 'translateX(700px)'
+      })
+    ),
+    transition('left <=> right', animate('1000ms ease-in-out')),
   ]);
 
 export const rightSlideInAnimation: AnimationEntryMetadata =

@@ -1,12 +1,20 @@
 
-import { Component }        from '@angular/core';
+import {
+  Component
+} from '@angular/core';
 
-import { AuthService }      from '../../../shared-services/auth.service';
+import {
+  AuthService
+} from '../../../shared-services/auth.service';
 
-import { __apiUrl,
-         __resPDF,
-         __resDOCX, }       from '../../../APP_CONFIG.ts';
-import { Subscription }     from 'rxjs/Subscription';
+import {
+  __apiUrl,
+  __resPDF,
+  __resDOCX,
+} from '../../../APP_CONFIG';
+import {
+  Subscription
+} from 'rxjs/Subscription';
 
 @Component({
   moduleId: module.id,

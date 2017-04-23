@@ -93,7 +93,7 @@
   background-color: #fff;
   background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(60, 55%, 90%));
   border-right: 3px solid;
-  border-color: hsl(150, 90%, 30%);
+  border-color: hsl(150, 90%, 29%);
 }
 
 .side-nav-closer > button {

@@ -31,7 +31,7 @@ router.post('/auth/authenticate', function(req, res) {
   // TODO: move common logic
   var successMsg = 'Authentication successful.';
   var failureMsg = 'Authentication failed.';
-  var user = req.body;
+  var reqUser = req.body;
 
   var usr_exp = process.env.JWT_HS256_USR_EXP;
   var usr_rem_me_exp = process.env.JWT_HS256_USR_REM_ME_EXP;
@@ -46,11 +46,11 @@ router.post('/auth/authenticate', function(req, res) {
   // });
 
   // validate req data
-  if(user && user.email && user.password) {
+  if(reqUser && reqUser.email && reqUser.password) {
 
     // async business logic
     process.nextTick(() => {
-      modelHelper.validateUsernameAndPassword(user.email, user.password, (err, user, info) => {
+      modelHelper.validateUsernameAndPassword(reqUser.email, reqUser.password, (err, user, info) => {
 
         // respond with any errors
         if (!apiHelper.processCaughtException(res, err, info, failureMsg)) {
@@ -59,7 +59,8 @@ router.post('/auth/authenticate', function(req, res) {
             type: 'User',
             id: user._id,
             algo: 'HS256',
-            exp: user.rememberMe ? usr_rem_me_exp : usr_exp,
+            exp: reqUser.rememberMe ? usr_rem_me_exp : usr_exp,
+            rememberMe: reqUser.rememberMe ? 'yes' : 'no',
           };
           apiHelper.createJWT(args, (err, token) => {
             if (err) throw err;

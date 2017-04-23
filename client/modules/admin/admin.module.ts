@@ -25,7 +25,7 @@ import { TabContentContainerComponent }   from './components/tab-content-contain
     CommonModule,
     MaterialModule,
     AdminRoutingModule,
-    DialogModule
+    DialogModule,
   ],
   declarations: [
     AdminComponent,

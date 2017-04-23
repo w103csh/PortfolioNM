@@ -5,30 +5,28 @@
     transpiler: 'ts',
     typescriptOptions: {
       // Copy of compiler options in standard tsconfig.json
-      "target": "es5",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "lib": ["es2015", "dom"],
-      "noImplicitAny": true,
-      "suppressImplicitAnyIndexErrors": true
+      'target': 'es5',
+      'module': 'commonjs',
+      'moduleResolution': 'node',
+      'sourceMap': true,
+      'emitDecoratorMetadata': true,
+      'experimentalDecorators': true,
+      'lib': ['es2015', 'dom'],
+      'noImplicitAny': true,
+      'suppressImplicitAnyIndexErrors': true
     },
     meta: {
       'typescript': {
-        "exports": "ts"
+        'exports': 'ts'
       }
     },
     paths: {
       // paths serve as alias
-      'npm:': 'https://unpkg.com/'
+      'npm:': 'https://unpkg.com/',
     },
     // map tells the System loader where to look for things
     map: {
-      app:      './',
-      // services:     './shared-services',
-      // dialogs:      './shared-services/dialogs',
+      app:          './',
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -53,6 +51,11 @@
       'ts':                         'npm:plugin-typescript@5.2.7/lib/plugin.js',
       'typescript':                 'npm:typescript@2.0.10/lib/typescript.js',
       'hammerjs':                   'npm:hammerjs@2.0.8/hammer.js',
+
+      // 'angular2-jwt':               'node_modules/angular2-jwt',
+      'angular2-jwt':               'npm:angular2-jwt@0.2.2/angular2-jwt.js',
+
+      // 'jsonwebtoken':               'node_modules:jsonwebtoken',
       // 'lodash':                     '../node_modules/lodash/lodash.min',
 
     },
@@ -62,17 +65,20 @@
         main: './main.ts',
         defaultExtension: 'ts'
       },
+      rxjs: {
+        defaultExtension: 'js'
+      },
+      'angular2-jwt': {
+        defaultExtension: 'js'
+      },
       // services: {
       //   main: 'index.d.ts',
       //   defaultExtension: 'ts'
       // },
-      // dialogs: {
-      //   main: 'index.d.ts',
-      //   defaultExtension: 'ts'
+      // jsonwebtoken: {
+      //   main: './index.js',
+      //   defaultExtension: 'js'
       // },
-      rxjs: {
-        defaultExtension: 'js'
-      },
     }
   });
 

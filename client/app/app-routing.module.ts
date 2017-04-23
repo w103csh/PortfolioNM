@@ -5,6 +5,8 @@ import { RouterModule, Routes }         from '@angular/router';
 // TODO: put into separate routing module
 import { DashboardComponent }           from './components/dashboard/dashboard.component';
 import { TestAuthComponent }            from './components/test-auth/test-auth.component';
+import { TestAnimationComponent }       from './components/test-animation/test-animation.component';
+import { TestDialogComponent }          from './components/test-dialog/test-dialog.component';
 import { TestTitleComponent }           from './components/test-title/test-title.component';
 
 import { HomeComponent }                from './components/home/home.component';
@@ -36,6 +38,16 @@ const appRoutes: Routes = [
   ,{
      path: 'test-auth',
      component: TestAuthComponent,
+     canActivate: [AuthGuard]
+   }
+  ,{
+     path: 'test-dialog',
+     component: TestDialogComponent,
+     canActivate: [AuthGuard]
+   }
+  ,{
+     path: 'test-animation', 
+     component: TestAnimationComponent,
      canActivate: [AuthGuard]
    }
   ,{
