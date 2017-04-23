@@ -16,12 +16,12 @@
   overflow-x: auto;
   overflow-y: auto;
 
-  /*background-color: hsl(60, 55%, 90%);
+  /*background-color: hsl(0, 0%, 95%);
   box-shadow: rgba(0, 0, 0, 0.239216) 3px 0px 6px 0px;*/
-  /*background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(60, 55%, 90%));*/
+  /*background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(0, 0%, 95%));*/
   /*border-right: 3px solid;
   border-color: hsl(150, 90%, 29%);*/
-  background-color: hsl(60, 55%, 90%);
+  background-color: hsl(0, 0%, 95%);
   box-shadow: rgba(0, 0, 0, 0.239216) 3px 0px 6px 0px;
 }
 
@@ -46,7 +46,8 @@ li.category {
 
   /*background-color: rgba(0, 64, 72, 0.64);*/
   /*background-color: hsl(190, 76%, 15%);*/
-  background-color: hsl(210, 35%, 25%);
+  background-color: hsl(210, 100%, 20%);
+  /*background-color: hsl(210, 35%, 25%);*/
 }
 
 li.not-top {
@@ -84,7 +85,7 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
 
 a:hover, a:hover *, a:focus {
   /*color: hsl(210, 100%, 20%) !important;*/
-  color: rgb(35, 82, 124) !important;
+  color: rgb(13, 71, 161) !important;
   font-weight: 700;
 }
 

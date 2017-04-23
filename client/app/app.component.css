@@ -64,7 +64,7 @@
 
 .signed-in {
   margin-left: 0px !important;
-  background-color: hsl(60, 55%, 90%);
+  background-color: hsl(0, 0%, 95%);
 }
 
 .main-outlet-wrapper {
@@ -91,7 +91,7 @@
   padding: 0 3px 0 3px;
   display: inline-block;
   background-color: #fff;
-  background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(60, 55%, 90%));
+  background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(0, 0%, 95%));
   border-right: 3px solid;
   border-color: hsl(150, 90%, 29%);
 }
