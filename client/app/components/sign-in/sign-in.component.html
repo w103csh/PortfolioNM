@@ -7,28 +7,34 @@
 
     <form (ngSubmit)='onSubmit()' #signInForm='ngForm' >
 
-      <md-input-container class='wide' >
+      <md-input-container class='wide' [ngSwitch]='firstNameValidation' >
         <input mdInput placeholder='Email'
-            [(ngModel)]='model.email' 
-            name='email'
-            required
-            #email='ngModel' >
+          type='email'
+          [(ngModel)]='model.email' 
+          name='email'
+          required
+          pattern='email'
+          #email='ngModel' >
+        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
+        <md-error *ngSwitchCase='"email"' >Must be a valid email address</md-error>
       </md-input-container>
 
       <md-input-container class='wide' >
         <input mdInput placeholder='Password'
-            type='password'
-            [(ngModel)]='model.password' 
-            name='password'
-            required
-            #password='ngModel'>
+          type='password'
+          [(ngModel)]='model.password' 
+          name='password'
+          required
+          #password='ngModel'>
+        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
+        <md-error *ngSwitchCase='"length"' >Must have at least 7 characters</md-error>
       </md-input-container>
       
       <md-checkbox class='mat-checkbox' [(ngModel)]='model.rememberMe' name='rememberMe' >Remember me</md-checkbox>
 
       <p *ngIf='serverMsg' class='error'>{{serverMsg}}</p>
 
-      <button md-raised-button color='primary' class='wide' >Sign in</button>
+      <button md-raised-button type='submit' color='primary' class='wide' >Sign in</button>
 
       <div class='question-redir' >
         <span>Don't have a username and password?</span>

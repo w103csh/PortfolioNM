@@ -16,28 +16,33 @@
       
       <md-input-container class='wide' >
         <input mdInput placeholder='Last name'
-            [(ngModel)]='model.lastName' 
-            name='lastName'
-            #lastName='ngModel' >
+          [(ngModel)]='model.lastName' 
+          name='lastName'
+          #lastName='ngModel' >
       </md-input-container>
 
-      <md-input-container class='wide' >
+      <md-input-container class='wide' [ngSwitch]='emailVal' >
         <input mdInput placeholder='Email'
-            type='email'
-            [(ngModel)]='model.email' 
-            name='email'
-            required
-            #email='ngModel' >
+          type='email'
+          [(ngModel)]='model.email' 
+          name='email'
+          required
+          pattern='emailRegex'
+          #email='ngModel' >
+        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
+        <md-error *ngSwitchCase='"email"' >Must be a valid email address</md-error>
       </md-input-container>
 
-      <md-input-container class='wide' >
+      <md-input-container class='wide' [ngSwitch]='passwordVal' >
         <input mdInput placeholder='Password'
-            type='password'
-            [(ngModel)]='model.password' 
-            name='password'
-            required
-            minLength='7'
-            #password='ngModel'>
+          type='password'
+          [(ngModel)]='model.password' 
+          name='password'
+          required
+          minlength='7'
+          #password='ngModel'>
+        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
+        <md-error *ngSwitchCase='"length"' >Must have at least 7 characters</md-error>
       </md-input-container>
 
       <p *ngIf='serverMsg' class='error'>{{serverMsg}}</p>
