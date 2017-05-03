@@ -1,12 +1,42 @@
 
 
-<div class='nav-list-wrapper' >
+<ul class='side-bar-list' >
+  <li class='category' >
+    <span>GENERAL</span>
+  </li>
+  <li *ngFor='let link of genNavLinks' >
+    <!--BIG TODO: why isn't active working.-->
+    <a md-raised-button 
+        routerLink='{{link.href}}'
+        routerLinkActive
+        #rla='routerLinkActive'
+        active='rla.isActive'
+        class='wide' >
+      {{ link.text | titlecase }}
+    </a>
+  </li>
+  <li class='category not-top'>
+    <span>TESTS</span>
+  </li>
+  <li *ngFor='let link of testNavLinks' >
+    <a md-raised-button 
+        routerLink='{{link.href}}'
+        routerLinkActive
+        #rla='routerLinkActive'
+        active='rla.isActive'
+        class='wide' >
+      {{ link.text | titlecase }}
+    </a>
+  </li>
+</ul>
+
+
+<!--<div class='nav-list-wrapper' >
   <ul class='side-bar-list' >
     <li class='category' >
       <span>GENERAL</span>
     </li>
     <li *ngFor='let link of genNavLinks' >
-      <!--BIG TODO: why isn't active working.-->
       <a md-raised-button 
           routerLink='{{link.href}}'
           routerLinkActive
@@ -30,4 +60,4 @@
       </a>
     </li>
   </ul>
-</div>
+</div>-->

@@ -30,6 +30,12 @@
   overflow-y: hidden;
 }
 
+.sidenav-container {
+  background-color: rgb(250, 250, 250);
+  /*background-color: hsl(0, 0%, 95%);*/
+  box-shadow: rgba(0, 0, 0, 0.239216) 3px 0px 6px 0px;
+}
+
 .backdrop {
   position: absolute;
   top: 0px;
@@ -50,6 +56,14 @@
   display: block;
   left: 0px;
   right: 0px;
+}
+
+/*.main-content {
+  position: absolute;
+  height: 100%;
+  display: block;
+  left: 0px;
+  right: 0px;
 
   margin-left: 245px;
   margin-right: 0px;
@@ -60,11 +74,10 @@
   overflow-y: auto;
 
   background-color: rgb(250, 250, 250);
-}
+}*/
 
-.signed-in {
-  margin-left: 0px !important;
-  background-color: hsl(0, 0%, 95%);
+.not-signed-in {
+  background-color: hsl(0, 0%, 95%) !important;
 }
 
 .main-outlet-wrapper {
@@ -75,6 +88,8 @@
 
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+
+  background-color: rgb(250, 250, 250);
 }
 
 /* START side-nav */

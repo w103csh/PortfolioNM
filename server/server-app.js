@@ -65,7 +65,6 @@ app.get('*', function(req, res) {
   res.redirect('/?redirectUrl=' + encodeURIComponent(req.url));
 });
 
-// TODO: better understand below, and setup server restarter on actual server.
 // default error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

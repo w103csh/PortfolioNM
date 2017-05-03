@@ -51,7 +51,6 @@ span.title-end {
 }
 
 a.nav {
-  /*color: rgb(250, 250, 250);*/
   color: hsl(0, 0%, 95%) !important;
   text-decoration: none;
 }

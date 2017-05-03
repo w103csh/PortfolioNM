@@ -10,6 +10,8 @@
 /*--footer: hsl(190, 76%, 15%);*/
 /*--background: rgb(250, 250, 250);*/
 /*--title: hsl(60, 55%, 90%);*/
+/*--title-text-color: hsl(0, 0%, 95%);*/
+
 
 
 /* ------------------ Master Styles ------------------ */
@@ -36,7 +38,7 @@ h2 {
 }
 
 .header {
-  color: rgb(255, 255, 230);
+  color: hsl(0, 0%, 95%);
 
   -webkit-margin-before: 0; 
   -webkit-margin-after: 0;
@@ -47,6 +49,8 @@ h2 {
 
   background-color: hsl(150, 90%, 29%);
   background-image: -webkit-linear-gradient(right, hsl(150, 90%, 29%), hsl(160, 80%, 20%));
+
+  text-shadow: 1px 1px hsl(180, 100%, 10%);
 }
 
 /* Loading spinner */

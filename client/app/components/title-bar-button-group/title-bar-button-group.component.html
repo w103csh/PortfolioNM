@@ -1,6 +1,6 @@
 
 <div class='flex-container-row just-cen' >
-  <div *ngIf='user' class='button-container greeting' >
+  <div *ngIf='user?.firstName' class='button-container greeting' >
     <span>Hello, {{ user?.firstName }}</span>
   </div>
   <div *ngIf='user' class='button-container' >

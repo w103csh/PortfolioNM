@@ -1,8 +1,10 @@
 <div class='content'>
   <div class='header'><h1>{{ header | uppercase }}</h1></div>
-  <div class='banner'><span>Welcome, <strong><mark>{{ user?.firstName }}</mark></strong>.</span></div>
   <div class='doc-content' >
-    <p>This is the dashboard - the page you see when you first sign in.
+    <div *ngIf='user && user.firstName' ><h3>Welcome, {{ user?.firstName }}.</h3><br /></div>
+    <div *ngIf='!user || !user.firstName' ><h3>Welcome!</h3><br /></div>
+    <p>
+      This is the dashboard - the page you see when you first sign in.
       Things that the user should see straight away would go here. There is nothing here now, really. How about two pretty pictures.
     </p>
     <blockquote>
@@ -15,8 +17,8 @@
     </blockquote>
     <collapsible-button [expand]=true [showIcon]=true [expandText]='"Show pictures"' [collapseText]='"Hide pitures"' color=accent  >
       <div class='flex-container-row flex-start img-container' >
-        <img class='collapsible-img' src='images/VerticalBanners_High01.jpg' mdTooltip='These images are from The Witness!' [mdTooltipPosition]='"above"' />
-        <img class='collapsible-img' src='images/VerticalBanners_High13.jpg' mdTooltip='These images are from The Witness!' [mdTooltipPosition]='"above"' />
+        <img class='collapsible-img' src='images/VerticalBanners_Low01.jpg' mdTooltip='These images are from The Witness!' [mdTooltipPosition]='"above"' />
+        <img class='collapsible-img' src='images/VerticalBanners_Low13.jpg' mdTooltip='These images are from The Witness!' [mdTooltipPosition]='"above"' />
       </div>
     </collapsible-button>
   </div>

@@ -55,8 +55,8 @@ export const embiggen: AnimationEntryMetadata =
         height: '200px',
       })
     ),
-    transition('big <=> bigger', animate('200ms ease-in')),
-    transition('smaller <=> small', animate('200ms ease-in')),
+    transition('big <=> bigger', animate('200ms ease-out')),
+    transition('smaller <=> small', animate('200ms ease-out')),
     transition('big <=> smaller', animate('300ms ease-out')),
   ]);
 
@@ -72,7 +72,7 @@ export const beshrinketh: AnimationEntryMetadata =
         height: '500px',
       })
     ),
-    transition('smaller <=> small', animate('250ms ease')),
+    transition('smaller <=> small', animate('250ms ease-out')),
   ]);
 
 export const shiftSideToSide: AnimationEntryMetadata =

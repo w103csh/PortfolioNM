@@ -4,33 +4,36 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
-  DoCheck
+  DoCheck,
+  ViewChild,
 } from '@angular/core';
-
 import {
-  Router
+  MdSidenav,
+} from '@angular/material';
+import {
+  Router,
 } from '@angular/router';
 import {
-  Title
+  Title,
 } from '@angular/platform-browser';
 import {
-  Location
+  Location,
 } from '@angular/common';
 
 import {
-  AuthService
+  AuthService,
 } from '../shared-services/auth.service';
 import {
-  User
+  User,
 } from '../models/User';
 
 import {
-  Subscription
+  Subscription,
 } from 'rxjs/Subscription';
 
 import {
   __titleStart,
-  __titleEnd
+  __titleEnd,
 } from '../APP_CONFIG';
 
 @Component({
@@ -41,6 +44,8 @@ import {
 })
 export class AppComponent {
 
+  @ViewChild('sidenav') sidenav: MdSidenav;
+
   private titleStart: string
   private titleEnd: string;
   private title: string;
@@ -48,8 +53,8 @@ export class AppComponent {
 
   private sub: Subscription;
   private isSignedIn: boolean;
-  private readonly _notSignedInClasses: string[] = [ 'signed-in' ];
-  private signedInClasses: string[];
+  private readonly _notSignedInClasses: string[] = [ 'not-signed-in' ];
+  private notSignedInClasses: string[];
 
   constructor(
     private authService: AuthService,
@@ -63,7 +68,6 @@ export class AppComponent {
     this.isSignedIn = false;
 
     this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
-    this.checkSignedIn();
 
     this.setTitle();
 
@@ -78,14 +82,20 @@ export class AppComponent {
       this.router.navigate([redirectUrl]);
   }
 
-  checkSignedIn() {
-    this.signedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
-  }
-
+  // Might need to find a better way to do this. ngOnChanges wasn't working here for some reason.
+  // These operations seem pretty quick though.
   ngDoCheck() {
-    this.checkSignedIn();
-  }
+    // Change background color
+    this.notSignedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
 
+    // Open or close sidenav
+    if(this.isSignedIn && !this.sidenav.opened) {
+      this.sidenav.open();
+    }
+    if(!this.isSignedIn && this.sidenav.opened) {
+      this.sidenav.close();
+    }
+  }
 
   ngOnInit() {
     if (localStorage.getItem('token'))
