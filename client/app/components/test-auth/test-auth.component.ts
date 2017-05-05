@@ -10,6 +10,9 @@ import {
 import {
   AuthService,
 } from '../../../shared-services/auth.service';
+import {
+  ContentService,
+} from '../../services/content.service';
 
 import {
   JwtHelper,
@@ -27,7 +30,9 @@ export class TestAuthComponent{
   private results: any = null;
   private jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private contentService: ContentService) {
+    contentService.updateHeader(this.header);
+  }
 
   checkToken() {
     this.results = {};

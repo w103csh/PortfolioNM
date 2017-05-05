@@ -26,11 +26,11 @@ import {
 })
 export class TitleBarButtonGroupComponent{
 
-  private sub: Subscription;
+  private userSub: Subscription;
   private user: User;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.sub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
+    this.userSub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
   }
 
   clickAccount() {
@@ -49,6 +49,6 @@ export class TitleBarButtonGroupComponent{
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.userSub.unsubscribe();
   }
 }

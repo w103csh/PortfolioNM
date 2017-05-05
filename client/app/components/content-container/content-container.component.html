@@ -1,0 +1,20 @@
+
+<div class='content' [ngClass]=signedInClasses >
+  <div [ngClass]=headerWrapperClass >
+    <button *ngIf=isMobile md-icon-button (click)='showSidenavClick()' ><md-icon>menu</md-icon></button>
+    <h1 [ngClass]=headerClass >{{ header | uppercase }}</h1>
+  </div>
+  <!--<doc-content-mobile *ngIf='isDoc && isMobile' >
+    <ng-content></ng-content>
+  </doc-content-mobile>
+  <doc-content *ngIf='isDoc && !isMobile' >
+    <ng-content></ng-content>
+  </doc-content>
+  <div *ngIf='!isDoc && isMobile' >
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf='!isDoc && !isMobile' >
+    <ng-content></ng-content>
+  </div>-->
+  <ng-content></ng-content>
+</div>

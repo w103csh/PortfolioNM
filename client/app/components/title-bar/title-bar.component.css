@@ -2,7 +2,10 @@
 :host {
   position: relative;
   -webkit-box-direction: normal;
-  z-index: 10;  
+  z-index: 10;
+
+  padding-left: 16px;
+  padding-right: 16px;
 
   background-color: hsl(150, 90%, 29%);
   background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 90%, 29%));
@@ -12,13 +15,20 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.137255) 0px 6px 10px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 18px 0px;
 }
 
+.title-bar-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-direction: normal;
+}
+
 .title-wrapper {
   width: 245px;
   text-align: center;
 }
 
 button.title {
-  margin: 16px 0 16px 16px;
+  /*margin: 16px 0 16px 16px;*/
+  margin: 16px 0 16px 0;
   padding: 0 10px 0 0;
   width: auto;
   
@@ -46,6 +56,16 @@ span.title-end {
   font-size: 24px;
 }
 
+.nav-container-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-direction: normal;
+  justify-content: space-around;
+  /*justify-content: space-between;*/
+
+  padding-bottom: 10px;
+}
+
 .nav-container {
   margin: auto;
 }
@@ -59,6 +79,6 @@ a.nav:hover {
   text-decoration: none;
 }
 
-title-bar-button-group {
-  padding-right: 40px;
+.pad-right {
+  padding-right: 24px;
 }

@@ -37,22 +37,6 @@ h2 {
   background-image: -webkit-linear-gradient(right, hsl(150, 90%, 29%), hsl(160, 80%, 20%));
 }
 
-.header {
-  color: hsl(0, 0%, 95%);
-
-  -webkit-margin-before: 0; 
-  -webkit-margin-after: 0;
-  margin: 0;
-  padding: 32px 48px 48px 48px;
-
-  -webkit-box-direction: normal;
-
-  background-color: hsl(150, 90%, 29%);
-  background-image: -webkit-linear-gradient(right, hsl(150, 90%, 29%), hsl(160, 80%, 20%));
-
-  text-shadow: 1px 1px hsl(180, 100%, 10%);
-}
-
 /* Loading spinner */
 .loading-container {
   flex-direction: column;

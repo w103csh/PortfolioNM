@@ -15,7 +15,7 @@ import { ContactComponent }             from './components/contact/contact.compo
 import { SignInComponent }              from './components/sign-in/sign-in.component';
 import { SignUpComponent }              from './components/sign-up/sign-up.component';
 import { PageNotFoundComponent }        from './components/page-not-found/page-not-found.component';
-import { AuthGuard }                    from '../shared-services/auth-guard.service';
+import { AuthGuardService }                    from '../shared-services/auth-guard.service';
 
 const appRoutes: Routes = [
    {
@@ -33,32 +33,32 @@ const appRoutes: Routes = [
   ,{
      path: 'dashboard', 
      component: DashboardComponent,
-     canActivate: [AuthGuard]
+     canActivate: [AuthGuardService]
    }
   ,{
      path: 'test-auth',
      component: TestAuthComponent,
-     canActivate: [AuthGuard]
+     canActivate: [AuthGuardService]
    }
   ,{
      path: 'test-dialog',
      component: TestDialogComponent,
-     canActivate: [AuthGuard]
+     canActivate: [AuthGuardService]
    }
   ,{
      path: 'test-animation', 
      component: TestAnimationComponent,
-     canActivate: [AuthGuard]
+     canActivate: [AuthGuardService]
    }
   ,{
      path: 'test-title', 
      component: TestTitleComponent,
-     canActivate: [AuthGuard]
+     canActivate: [AuthGuardService]
    }
   ,{
     path: 'admin',
     loadChildren: 'app/modules/admin/admin.module#AdminModule',
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuardService]
   }
   ,{
      path: 'signin',

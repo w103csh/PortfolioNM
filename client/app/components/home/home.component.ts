@@ -1,22 +1,18 @@
 
-import { 
+import {
   Component,
   Input,
   DoCheck,
   OnChanges,
   OnDestroy,
-}                         from '@angular/core';
-import { 
+} from '@angular/core';
+import {
   Router,
-}                         from '@angular/router';
+} from '@angular/router';
 
 import {
-  AuthService
-}                         from '../../../shared-services/auth.service';
-
-import {
-  Subscription
-}                         from 'rxjs/Subscription';
+  ContentService,
+} from '../../services/content.service';
 
 @Component({
   moduleId: module.id,
@@ -25,35 +21,19 @@ import {
   styleUrls: ['./home.component.css', '../../../shared-css/doc.css']
 })
 export class HomeComponent {
-  
+
+  private header: string = 'Hello, World!'
   private fragmentIdPrefix: string;
 
-  private sub: Subscription;
-  private isSignedIn: boolean;
-  private readonly _notSignedInClasses: string[];
-  private signedInClasses: string[];
-
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private contentService: ContentService, private router: Router) {
     // defaults
-    this.isSignedIn= false;
-    this._notSignedInClasses = [ 'side-margin' ];
     this.fragmentIdPrefix = this.router.url + '#';
 
-    this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
-    this.checkSignedIn();
+    contentService.updateHeader(this.header);
   }
 
-  checkSignedIn() {
-    this.signedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
-  }
-
-  ngDoCheck() {
-    this.checkSignedIn();
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
+  // Banner
+  private banner: string = `My name is Colin Hughes. I am a developer currently based out of Denver, CO.`;
 
   // Links
   private links: any = {
@@ -92,12 +72,6 @@ export class HomeComponent {
   private dropCaps: any = {
     W: '<span here style="font-size: 20px; color: hsl(160, 80%, 20%); ">W</span>',
   };
-
-  // Header
-  private header: string = `Hello, world!`;
-
-  // Banner
-  private banner: string = `My name is Colin Hughes. I am a developer currently based out of Denver, CO.`;
 
   // Disclaimer
   private disclaimers: any = {
@@ -203,10 +177,10 @@ export class HomeComponent {
   ]
 
   private experience: { title: string, description: string, bullets: string[] }[] = [
-    { 
+    {
       title: '.NET/WEB DEVELOPER',
-      description: 'Ramboll Environ, Denver, CO – October 2015 – Present', 
-      bullets: [ 
+      description: 'Ramboll Environ, Denver, CO – October 2015 – Present',
+      bullets: [
         `Delivered multiple projects that I developed from conception to final release; talked with clients about the scope and 
         purpose of a project, wrote time and cost estimates based on the guidelines, and then worked with a small team or individually
         to create the final release within the given budget.`
@@ -222,9 +196,9 @@ export class HomeComponent {
         ,
       ]
     },
-    { 
+    {
       title: 'SOFTWARE ENGINEER',
-      description: 'Adeptive Software, Louisville, CO – May 2014 – July 2015', 
+      description: 'Adeptive Software, Louisville, CO – May 2014 – July 2015',
       bullets: [
         `Developed a multitude of enhancements, plugins, and bug fixes for ResWare (Adeptive Software’s core application), which is an all-encompassing real estate industry software solution.`
         ,
@@ -236,9 +210,9 @@ export class HomeComponent {
         ,
       ]
     },
-    { 
+    {
       title: 'SOFTWARE DEVELOPER/HELP DESK SPECIALIST',
-      description: 'Dimension Technology Solutions, Littleton, CO – Feb 2014 – April 2014', 
+      description: 'Dimension Technology Solutions, Littleton, CO – Feb 2014 – April 2014',
       bullets: [
         `Developed the procedures and tools that allowed eMESA to seamlessly integrate with existing ERP systems such as Ellipse, Oracle, and SunSystems.`
         ,
@@ -252,9 +226,9 @@ export class HomeComponent {
         ,
       ]
     },
-    { 
+    {
       title: 'JUNIOR SOFTWARE DEVELOPER',
-      description: 'Dimension Technology Solutions, Littleton, CO – Feb 2014 – April 2014', 
+      description: 'Dimension Technology Solutions, Littleton, CO – Feb 2014 – April 2014',
       bullets: [
         `All of the same responsibilities listed above with a lesser role in day to day communication with clients.`
         ,

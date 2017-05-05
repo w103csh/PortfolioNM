@@ -8,8 +8,8 @@ import {
   AuthService,
 } from '../../../shared-services/auth.service';
 import {
-  rightSlideInAnimation,
-} from '../../../shared-animations/animations';
+  ContentService,
+} from '../../services/content.service';
 import {
   User
 } from '../../../models/User';
@@ -23,7 +23,6 @@ import {
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.css', '../../../shared-css/doc.css' ],
-  animations: [ rightSlideInAnimation ]
 })
 export class DashboardComponent {
 
@@ -34,7 +33,9 @@ export class DashboardComponent {
   private sub: Subscription;
   private user: User;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private contentService: ContentService) {
     this.sub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
+
+    contentService.updateHeader(this.header);
   }
 }

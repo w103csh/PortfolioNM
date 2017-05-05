@@ -11,7 +11,7 @@ import { DialogModule }                   from '../dialog/dialog.module';
 // Services
 // import { UserService }                    from './shared-services/user.service';
 import { AuthService }                    from '../../shared-services/auth.service';
-import { AuthGuard }                      from '../../shared-services/auth-guard.service';
+import { AuthGuardService }                      from '../../shared-services/auth-guard.service';
 import { DialogService }                  from '../dialog/dialog.module';
 
 // Components
@@ -36,7 +36,7 @@ import { TabContentContainerComponent }   from './components/tab-content-contain
   providers: [
     AuthService,
     DialogService,
-    AuthGuard
+    AuthGuardService
   ]
 })
 export class AdminModule { }

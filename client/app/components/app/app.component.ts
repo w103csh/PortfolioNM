@@ -22,10 +22,13 @@ import {
 
 import {
   AuthService,
-} from '../shared-services/auth.service';
+} from '../../../shared-services/auth.service';
+import {
+  PlatformService,
+} from '../../../shared-services/platform.service';
 import {
   User,
-} from '../models/User';
+} from '../../../models/User';
 
 import {
   Subscription,
@@ -34,7 +37,7 @@ import {
 import {
   __titleStart,
   __titleEnd,
-} from '../APP_CONFIG';
+} from '../../../APP_CONFIG';
 
 @Component({
   moduleId: module.id,
@@ -46,10 +49,13 @@ export class AppComponent {
 
   @ViewChild('sidenav') sidenav: MdSidenav;
 
-  private titleStart: string
+  private titleStart: string;
   private titleEnd: string;
   private title: string;
   private version: string;
+
+  private isMobile: boolean;
+  private screenWidth: number;
 
   private sub: Subscription;
   private isSignedIn: boolean;
@@ -58,6 +64,7 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
+    private platformService: PlatformService,
     private router: Router,
     // private route: ActivatedRoute,
     private elementRef: ElementRef,
@@ -66,7 +73,9 @@ export class AppComponent {
 
     // defaults
     this.isSignedIn = false;
-
+    
+    this.isMobile = platformService.isMobile();
+    
     this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
 
     this.setTitle();
@@ -85,16 +94,25 @@ export class AppComponent {
   // Might need to find a better way to do this. ngOnChanges wasn't working here for some reason.
   // These operations seem pretty quick though.
   ngDoCheck() {
-    // Change background color
-    this.notSignedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
+    if (!this.platformService.isMobile()) {
+      // Change background color
+      this.notSignedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
+    
+      // Open or close sidenav
+      if(this.isSignedIn && !this.sidenav.opened) {
+        this.sidenav.open();
+      }
+      if(!this.isSignedIn && this.sidenav.opened) {
+        this.sidenav.close();
+      }
+    }
+  }
 
-    // Open or close sidenav
-    if(this.isSignedIn && !this.sidenav.opened) {
-      this.sidenav.open();
-    }
-    if(!this.isSignedIn && this.sidenav.opened) {
+  showHideSideNav() {
+    if (this.sidenav.opened)
       this.sidenav.close();
-    }
+    else
+      this.sidenav.open(); 
   }
 
   ngOnInit() {

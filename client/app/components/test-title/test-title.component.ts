@@ -6,6 +6,11 @@ import {
   Title
 } from '@angular/platform-browser';
 
+import {
+  ContentService,
+} from '../../services/content.service';
+
+
 @Component({
   moduleId: module.id,
   selector: 'test-title',
@@ -17,8 +22,9 @@ export class TestTitleComponent{
   private header: string = 'Title Service Test';
   private model: any = {};
 
-  constructor(private titleService: Title) {
+  constructor(private titleService: Title, private contentService: ContentService) {
     this.model.title = this.titleService.getTitle();
+    contentService.updateHeader(this.header);
   }
 
   updateTitle() {

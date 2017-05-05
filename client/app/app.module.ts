@@ -36,11 +36,12 @@ import { DialogModule }                    from '../modules/dialog/dialog.module
 // // import { DownloadService, }                 from '../shared-services/download.service';
 import { UserService, }                     from '../shared-services/user.service';
 import { AuthService, }                     from '../shared-services/auth.service';
-import { AuthGuard, }                       from '../shared-services/auth-guard.service';
+import { AuthGuardService, }                from '../shared-services/auth-guard.service';
+import { PlatformService, }                 from '../shared-services/platform.service';
 import { DialogService }                    from '../modules/dialog/dialog.module';
 
 // Components
-import { AppComponent, }                    from './app.component';
+import { AppComponent, }                    from './components/app/app.component';
 import { DashboardComponent, }              from './components/dashboard/dashboard.component';
 import { TestAuthComponent, }               from './components/test-auth/test-auth.component';
 import { TestAnimationComponent, }          from './components/test-animation/test-animation.component';
@@ -57,6 +58,7 @@ import { CollapsibleButtonComponent, }      from './components/collapsible-butto
 import { SignInComponent, }                 from './components/sign-in/sign-in.component';
 import { SignUpComponent, }                 from './components/sign-up/sign-up.component';
 import { PageNotFoundComponent, }           from './components/page-not-found/page-not-found.component';
+import { ContentContainerComponent, }       from './components/content-container/content-container.component';
 
 // Other libraries
 import 'hammerjs';
@@ -94,7 +96,8 @@ import 'hammerjs';
     CollapsibleButtonComponent,
     SignInComponent,
     SignUpComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ContentContainerComponent,
   ],
   providers: [ 
     // Location, { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -110,7 +113,8 @@ import 'hammerjs';
     // DownloadService,
     UserService,
     AuthService,
-    AuthGuard,
+    AuthGuardService,
+    PlatformService,
     DialogService,
   ],
   bootstrap: [ AppComponent ]

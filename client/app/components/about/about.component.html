@@ -1,45 +1,37 @@
 
-<div class='content' [ngClass]=signedInClasses >
-  <div class='header'><h1>{{ title | uppercase }}</h1></div>
+<h2>{{title}} Me</h2>
+<p>There is not really much here yet. Click the <a routerLink='/home' >home</a> button in the title bar to see my digital résumé,
+  or click the <a routerLink='/contact' >contact</a> button to get in touch.
+</p>
 
-  <div class='doc-content'>
-    <h2>{{title}} Me</h2>
-    <p>There is not really much here yet. Click the <a routerLink='/home' >home</a> button in the title bar to see my digital résumé,
-      or click the <a routerLink='/contact' >contact</a> button to get in touch.
-    </p>
-
-    <h2>{{title}} This Website</h2>
-    <!-- Site start -->
-    <p *ngFor='let p of siteStart' [innerHTML]='p'></p>
-    <!-- Site details -->
-    <collapsible-button [expand]='true' [showIcon]='true' >
-      <ul>
-        <li>Server</li>
-        <ul >
-          <li *ngFor='let bullet of serverBullets' [innerHTML]='bullet' ></li>
-        </ul>
-        <li>Database</li>
-        <ul >
-          <li *ngFor='let bullet of dbBullets' [innerHTML]='bullet' ></li>
-        </ul>
-        <li>Client</li>
-        <ul >
-          <li *ngFor='let bullet of clientBullets' [innerHTML]='bullet' ></li>
-        </ul>
-        <li>Development Environment</li>
-        <ul >
-          <li *ngFor='let bullet of deBullets' [innerHTML]='bullet' ></li>
-        </ul>
-      </ul>
-      <br />
-      <!-- Site end 1 -->
-      <p *ngIf='siteEnd?.length > 0' [innerHTML]='siteEnd[0]'></p>
-      <!-- Disclaimer 2 -->
-      <blockquote *ngIf='disclaimers?.site' [innerHTML]='disclaimers?.site' ></blockquote>
-      <!-- Site end 2 -->
-      <!--<p *ngIf='siteEnd?.length > 1' [innerHTML]='siteEnd[1]'></p>-->
-    </collapsible-button>
-
-  </div>
-
-</div>
+<h2>{{title}} This Website</h2>
+<!-- Site start -->
+<p *ngFor='let p of siteStart' [innerHTML]='p'></p>
+<!-- Site details -->
+<collapsible-button [expand]='true' [showIcon]='true' >
+  <ul>
+    <li>Server</li>
+    <ul >
+      <li *ngFor='let bullet of serverBullets' [innerHTML]='bullet' ></li>
+    </ul>
+    <li>Database</li>
+    <ul >
+      <li *ngFor='let bullet of dbBullets' [innerHTML]='bullet' ></li>
+    </ul>
+    <li>Client</li>
+    <ul >
+      <li *ngFor='let bullet of clientBullets' [innerHTML]='bullet' ></li>
+    </ul>
+    <li>Development Environment</li>
+    <ul >
+      <li *ngFor='let bullet of deBullets' [innerHTML]='bullet' ></li>
+    </ul>
+  </ul>
+  <br />
+  <!-- Site end 1 -->
+  <p *ngIf='siteEnd?.length > 0' [innerHTML]='siteEnd[0]'></p>
+  <!-- Disclaimer 2 -->
+  <blockquote *ngIf='disclaimers?.site' [innerHTML]='disclaimers?.site' ></blockquote>
+  <!-- Site end 2 -->
+  <!--<p *ngIf='siteEnd?.length > 1' [innerHTML]='siteEnd[1]'></p>-->
+</collapsible-button>

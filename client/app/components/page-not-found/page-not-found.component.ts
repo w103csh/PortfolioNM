@@ -1,8 +1,18 @@
 
-import { Component } from '@angular/core';
+import {
+  Component
+} from '@angular/core';
 
-import { AuthService }      from '../../../shared-services/auth.service';
-import { Subscription }     from 'rxjs/Subscription';
+import {
+  AuthService
+} from '../../../shared-services/auth.service';
+import {
+  ContentService,
+} from '../../services/content.service';
+
+import {
+  Subscription
+} from 'rxjs/Subscription';
 
 @Component({
   moduleId: module.id,
@@ -12,18 +22,21 @@ import { Subscription }     from 'rxjs/Subscription';
 })
 export class PageNotFoundComponent{
 
+  private header: string = 'Page Not Found';
   private sub: Subscription;
   private isSignedIn: boolean;
   private readonly _notSignedInClasses: string[];
   private signedInClasses: string[];
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private contentService: ContentService) {
     // defaults
     this.isSignedIn= false;
     this._notSignedInClasses = [ 'side-margin' ];
 
     this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
     this.checkSignedIn();
+
+    contentService.updateHeader(this.header);
   }
 
   checkSignedIn() {

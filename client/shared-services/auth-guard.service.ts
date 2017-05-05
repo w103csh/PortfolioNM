@@ -22,7 +22,7 @@ import {
 import 'rxjs/add/observable/of';
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
+export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
 
   constructor(private authService: AuthService, private router: Router) {}
 

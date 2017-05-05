@@ -6,6 +6,9 @@ import {
 import {
   DialogService,
 } from '../../../modules/dialog/dialog.module';
+import {
+  ContentService,
+} from '../../services/content.service';
 
 @Component({
   moduleId: module.id,
@@ -19,10 +22,12 @@ export class TestDialogComponent{
   private model: any = {};
   private selectedOption: string;
 
-  constructor(public dialogService: DialogService) {
+  constructor(public dialogService: DialogService, private contentService: ContentService) {
     this.model.showClear = false;
     this.model.confirm = 'Confirm';
     this.model.cancel = 'Cancel';
+
+    contentService.updateHeader(this.header);
   }
 
   testDialog() {

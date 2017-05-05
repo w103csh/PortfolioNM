@@ -6,27 +6,27 @@ import { AdminComponent }           from './admin.component';
 import { AccountComponent }         from './components/account/account.component';
 import { UsersComponent }           from './components/users/users.component';
 
-import { AuthGuard }                from '../../shared-services/auth-guard.service';
+import { AuthGuardService }                from '../../shared-services/auth-guard.service';
 
 const adminRoutes: Routes = [
   {
     path: '', 
     component: AdminComponent,
-    canActivateChild: [AuthGuard],
+    canActivateChild: [AuthGuardService],
     children: [
       { 
         path: 'account',
-        canActivateChild: [AuthGuard],
+        canActivateChild: [AuthGuardService],
         component: AccountComponent
       },
       { 
         path: 'users',
-        canActivateChild: [AuthGuard],
+        canActivateChild: [AuthGuardService],
         component: UsersComponent
       },
       { 
         path: '',
-        canActivateChild: [AuthGuard],
+        canActivateChild: [AuthGuardService],
         component: AccountComponent
       },
     ]

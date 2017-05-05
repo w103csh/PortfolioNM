@@ -1,8 +1,11 @@
 
-import { Component } from '@angular/core';
+import {
+  Component
+} from '@angular/core';
 
-import { AuthService }      from '../../../shared-services/auth.service';
-import { Subscription }     from 'rxjs/Subscription';
+import {
+  ContentService,
+} from '../../services/content.service';
 
 @Component({
   moduleId: module.id,
@@ -12,27 +15,10 @@ import { Subscription }     from 'rxjs/Subscription';
 })
 export class AboutComponent{
 
-  private title: string = 'About';
-  private sub: Subscription;
-  private isSignedIn: boolean;
-  private readonly _notSignedInClasses: string[];
-  private signedInClasses: string[];
+  private header: string = 'About this website';
 
-  constructor(private authService: AuthService) {
-    // defaults
-    this.isSignedIn= false;
-    this._notSignedInClasses = [ 'side-margin' ];
-    
-    this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
-    this.checkSignedIn();
-  }
-
-  checkSignedIn() {
-    this.signedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
-  }
-
-  ngDoCheck() {
-    this.checkSignedIn();
+  constructor(private contentService: ContentService) {
+    contentService.updateHeader(this.header);
   }
 
   // Links

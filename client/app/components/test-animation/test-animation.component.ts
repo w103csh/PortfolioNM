@@ -6,6 +6,10 @@ import {
   Title
 } from '@angular/platform-browser';
 
+
+import {
+  ContentService,
+} from '../../services/content.service';
 import {
   embiggen,
   shiftSideToSide,
@@ -28,6 +32,10 @@ export class TestAnimationComponent {
   private img1Embiggen: string = 'big';
   private img2Embiggen: string = 'big';
   private shiftDec: string = 'left';
+
+  constructor(private contentService: ContentService) {
+    contentService.updateHeader(this.header);
+  }
 
   embiggen($event: any) {
     switch ($event.target.id) {
