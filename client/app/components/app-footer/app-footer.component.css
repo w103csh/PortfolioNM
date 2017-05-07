@@ -6,13 +6,11 @@
 
 footer {
   width: 100%;
-  padding: 40px 40px 20px 40px;
   -webkit-box-direction: normal;
 
   color: lightgrey;
 
-/*
-  border-top: 1px solid hsl(210, 100%, 20%);
+  /*border-top: 1px solid hsl(210, 100%, 20%);
   background-color: hsl(150, 90%, 29%);
   background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 90%, 29%));*/
 
@@ -25,11 +23,19 @@ footer {
   background-image: -webkit-linear-gradient(right, hsl(210, 100%, 20%), hsl(210, 100%, 40%));*/
 }
 
+footer:not(.mobile) {
+  padding: 40px 40px 20px 40px;
+}
+
+footer.mobile {
+  padding: 20px 20px 20px 20px;
+}
+
 .center {
   align-items: center;
 }
 
-.indent {
+.indent:not(.mobile) {
   padding-left: 0 !important;
   padding-right: 0 !important;
   width: 90%;

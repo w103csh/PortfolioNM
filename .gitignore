@@ -8,5 +8,8 @@ node_modules
 # old code directory
 .old
 
-# Environment
-server/.envS
+# Environment server
+server/.env
+
+# Environment client
+client/.APP_CONFIG.ts

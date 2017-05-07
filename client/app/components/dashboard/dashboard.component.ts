@@ -22,26 +22,22 @@ import {
   moduleId: module.id,
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css' ],
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
 
   //@HostBinding('@rightSlideIn') rightSlideIn = true;
 
   private header: string = 'Dashboard';
-  private docClass: string[] = [];
-  private bannerClass: string[] = [];
   private isMobile: boolean;
 
-  private sub: Subscription;
+  private userSub: Subscription;
   private user: User;
 
   constructor(private authService: AuthService, private contentService: ContentService) {
-    this.sub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
+    this.userSub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
 
     contentService.updateHeader(this.header);
-    this.docClass = this.contentService.getIsMobile() ? ['doc-content-mobile'] : ['doc-content'];
-    this.bannerClass = this.contentService.getIsMobile() ? ['banner-mobile'] : ['banner'];
     this.isMobile = this.contentService.getIsMobile();
   }
 }

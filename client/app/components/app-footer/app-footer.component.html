@@ -1,8 +1,11 @@
 
-<footer class='footer' >
+<footer class='footer' [ngClass]=mobileClass >
   <!--<div class='flex-container-row center'>-->
-  <div [ngClass]='footerClasses'>
-    <div><small>©2017 Copyright BGDPRODS. PorfolioNM(v{{version}})</small></div>
+  <div [ngClass]=footerClasses [ngStyle]=mobileStyle >
+    <div class='flex-container-column' >
+      <div class='flex'><small>PorfolioNM (v{{version}})</small></div>
+      <div class='flex'><small>©2017 Copyright BGDPRODS.</small></div>
+    </div>
     <div class='flex-end' >
       <!--<md-icon color=primary >share</md-icon>-->
       <div mdTooltip='Tooltips are super fun, right?!' [mdTooltipPosition]='"left"' >

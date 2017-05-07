@@ -19,16 +19,12 @@ import {
   moduleId: module.id,
   selector: 'test-animation',
   templateUrl: './test-animation.component.html',
-  styleUrls: ['./test-animation.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css'],
+  styleUrls: ['./test-animation.component.css'],
   animations: [embiggen, shiftSideToSide]
 })
 export class TestAnimationComponent {
 
   private header: string = 'Animation Test';
-  private docClass: string[] = [];
-  private bannerClass: string[] = [];
-  private isMobile: boolean;
-
   private animation: string = 'shrink';
   private shrunk: boolean = false;
 
@@ -38,9 +34,6 @@ export class TestAnimationComponent {
 
   constructor(private contentService: ContentService) {
     contentService.updateHeader(this.header);
-    this.docClass = this.contentService.getIsMobile() ? ['doc-content-mobile'] : ['doc-content'];
-    this.bannerClass = this.contentService.getIsMobile() ? ['banner-mobile'] : ['banner'];
-    this.isMobile = this.contentService.getIsMobile();
   }
 
   embiggen($event: any) {

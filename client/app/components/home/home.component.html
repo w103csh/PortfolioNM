@@ -1,7 +1,7 @@
 
-<div [ngClass]=bannerClass ><span [innerHTML]='banner'></span><md-icon class='sunny spin' >wb_sunny_48</md-icon></div>
+<!--<div [ngClass]=bannerClass ><span [innerHTML]='banner'></span><md-icon class='sunny spin' >wb_sunny_48</md-icon></div>-->
 
-<div [ngClass]=docClass>
+<doc-content>
 
   <!-- Introduction -->
   <p *ngFor='let p of intros' [innerHTML]='p' ></p>
@@ -16,7 +16,7 @@
   <h1>Contents</h1>
   <ul class='toc' >
     <li *ngFor='let section of sections' >
-      <a md-button color='accent' href='{{fragmentIdPrefix}}{{section.ref}}' >{{section.title}}</a>
+      <a md-button class='toc' color='accent' href='{{fragmentIdPrefix}}{{section.ref}}' >{{section.title}}</a>
     </li>
   </ul>
 
@@ -24,7 +24,7 @@
     <!-- sections -->
     <!-- TODO: make section a component -->
     <div *ngFor='let section of sections' >
-      <a id='{{section.ref}}'></a>
+      <a id='{{section.ref}}' class='anchor' ></a>
       <h2>{{section.title}}</h2>
       <!--<p>{{section.description}}</p>-->
       <div [ngSwitch]='section.ref'>
@@ -138,9 +138,9 @@
         </div>
 
       </div>
-      <a md-button [ngClass]=mobileClass color='accent' href='{{fragmentIdPrefix}}toc'  >Back to top</a>
+      <a md-button color='accent' href='{{fragmentIdPrefix}}toc'  >Back to top</a>
 
     </div>
   </div>
 
-</div>
+</doc-content>

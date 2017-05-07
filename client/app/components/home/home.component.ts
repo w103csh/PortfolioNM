@@ -18,25 +18,22 @@ import {
   moduleId: module.id,
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css', '../../../shared-css/doc-mobile.css']
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
 
   private header: string = 'Hello, World!';
   private fragmentIdPrefix: string;
-  private docClass: string[] = [];
-  private bannerClass: string[] = [];
-  private mobileClass: string[] = [];
   private isMobile: boolean;
 
   constructor(private contentService: ContentService, private router: Router) {
     // defaults
     this.fragmentIdPrefix = this.router.url + '#';
-
+    
     contentService.updateHeader(this.header);
-    this.docClass = this.contentService.getIsMobile() ? ['doc-content-mobile'] : ['doc-content'];
-    this.bannerClass = this.contentService.getIsMobile() ? ['banner-mobile'] : ['banner'];
-    this.mobileClass = this.contentService.getIsMobile() ? ['mobile'] : [];
+    let banner = ``;
+    // contentService.updateBanner(banner);
+    
     this.isMobile = this.contentService.getIsMobile();
   }
 
@@ -97,7 +94,7 @@ export class HomeComponent {
 
   // Introduction
   private intros: string[] = [
-    `Welcome to my tiny little spot on the internet.  I first started work on this website because I needed a place to quickly try
+    `<strong>Welcome</strong> to my tiny little spot on the internet.  I first started work on this website because I needed a place to quickly try
     out ideas that I had. Like many developers, random ideas would occur to me that I was curious about, and, at the time, I 
     didn't have a website that I could use to give those ideas a test drive.  Well now I do, and here we are!`
     ,

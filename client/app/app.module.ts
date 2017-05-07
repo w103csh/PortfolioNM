@@ -59,6 +59,7 @@ import { SignInComponent, }                 from './components/sign-in/sign-in.c
 import { SignUpComponent, }                 from './components/sign-up/sign-up.component';
 import { PageNotFoundComponent, }           from './components/page-not-found/page-not-found.component';
 import { ContentContainerComponent, }       from './components/content-container/content-container.component';
+import { DocContentComponent, }             from './components/doc-content/doc-content.component';
 
 // Other libraries
 import 'hammerjs';
@@ -98,6 +99,7 @@ import 'hammerjs';
     SignUpComponent,
     PageNotFoundComponent,
     ContentContainerComponent,
+    DocContentComponent,
   ],
   providers: [ 
     // Location, { provide: LocationStrategy, useClass: HashLocationStrategy },

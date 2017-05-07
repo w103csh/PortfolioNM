@@ -2,7 +2,7 @@
 <!-- wrapper for doc class and header -->
 <div [ngClass]=contentClass >
   <div *ngIf='header' [ngClass]=headerWrapperClass >
-    <button *ngIf='isMobile && isSignedIn' md-icon-button (click)='showSidenavClick()' ><md-icon>more_vert</md-icon></button>
+    <button *ngIf='isMobile' md-icon-button (click)='showSidenavClick()' ><md-icon>menu</md-icon></button>
     <h1 [ngClass]=headerClass >{{ header | uppercase }}</h1>
   </div>
   <ng-content></ng-content>

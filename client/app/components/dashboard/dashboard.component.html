@@ -1,5 +1,5 @@
 
-<div [ngClass]=docClass>
+<doc-content>
 
   <div *ngIf='user && user.firstName' ><h3>Welcome, {{ user?.firstName }}.</h3><br /></div>
   <div *ngIf='!user || !user.firstName' ><h3>Welcome!</h3><br /></div>
@@ -22,4 +22,4 @@
     </div>
   </collapsible-button>
 
-</div>
+</doc-content>

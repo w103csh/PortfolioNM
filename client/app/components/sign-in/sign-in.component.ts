@@ -30,6 +30,8 @@ import {
 })
 export class SignInComponent {
 
+  private isMobile: boolean;
+
   // validation
   private readonly emailRegex: RegExp = new RegExp('^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$');
   private emailVal: string;
@@ -42,8 +44,9 @@ export class SignInComponent {
   constructor(private authService: AuthService, private contentService: ContentService, private route: ActivatedRoute, public router: Router) {
     // defaults
     this.model = new User('', '', '');
-    
-    this.contentService.updateHeader(null);
+
+    this.isMobile = contentService.getIsMobile();    
+    this.contentService.updateHeader(this.isMobile  ? 'sign in' : null);
   }
 
   ngOnInit() {

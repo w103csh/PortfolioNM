@@ -1,7 +1,7 @@
 
 import {
   Component,
-  Input
+  Input,
 } from '@angular/core';
 import {
   Router
@@ -30,7 +30,6 @@ export class TitleBarComponent {
     { text: 'HOME', href: '/home' },
     { text: 'ABOUT', href: '/about' },
     { text: 'CONTACT', href: '/contact' },
-    // { text: 'DASHBOARD', href: '/dashboard' },
   ];
 
   private headerClass: string[] = ['header'];

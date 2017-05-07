@@ -11,15 +11,6 @@ import {
 import {
   AppService
 } from '../../../services/app.service';
-import {
-  AuthService
-} from '../../../services/auth.service';
-import {
-  PlatformService
-} from '../../../services/platform.service';
-import {
-  User
-} from '../../../models/User';
 // import {
 //   leftSlideInOutAnimation
 // } from '../../../shared-animations/animations';
@@ -28,29 +19,50 @@ import {
   moduleId: module.id,
   selector: 'side-bar',
   templateUrl: './side-bar.component.html',
-  styleUrls: [ './side-bar.component.css' ],
+  styleUrls: ['./side-bar.component.css'],
   // animations: [ leftSlideInOutAnimation ]
 })
 export class SideBarComponent {
 
   // @HostBinding('@leftSlideInOut') leftSlideInOut = true;
-  
-  private genNavLinks: { text: string, href: string }[] = [
-    { text: 'dashboard', href: '/dashboard' },
-  ];
-  
-  private testNavLinks: { text: string, href: string }[] = [
-    { text: 'authorization ', href: '/test-auth'  },
-    { text: 'dialog ', href: '/test-dialog' },
-    { text: 'animation ', href: '/test-animation' },
-    { text: 'title ', href: '/test-title' },
-    { text: 'page not found ', href: '/non-existent' },
-  ];
+  @Input() isSignedIn: boolean;
+  @Input() isMobile: boolean;
 
-  constructor(private appService: AppService, private platformService: PlatformService) { }
+  private genNavLinks: { text: string, href: string }[] = [];
+  private testNavLinks: { text: string, href: string }[] = [];
+
+  constructor(private appService: AppService) { }
+
+  ngOnInit() {
+    this.setLinks();
+  }
+
+  ngOnChanges() {
+    this.setLinks();
+  }
+
+  setLinks() {
+    this.genNavLinks = [];
+    this.testNavLinks = [];
+
+    if (this.isMobile) {
+      this.genNavLinks.push({ text: 'home', href: '/home'});
+      this.genNavLinks.push({ text: 'about', href: '/about'});
+      this.genNavLinks.push({ text: 'contact', href: '/contact'});
+    }
+
+    if (!this.isMobile || (this.isMobile && this.isSignedIn)) {
+      this.genNavLinks.push({ text: 'dashboard', href: '/dashboard'});
+      this.testNavLinks.push({ text: 'authorization ', href: '/test-auth'});
+      this.testNavLinks.push({ text: 'dialog ', href: '/test-dialog'});
+      this.testNavLinks.push({ text: 'animation ', href: '/test-animation'});
+      this.testNavLinks.push({ text: 'title ', href: '/test-title'});
+      this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+    }
+  }
 
   sidenavToggle() {
-    if(this.platformService.isMobile())
+    if (this.isMobile)
       this.appService.callSidenavToggleFunc();
   }
 

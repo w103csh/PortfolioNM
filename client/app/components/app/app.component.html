@@ -5,7 +5,7 @@
   <md-sidenav-container class='below-title-container' >
 
     <md-sidenav #sidenav opened=false class='sidenav-container' >
-      <side-bar></side-bar>
+      <side-bar [isSignedIn]=isSignedIn [isMobile]=isMobile ></side-bar>
     </md-sidenav>
 
     <div class='main-content'>

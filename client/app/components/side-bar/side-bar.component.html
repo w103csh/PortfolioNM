@@ -1,7 +1,7 @@
 
 
 <ul class='side-bar-list' >
-  <li class='category' >
+  <li *ngIf='genNavLinks?.length > 0' class='category' >
     <span>GENERAL</span>
   </li>
   <li *ngFor='let link of genNavLinks' >
@@ -16,7 +16,7 @@
       {{ link.text | titlecase }}
     </a>
   </li>
-  <li class='category not-top'>
+  <li *ngIf='testNavLinks?.length > 0' class='category not-top'>
     <span>TESTS</span>
   </li>
   <li *ngFor='let link of testNavLinks' >
