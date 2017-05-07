@@ -1,6 +1,4 @@
 
-// TODO: add title
-
 export const __env: string = 'development';
 export const __localhost: string = 'http://localhost:3000';
 export const __apiUrl: string = __localhost + '/api';
