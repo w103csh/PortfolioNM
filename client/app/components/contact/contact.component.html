@@ -4,7 +4,7 @@
   <p>My name is Colin Hughes. You can contact me at <a href='mailto:colin.s.hughes@gmail.com?Subject=Regarding%20your%20website' target='_top' >colin.s.hughes@gmail.com</a> or using the links below.</p>
   
   <div class='flex-container-column list-container' [ngClass]=mobileClass >
-    <div class='flex list-item' [ngClass]=itemClass *ngFor='let item of listItems' >
+    <div class='flex list-item' *ngFor='let item of listItems' >
       <a md-mini-fab class='link-fab' [attr.target]=item.target [attr.href]=item.href [innerHTML]=item.aInnards ></a>
       <a md-button class='link-text' [ngClass]=mobileClass [attr.target]=item.target [attr.href]=item.href [innerHTML]=item.linkText></a>
     </div>

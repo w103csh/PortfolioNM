@@ -140,7 +140,7 @@
 .doc-content >>> blockquote { -webkit-font-smoothing: antialiased; }
 .doc-content >>> a { -webkit-font-smoothing: antialiased; }
 
-.doc-content.mobile >>> a.mat-button:not(.toc):not(.anchor) {
+.doc-content.mobile >>> a.mat-button:not(.toc):not(.anchor):not(.link-text) {
   min-height: 20px;
   height: 20px;
 

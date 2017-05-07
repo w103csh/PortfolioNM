@@ -22,6 +22,7 @@ import {
 export class ContactComponent {
 
   private header: string = 'Contact me';
+  private mobileClass: string[] = ['.mobile'];
 
   // File download strings
   private url: string = __apiUrl + '/file/download/';
@@ -32,6 +33,7 @@ export class ContactComponent {
 
   constructor(private contentService: ContentService) {
     contentService.updateHeader(this.header);
+    this.mobileClass = this.contentService.getIsMobile() ? ['mobile'] : [];
     this.setListData();
   }
 

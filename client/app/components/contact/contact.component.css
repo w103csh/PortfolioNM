@@ -3,7 +3,7 @@ a.link-fab {
   margin-right: 4px;
 }
 
-a.link-text.mobile-xdoc {
+a.link-text.mobile {
   margin-top: auto;
   margin-bottom: auto;
   white-space: normal;
@@ -17,11 +17,11 @@ img {
   padding-right: 4px;
 }
 
-.list-container {
+.list-container:not(.mobile) {
   padding-left: 16px;
 }
 
-.list-container.mobile-xdoc {
+.list-container.mobile {
   padding-left: 8px;
 }
 
