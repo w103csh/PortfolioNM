@@ -3,8 +3,9 @@ import {
   Component,
   Input,
   Output,
-  OnDestroy,
   DoCheck,
+  OnChanges,
+  OnDestroy,
 } from '@angular/core';
 import {
   MdSidenav,
@@ -12,10 +13,13 @@ import {
 
 import {
   ContentService
-} from '../../services/content.service';
+} from '../../../services/content.service';
+import {
+  AppService
+} from '../../../services/app.service';
 import {
   AuthService
-} from '../../../shared-services/auth.service';
+} from '../../../services/auth.service';
 
 import {
   Subscription
@@ -31,53 +35,70 @@ import {
 export class ContentContainerComponent {
 
   private headerWrapperClass: string[] = ['header'];
+  private contentClass: string[] = ['content'];
   private headerClass: string[] = [];
 
   private isMobileSub: Subscription;
   private isMobile: boolean;
+  private isDocSub: Subscription;
+  private isDoc: boolean;
+  private isSignedInSub: Subscription;
+  private isSignedIn: boolean = false;
   private headerSub: Subscription;
   private header: string;
-  private isSignedInSub: Subscription;
-  private isSignedIn: boolean;
 
-  private readonly _notSignedInClasses: string[];
-  private signedInClasses: string[];
-
-  constructor(private contentService: ContentService, private authService: AuthService) {
-    // defaults
-    this.isSignedIn = false;
-    this._notSignedInClasses = ['side-margin'];
-
-    this.isMobileSub = contentService.isMobile$.subscribe((isMobile: boolean) => { this.isMobile = isMobile; });
-    this.headerSub = contentService.header$.subscribe((header: string) => { this.header = header; });
-    this.isSignedInSub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
-
-    this.checkSignedIn();
+  constructor(private contentService: ContentService, private authService: AuthService, private appService: AppService) {
+    // This is pretty strange. The above subs don't have to be associated with a change function. The changes happen
+    // through interpolation. When the subs below change we want to call a function here in the class, so we need to 
+    // call the functions we need in the subscription set logic. ngOnChanges does not fire from a subscription setter!!!
+    this.isSignedInSub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => {
+      this.isSignedIn = isSignedIn;
+      this.setSignedInClasses();
+    });
+    this.headerSub = contentService.header$.subscribe((header: string) => {
+      this.header = header;
+      this.checkHeader();
+    });
+    // this.isMobileSub = contentService.isMobile$.subscribe((isMobile: boolean) => {
+    //   this.isMobile = isMobile;
+    //   this.setMobileClasses();
+    // });
+    
     this.setMobileClasses();
-  }
 
-  checkSignedIn() {
-    this.signedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
+    this.isMobile = this.contentService.getIsMobile();
   }
 
   showSidenavClick() {
-    // this.showSidenav.emit(true);
+    this.appService.callSidenavToggleFunc();
+  }
+
+  checkHeader() {
+    if(this.header) {
+      this.setSignedInClasses();
+    }
+    else {
+      this.contentClass = [];
+    }
+  }
+
+  // TODO: change these class assignments when you get lodash in
+  setSignedInClasses() {
+    this.contentClass = (!this.isSignedIn && !this.contentService.getIsMobile()) ? ['content', 'side-margin'] : ['content'];
+    // This is strange but necessary
+    if (!this.header)
+      this.contentClass = [];
   }
 
   setMobileClasses() {
-    if (this.isMobile) {
+    if (this.contentService.getIsMobile()) {
       this.headerWrapperClass.push('mobile-header-wrapper');
       this.headerClass.push('mobile-header');
     }
   }
 
-  ngDoCheck() {
-    this.checkSignedIn();
-  }
-
   ngOnDestroy() {
-    this.isMobileSub.unsubscribe();
-    this.headerSub.unsubscribe();
     this.isSignedInSub.unsubscribe();
+    this.headerSub.unsubscribe();
   }
 }

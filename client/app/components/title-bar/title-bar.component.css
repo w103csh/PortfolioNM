@@ -4,8 +4,8 @@
   -webkit-box-direction: normal;
   z-index: 10;
 
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
 
   background-color: hsl(150, 90%, 29%);
   background-image: -webkit-linear-gradient(right, hsl(160, 80%, 20%), hsl(150, 90%, 29%));
@@ -26,7 +26,7 @@
   text-align: center;
 }
 
-button.title {
+button.not-mobile {
   /*margin: 16px 0 16px 16px;*/
   margin: 16px 0 16px 0;
   padding: 0 10px 0 0;
@@ -40,6 +40,24 @@ button.title {
   
   line-height: 28px;
   text-shadow: 3px 3px hsl(180, 100%, 10%);
+}
+
+button.mobile {
+  /*margin: 16px 0 16px 16px;*/
+  margin: 14px 0 14px 0;
+  padding: 0 8px 0 0;
+  width: auto;
+
+  font-size: 12px;
+  
+  border-style: solid;
+  border-color: white;
+  border-width: 0 8px 4px 0;
+  border-radius: 3px;
+  box-shadow: 3px 3px hsl(180, 100%, 10%);
+  
+  line-height: 24px;
+  text-shadow: 2px 3px hsl(180, 100%, 10%);
 }
 
 button.title:hover, button.title:focus {
@@ -56,6 +74,10 @@ span.title-end {
   font-size: 24px;
 }
 
+span.title-end-mobile {
+  font-size: 20px;
+}
+
 .nav-container-mobile {
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +85,7 @@ span.title-end {
   justify-content: space-around;
   /*justify-content: space-between;*/
 
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .nav-container {

@@ -32,12 +32,12 @@ import { AppRoutingModule, }                from './app-routing.module';
 import { DialogModule }                    from '../modules/dialog/dialog.module';
 
 // // Services
-// // import { ConfigService, }                   from '../shared-services/config.service';
-// // import { DownloadService, }                 from '../shared-services/download.service';
-import { UserService, }                     from '../shared-services/user.service';
-import { AuthService, }                     from '../shared-services/auth.service';
-import { AuthGuardService, }                from '../shared-services/auth-guard.service';
-import { PlatformService, }                 from '../shared-services/platform.service';
+// // import { ConfigService, }                   from '../services/config.service';
+// // import { DownloadService, }                 from '../services/download.service';
+import { UserService, }                     from '../services/user.service';
+import { AuthService, }                     from '../services/auth.service';
+import { AuthGuardService, }                from '../services/auth-guard.service';
+import { PlatformService, }                 from '../services/platform.service';
 import { DialogService }                    from '../modules/dialog/dialog.module';
 
 // Components

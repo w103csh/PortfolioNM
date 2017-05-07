@@ -1,7 +1,8 @@
 
 import {
   Component,
-  OnDestroy
+  Input,
+  OnDestroy,
 } from '@angular/core';
 import {
   Router
@@ -9,7 +10,10 @@ import {
 
 import {
   AuthService
-} from '../../../shared-services/auth.service';
+} from '../../../services/auth.service';
+import {
+  PlatformService
+} from '../../../services/platform.service';
 import {
   User
 } from '../../../models/User';
@@ -26,11 +30,14 @@ import {
 })
 export class TitleBarButtonGroupComponent{
 
+  @Input() isMobile: boolean;
+
   private userSub: Subscription;
   private user: User;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private platform: PlatformService) {
     this.userSub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
+    //this.
   }
 
   clickAccount() {

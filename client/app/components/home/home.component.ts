@@ -12,24 +12,32 @@ import {
 
 import {
   ContentService,
-} from '../../services/content.service';
+} from '../../../services/content.service';
 
 @Component({
   moduleId: module.id,
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', '../../../shared-css/doc.css']
+  styleUrls: ['./home.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css', '../../../shared-css/doc-mobile.css']
 })
 export class HomeComponent {
 
-  private header: string = 'Hello, World!'
+  private header: string = 'Hello, World!';
   private fragmentIdPrefix: string;
+  private docClass: string[] = [];
+  private bannerClass: string[] = [];
+  private mobileClass: string[] = [];
+  private isMobile: boolean;
 
   constructor(private contentService: ContentService, private router: Router) {
     // defaults
     this.fragmentIdPrefix = this.router.url + '#';
 
     contentService.updateHeader(this.header);
+    this.docClass = this.contentService.getIsMobile() ? ['doc-content-mobile'] : ['doc-content'];
+    this.bannerClass = this.contentService.getIsMobile() ? ['banner-mobile'] : ['banner'];
+    this.mobileClass = this.contentService.getIsMobile() ? ['mobile'] : [];
+    this.isMobile = this.contentService.getIsMobile();
   }
 
   // Banner
@@ -165,7 +173,7 @@ export class HomeComponent {
     technologies immediately upon request with little to no refreshement.`
     ,
     second: `Here is a list of techologies that I have used in the past that I don't really remember that much about. 
-    It would take a little bit of time to reaquaint myself with these guys.`
+    It would take a little bit of time to aquaint myself again with these guys.`
     ,
   };
 

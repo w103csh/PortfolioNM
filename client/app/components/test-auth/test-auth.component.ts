@@ -9,10 +9,10 @@ import {
 
 import {
   AuthService,
-} from '../../../shared-services/auth.service';
+} from '../../../services/auth.service';
 import {
   ContentService,
-} from '../../services/content.service';
+} from '../../../services/content.service';
 
 import {
   JwtHelper,
@@ -22,16 +22,24 @@ import {
   moduleId: module.id,
   selector: 'test-auth',
   templateUrl: './test-auth.component.html',
-  styleUrls: [ './test-auth.component.css', '../../../shared-css/doc.css' ]
+  styleUrls: [ './test-auth.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css' ]
 })
 export class TestAuthComponent{
 
   private header: string = 'Authorization Service Test';
+  private docClass: string[] = [];
+  private bannerClass: string[] = [];
+  private mobileClass: string[] = [];
+  private isMobile: boolean;
   private results: any = null;
   private jwtHelper: JwtHelper = new JwtHelper();
 
   constructor(private router: Router, private authService: AuthService, private contentService: ContentService) {
     contentService.updateHeader(this.header);
+    this.docClass = this.contentService.getIsMobile() ? ['doc-content-mobile'] : ['doc-content'];
+    this.bannerClass = this.contentService.getIsMobile() ? ['banner-mobile'] : ['banner'];
+    this.mobileClass = this.contentService.getIsMobile() ? ['mobile-xdoc'] : [];
+    this.isMobile = this.contentService.getIsMobile();
   }
 
   checkToken() {

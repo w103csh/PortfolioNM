@@ -1,18 +1,20 @@
 
-<title-bar [titleStart]=titleStart [titleEnd]=titleEnd [isSignedIn]=isSignedIn ></title-bar>
+<title-bar [titleStart]=titleStart [titleEnd]=titleEnd [isSignedIn]=isSignedIn [isMobile]=isMobile ></title-bar>
 
 <div class='below-title-wrapper' >
   <md-sidenav-container class='below-title-container' >
 
-    <md-sidenav #sidenav mode='side' opened=false class='sidenav-container' >
+    <md-sidenav #sidenav opened=false class='sidenav-container' >
       <side-bar></side-bar>
     </md-sidenav>
 
     <div class='main-content'>
-      <div class='main-outlet-wrapper' [ngClass]=notSignedInClasses >
+      <div class='main-outlet-wrapper' [ngClass]=signedInClasses >
+
         <content-container>
           <router-outlet></router-outlet>
         </content-container>
+
         <app-footer [isSignedIn]=isSignedIn ></app-footer>
       </div>
     </div>

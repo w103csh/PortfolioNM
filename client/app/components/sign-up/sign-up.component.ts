@@ -6,9 +6,13 @@ import {
   Router,
   NavigationExtras
 } from '@angular/router';
+
+import {
+  ContentService
+} from '../../../services/content.service';
 import {
   UserService
-} from '../../../shared-services/user.service';
+} from '../../../services/user.service';
 
 import {
   User
@@ -30,9 +34,11 @@ export class SignUpComponent {
   private model: User;
   private serverMsg: string;
 
-  constructor(private userService: UserService, public router: Router) {
+  constructor(private userService: UserService, public router: Router, private contentService: ContentService) {
     // defaults
     this.model = new User('', '', '');
+    
+    this.contentService.updateHeader(null);
   }
 
   validate(): boolean {

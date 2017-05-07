@@ -5,20 +5,28 @@ import {
 
 import {
   ContentService,
-} from '../../services/content.service';
+} from '../../../services/content.service';
 
 @Component({
   moduleId: module.id,
   selector: 'about',
   templateUrl: './about.component.html',
-  styleUrls: [ './about.component.css', '../../../shared-css/doc.css' ]
+  styleUrls: ['./about.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css']
 })
-export class AboutComponent{
+export class AboutComponent {
 
   private header: string = 'About this website';
+  private docClass: string[] = [];
+  private bannerClass: string[] = [];
+  private isMobile: boolean;
 
   constructor(private contentService: ContentService) {
     contentService.updateHeader(this.header);
+
+    // TODO: move these into a common component
+    this.docClass = this.contentService.getIsMobile() ? ['doc-content-mobile'] : ['doc-content'];
+    this.bannerClass = this.contentService.getIsMobile() ? ['banner-mobile'] : ['banner'];
+    this.isMobile = this.contentService.getIsMobile();
   }
 
   // Links

@@ -1,11 +1,15 @@
 
+:host {
+  margin-bottom: auto;
+}
+
 .header {
   color: hsl(0, 0%, 95%);
 
   -webkit-margin-before: 0; 
   -webkit-margin-after: 0;
-  margin: 0;
   padding: 32px 48px 48px 48px;
+  margin: 0;
 
   -webkit-box-direction: normal;
 
@@ -20,13 +24,18 @@
   -webkit-box-align: center !important;
   -webkit-box-direction: normal !important;
   
-  padding: 10px 6px !important;
+  height: 60px;
+  padding: 0 6px 0 12px !important;
 }
 
 .mobile-header {
   margin: auto 0 auto 0;
-  padding: 0 0 0 10px !important;
+  padding: 4px 0 4px 10px !important;
   font-size: 20px !important;
+}
+
+button {
+  margin: auto 0;
 }
 
 .side-margin {
@@ -37,4 +46,8 @@
   /*margin: auto;*/
   border-radius: 0 0 3px 3px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.137255) 0px 6px 10px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 18px 0px;
+}
+
+.no-wrapper {
+  margin: auto;
 }

@@ -6,12 +6,21 @@ import {
 import {
   Router,
   ActivatedRoute,
-  NavigationExtras
+  NavigationExtras,
 } from '@angular/router';
 
-import { AuthService } from '../../../shared-services/auth.service';
-import { User } from '../../../models/User';
-import { ResponseData } from '../../../models/ResponseData';
+import {
+  AuthService
+} from '../../../services/auth.service';
+import {
+  ContentService,
+} from '../../../services/content.service';
+import {
+  User
+} from '../../../models/User';
+import {
+  ResponseData
+} from '../../../models/ResponseData';
 
 @Component({
   moduleId: module.id,
@@ -30,13 +39,14 @@ export class SignInComponent {
   private model: User;
   private serverMsg: string;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, public router: Router) {
+  constructor(private authService: AuthService, private contentService: ContentService, private route: ActivatedRoute, public router: Router) {
     // defaults
     this.model = new User('', '', '');
+    
+    this.contentService.updateHeader(null);
   }
 
   ngOnInit() {
-    this.authService.signout();
     this.redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/dashboard';
   }
 

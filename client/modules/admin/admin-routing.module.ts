@@ -6,7 +6,7 @@ import { AdminComponent }           from './admin.component';
 import { AccountComponent }         from './components/account/account.component';
 import { UsersComponent }           from './components/users/users.component';
 
-import { AuthGuardService }                from '../../shared-services/auth-guard.service';
+import { AuthGuardService }                from '../../services/auth-guard.service';
 
 const adminRoutes: Routes = [
   {

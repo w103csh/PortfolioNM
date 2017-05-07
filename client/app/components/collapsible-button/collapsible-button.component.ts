@@ -22,14 +22,15 @@ export class CollapsibleButtonComponent {
   @Input() showIcon: boolean = true;
   @Input() expand: boolean = false;
   @Input() breakBeforeTarget: boolean = true;
-
-  constructor() {
-    //console.log(nextId);
-  }
+  @Input() isMobile: boolean;
+ 
+  private buttonClass: string[];
 
   ngOnInit() {
     if (this.expand)
       this.toggleClasses.push('in');
+
+    this.buttonClass = this.isMobile ? ['mobile'] : [];
   }
 
   toggle() {

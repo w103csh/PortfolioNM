@@ -6,7 +6,7 @@ import {
 
 import {
   PlatformService,
-} from '../../shared-services/platform.service';
+} from './platform.service';
 
 import {
   Subject,
@@ -20,8 +20,8 @@ export class ContentService {
 
   // Observable sources
   private isMobileSource = new BehaviorSubject<boolean>(false);
-  private headerSource = new Subject<string>();
-  private isDocSource = new Subject<boolean>();
+  private headerSource = new BehaviorSubject<string>('');
+  private isDocSource = new BehaviorSubject<boolean>(true);
 
   // Observable streams
   isMobile$ = this.isMobileSource.asObservable();
@@ -29,11 +29,11 @@ export class ContentService {
   isDoc$ = this.isDocSource.asObservable();
 
   constructor(private platformService: PlatformService) {
-    this.updateMobile(platformService.isMobile());
+    this.updateIsMobile(platformService.isMobile());
   }
 
   // Service commands
-  updateMobile(isMobile: boolean) {
+  updateIsMobile(isMobile: boolean) {
     this.isMobileSource.next(isMobile);
   }
 
@@ -41,8 +41,13 @@ export class ContentService {
     this.headerSource.next(header);
   }
 
-  updateBanner(isDoc: boolean) {
+  updateIsDoc(isDoc: boolean) {
     this.isDocSource.next(isDoc);
+  }
+
+  // Behavior getters
+  getIsMobile(): boolean {
+    return this.isMobileSource.getValue();
   }
 
 }

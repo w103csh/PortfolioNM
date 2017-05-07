@@ -1,23 +1,14 @@
 
-:host {
+a.link-fab {
+  margin-right: 4px;
+}
+
+a.link-text.mobile-xdoc {
+  margin-top: auto;
   margin-bottom: auto;
-}
-
-.content-wrapper {
-  -webkit-font-smoothing: antialiased;
-  padding: 36px 58px;
-  max-width: 1300px;
-}
-
-.container {
-  width: 500px;
-  margin-left: 12px;
-}
-
-a {
-  width: 150px;
+  white-space: normal;
+  line-height: 18px;
   text-align: left;
-  color: hsl(210, 100%, 20%);
 }
 
 img {
@@ -26,6 +17,14 @@ img {
   padding-right: 4px;
 }
 
-span {
-  margin-left: 24px;
+.list-container {
+  padding-left: 16px;
+}
+
+.list-container.mobile-xdoc {
+  padding-left: 8px;
+}
+
+.list-item {
+  padding-bottom: 8px;
 }

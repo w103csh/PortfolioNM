@@ -1,5 +1,6 @@
   
 <button md-button
+  [ngClass]=buttonClass
   color='{{color}}'
   (click)='toggle()'
   data-toggle='collapse'
@@ -12,7 +13,7 @@
   <md-icon *ngIf='showIcon && expand' >remove_circle</md-icon>
 </button>
 <br />
-<div [ngClass]='toggleClasses' [id]='targetId'>
+<div class='mobile' [ngClass]='toggleClasses' [id]='targetId'>
   <br *ngIf='breakBeforeTarget' />
   <ng-content></ng-content>
 </div>

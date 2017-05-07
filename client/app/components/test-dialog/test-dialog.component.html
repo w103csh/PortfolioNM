@@ -1,36 +1,36 @@
-<div class='content'>
-  
-  <div class='doc-content' >
-    <p>
-      Test the dialog service.
-    </p>
-    <div class='controls' >
-      <!--<md-checkbox class='mat-checkbox' [(ngModel)]='model.showClear' name='showClear'>Show clear</md-checkbox><br />-->
-      <md-input-container class='third indent' >
-        <input mdInput placeholder='Title' [(ngModel)]='model.title' name='title' >
-      </md-input-container>
-      <md-checkbox *ngIf='model.title' class='mat-checkbox' [(ngModel)]='model.showClear' name='showClear'>Show clear</md-checkbox>
-      <br />
-      <md-input-container class='third indent' >
-        <input mdInput placeholder='Message' [(ngModel)]='model.message' name='message' >
-      </md-input-container><br />
-      <md-input-container class='third indent' >
-        <input mdInput placeholder='Cancel' [(ngModel)]='model.cancel' name='cancel' >
-      </md-input-container><br />
-      <md-input-container class='third indent' >
-        <input mdInput placeholder='Confirm' [(ngModel)]='model.confirm' name='confirm' >
-      </md-input-container>
-      <br />
-      <br />
-      <button md-raised-button color='primary' (click)='testDialog()' >Test dialog</button>
-      <br />
-      <br />
-      <md-list *ngIf='selectedOption' >
-        <md-list-item>
-          <label>Selected:</label>
-          <span >{{selectedOption}}</span>
-        </md-list-item>
-      </md-list>
-    </div>
+
+<div [ngClass]=docClass>
+
+  <p>
+    Test the dialog service.
+  </p>
+  <div class='controls' >
+    <!--<md-checkbox class='mat-checkbox' [(ngModel)]='model.showClear' name='showClear'>Show clear</md-checkbox><br />-->
+    <md-input-container class='third indent' >
+      <input mdInput placeholder='Title' [(ngModel)]='model.title' name='title' >
+    </md-input-container>
+    <md-checkbox *ngIf='model.title' class='mat-checkbox' [(ngModel)]='model.showClear' name='showClear'>Show clear</md-checkbox>
+    <br />
+    <md-input-container class='third indent' >
+      <input mdInput placeholder='Message' [(ngModel)]='model.message' name='message' >
+    </md-input-container><br />
+    <md-input-container class='third indent' >
+      <input mdInput placeholder='Cancel' [(ngModel)]='model.cancel' name='cancel' >
+    </md-input-container><br />
+    <md-input-container class='third indent' >
+      <input mdInput placeholder='Confirm' [(ngModel)]='model.confirm' name='confirm' >
+    </md-input-container>
+    <br />
+    <br />
+    <button md-raised-button color='primary' (click)='testDialog()' >Test dialog</button>
+    <br />
+    <br />
+    <md-list *ngIf='selectedOption' >
+      <md-list-item>
+        <label>Selected:</label>
+        <span >{{selectedOption}}</span>
+      </md-list-item>
+    </md-list>
   </div>
+
 </div>

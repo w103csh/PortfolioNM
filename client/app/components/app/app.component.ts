@@ -21,11 +21,14 @@ import {
 } from '@angular/common';
 
 import {
+  AppService
+} from '../../../services/app.service';
+import {
   AuthService,
-} from '../../../shared-services/auth.service';
+} from '../../../services/auth.service';
 import {
   PlatformService,
-} from '../../../shared-services/platform.service';
+} from '../../../services/platform.service';
 import {
   User,
 } from '../../../models/User';
@@ -43,7 +46,8 @@ import {
   moduleId: module.id,
   selector: 'main-app',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  styleUrls: ['./app.component.css'],
+  providers: [AppService],
 })
 export class AppComponent {
 
@@ -57,28 +61,30 @@ export class AppComponent {
   private isMobile: boolean;
   private screenWidth: number;
 
-  private sub: Subscription;
+  private isSignedInSub: Subscription;
   private isSignedIn: boolean;
-  private readonly _notSignedInClasses: string[] = [ 'not-signed-in' ];
-  private notSignedInClasses: string[];
+  private signedInClasses: string[];
 
   constructor(
+    private appService: AppService,
     private authService: AuthService,
     private platformService: PlatformService,
     private router: Router,
     // private route: ActivatedRoute,
     private elementRef: ElementRef,
     private titleService: Title
-    ) {
+  ) {
 
     // defaults
     this.isSignedIn = false;
-    
-    this.isMobile = platformService.isMobile();
-    
-    this.sub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => { this.isSignedIn = isSignedIn; });
 
+    this.isMobile = platformService.isMobile();
     this.setTitle();
+
+    this.isSignedInSub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => {
+      this.isSignedIn = isSignedIn;
+      this.setSignedIn();
+    });
 
     // Should only be set when browser is refreshed, or
     // if someone tries to load the app using a specific url.
@@ -89,20 +95,29 @@ export class AppComponent {
     // let redirectUrl = this.route.snapshot.queryParams['redirectUrl'];
     if (redirectUrl)
       this.router.navigate([redirectUrl]);
+
   }
 
-  // Might need to find a better way to do this. ngOnChanges wasn't working here for some reason.
-  // These operations seem pretty quick though.
-  ngDoCheck() {
+  ngOnInit() {
+    // TODO: This maybe should go in the constructor. No time to check now.
+    if (localStorage.getItem('token'))
+      this.authService.verify().subscribe();
+    
+    // Hook up sidenav things
+    this.appService.setSidenav(this.sidenav);
+    this.sidenav.mode = this.platformService.isMobile() ? 'push' : 'side';
+  }
+
+  setSignedIn() {
     if (!this.platformService.isMobile()) {
       // Change background color
-      this.notSignedInClasses = !this.isSignedIn ? this._notSignedInClasses : [];
-    
+      this.signedInClasses = !this.isSignedIn ? ['not-signed-in'] : [];
+
       // Open or close sidenav
-      if(this.isSignedIn && !this.sidenav.opened) {
+      if (this.sidenav && this.isSignedIn && !this.sidenav.opened) {
         this.sidenav.open();
       }
-      if(!this.isSignedIn && this.sidenav.opened) {
+      if (this.sidenav && !this.isSignedIn && this.sidenav.opened) {
         this.sidenav.close();
       }
     }
@@ -112,22 +127,17 @@ export class AppComponent {
     if (this.sidenav.opened)
       this.sidenav.close();
     else
-      this.sidenav.open(); 
+      this.sidenav.open();
   }
 
-  ngOnInit() {
-    if (localStorage.getItem('token'))
-      this.authService.verify().subscribe();
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-
-  public setTitle() {
+  setTitle() {
     this.titleStart = __titleStart;
     this.titleEnd = __titleEnd;
     this.title = __titleStart + __titleEnd;
     this.titleService.setTitle(' \\o/ ' + this.title);
+  }
+
+  ngOnDestroy() {
+    this.isSignedInSub.unsubscribe();
   }
 }

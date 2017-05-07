@@ -1,35 +1,39 @@
-<div class='content'>
-  
-  <div class='doc-content' >
-    <p>This website uses JWT's (JSON web tokens) to authorize certain features. Click the
-      the <strong>Check Token</strong> button to run a quick diagnostic.
-    </p>
-    <blockquote>
-        Remember me token is set to last for 2 days, and a regular token should expire in 25 minutes.
-        Read more about JWT's <a target='_blank' href='https://tools.ietf.org/html/rfc7519#section-4.1.6' >here</a>. 
-    </blockquote>
-    <button md-raised-button color='primary' (click)='checkToken()' >Check token</button>
-    <md-list *ngIf='results' >
-      <md-list-item>
-        <label>Authorize:</label>
-        <span>{{results?.verifyMsg}}</span>
-      </md-list-item>
-      <md-list-item>
-        <label>Remember me checked:</label>
-        <span>{{ results?.rememberMe | titlecase }}</span>
-      </md-list-item>
-      <md-list-item>
-        <label>Issued at (IAT):</label>
-        <span>{{results?.iat}}</span>
-      </md-list-item>
-      <md-list-item>
-        <label>Expiration Time (EXP):</label>
-        <span>{{results?.exp}}</span>
-      </md-list-item>
-      <md-list-item>
-        <label>Subject (SUB):</label>
-        <span>{{results?.sub}}</span>
-      </md-list-item>
-    </md-list>
+
+<div [ngClass]=docClass>
+
+  <p>This website uses JWT's (JSON web tokens) to authorize certain features. Click the
+    the <strong>Check Token</strong> button to run a quick diagnostic.
+  </p>
+  <blockquote>
+      Remember me token is set to last for 2 days, and a regular token should expire in 25 minutes.
+      Read more about JWT's <a target='_blank' href='https://tools.ietf.org/html/rfc7519#section-4.1.6' >here</a>. 
+  </blockquote>
+  <br />
+  <button md-raised-button color='primary' (click)='checkToken()' >Check token</button>
+  <br />
+  <br />
+
+  <div *ngIf='results' class='flex-container-column list-container' [ngClass]=mobileClass >
+    <div class='flex list-item' >
+      <label [ngClass]=mobileClass >Authorize:</label>
+      <span>{{results?.verifyMsg}}</span>
+    </div>
+    <div class='flex list-item'>
+      <label [ngClass]=mobileClass >Remember me checked:</label>
+      <span>{{ results?.rememberMe | titlecase }}</span>
+    </div>
+    <div class='flex list-item'>
+      <label [ngClass]=mobileClass >(IAT) Issued at:</label>
+      <span>{{results?.iat}}</span>
+    </div>
+    <div class='flex list-item'>
+      <label [ngClass]=mobileClass >(EXP) Expiration Time:</label>
+      <span>{{results?.exp}}</span>
+    </div>
+    <div class='flex list-item'>
+      <label [ngClass]=mobileClass >(SUB) Subject:</label>
+      <span>{{results?.sub}}</span>
+    </div>
   </div>
+  
 </div>

@@ -6,12 +6,13 @@
   </li>
   <li *ngFor='let link of genNavLinks' >
     <!--BIG TODO: why isn't active working.-->
-    <a md-raised-button 
-        routerLink='{{link.href}}'
-        routerLinkActive
-        #rla='routerLinkActive'
-        active='rla.isActive'
-        class='wide' >
+    <a md-raised-button
+      (click)='sidenavToggle()'
+      routerLink='{{link.href}}'
+      routerLinkActive
+      #rla='routerLinkActive'
+      active='rla.isActive'
+      class='wide' >
       {{ link.text | titlecase }}
     </a>
   </li>
@@ -20,11 +21,12 @@
   </li>
   <li *ngFor='let link of testNavLinks' >
     <a md-raised-button 
-        routerLink='{{link.href}}'
-        routerLinkActive
-        #rla='routerLinkActive'
-        active='rla.isActive'
-        class='wide' >
+      (click)='sidenavToggle()'
+      routerLink='{{link.href}}'
+      routerLinkActive
+      #rla='routerLinkActive'
+      active='rla.isActive'
+      class='wide' >
       {{ link.text | titlecase }}
     </a>
   </li>

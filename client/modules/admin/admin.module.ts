@@ -5,13 +5,14 @@ import { CommonModule }                   from '@angular/common';
 import { MaterialModule }                 from '@angular/material';
 
 // Modules
+import { AppModule }                      from '../../app/app.module';
 import { AdminRoutingModule }             from './admin-routing.module';
 import { DialogModule }                   from '../dialog/dialog.module';
 
 // Services
-// import { UserService }                    from './shared-services/user.service';
-import { AuthService }                    from '../../shared-services/auth.service';
-import { AuthGuardService }                      from '../../shared-services/auth-guard.service';
+// import { UserService }                    from './services/user.service';
+import { AuthService }                    from '../../services/auth.service';
+import { AuthGuardService }                      from '../../services/auth-guard.service';
 import { DialogService }                  from '../dialog/dialog.module';
 
 // Components

@@ -6,10 +6,10 @@ import {
 
 import {
   AuthService,
-} from '../../../shared-services/auth.service';
+} from '../../../services/auth.service';
 import {
   ContentService,
-} from '../../services/content.service';
+} from '../../../services/content.service';
 import {
   User
 } from '../../../models/User';
@@ -22,13 +22,16 @@ import {
   moduleId: module.id,
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css', '../../../shared-css/doc.css' ],
+  styleUrls: [ './dashboard.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css' ],
 })
 export class DashboardComponent {
 
   //@HostBinding('@rightSlideIn') rightSlideIn = true;
 
   private header: string = 'Dashboard';
+  private docClass: string[] = [];
+  private bannerClass: string[] = [];
+  private isMobile: boolean;
 
   private sub: Subscription;
   private user: User;
@@ -37,5 +40,8 @@ export class DashboardComponent {
     this.sub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
 
     contentService.updateHeader(this.header);
+    this.docClass = this.contentService.getIsMobile() ? ['doc-content-mobile'] : ['doc-content'];
+    this.bannerClass = this.contentService.getIsMobile() ? ['banner-mobile'] : ['banner'];
+    this.isMobile = this.contentService.getIsMobile();
   }
 }

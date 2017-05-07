@@ -2,6 +2,8 @@
 import { NgModule }                     from '@angular/core';
 import { RouterModule, Routes }         from '@angular/router';
 
+import { AdminModule }                  from '../modules/admin/admin.module';
+
 // TODO: put into separate routing module
 import { DashboardComponent }           from './components/dashboard/dashboard.component';
 import { TestAuthComponent }            from './components/test-auth/test-auth.component';
@@ -15,7 +17,7 @@ import { ContactComponent }             from './components/contact/contact.compo
 import { SignInComponent }              from './components/sign-in/sign-in.component';
 import { SignUpComponent }              from './components/sign-up/sign-up.component';
 import { PageNotFoundComponent }        from './components/page-not-found/page-not-found.component';
-import { AuthGuardService }                    from '../shared-services/auth-guard.service';
+import { AuthGuardService }                    from '../services/auth-guard.service';
 
 const appRoutes: Routes = [
    {
@@ -57,7 +59,7 @@ const appRoutes: Routes = [
    }
   ,{
     path: 'admin',
-    loadChildren: 'app/modules/admin/admin.module#AdminModule',
+    loadChildren: () => AdminModule,
     canLoad: [AuthGuardService]
   }
   ,{

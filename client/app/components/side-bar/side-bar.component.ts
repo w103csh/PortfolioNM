@@ -9,25 +9,31 @@ import {
 } from '@angular/router';
 
 import {
+  AppService
+} from '../../../services/app.service';
+import {
   AuthService
-} from '../../../shared-services/auth.service';
+} from '../../../services/auth.service';
+import {
+  PlatformService
+} from '../../../services/platform.service';
 import {
   User
 } from '../../../models/User';
-import {
-  leftSlideInOutAnimation
-} from '../../../shared-animations/animations';
+// import {
+//   leftSlideInOutAnimation
+// } from '../../../shared-animations/animations';
 
 @Component({
   moduleId: module.id,
   selector: 'side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: [ './side-bar.component.css' ],
-  animations: [ leftSlideInOutAnimation ]
+  // animations: [ leftSlideInOutAnimation ]
 })
 export class SideBarComponent {
 
-  @HostBinding('@leftSlideInOut') leftSlideInOut = true;
+  // @HostBinding('@leftSlideInOut') leftSlideInOut = true;
   
   private genNavLinks: { text: string, href: string }[] = [
     { text: 'dashboard', href: '/dashboard' },
@@ -40,5 +46,12 @@ export class SideBarComponent {
     { text: 'title ', href: '/test-title' },
     { text: 'page not found ', href: '/non-existent' },
   ];
+
+  constructor(private appService: AppService, private platformService: PlatformService) { }
+
+  sidenavToggle() {
+    if(this.platformService.isMobile())
+      this.appService.callSidenavToggleFunc();
+  }
 
 }

@@ -9,7 +9,7 @@ import {
 
 import {
   PlatformService,
-} from '../../../shared-services/platform.service';
+} from '../../../services/platform.service';
 
 @Component({
   moduleId: module.id,
@@ -22,23 +22,22 @@ export class TitleBarComponent {
   @Input() titleStart: string;
   @Input() titleEnd: string;
   @Input() isSignedIn: boolean;
+  @Input() isMobile: boolean;
 
-  private isMobile: boolean;
   private screenWidth: number;
 
   private navLinks: { text: string, href: string }[] = [
     { text: 'HOME', href: '/home' },
     { text: 'ABOUT', href: '/about' },
     { text: 'CONTACT', href: '/contact' },
+    // { text: 'DASHBOARD', href: '/dashboard' },
   ];
 
   private headerClass: string[] = ['header'];
 
-  constructor(private router: Router, private platformService: PlatformService) {
+  constructor(private router: Router) {
     // defaults
     this.isSignedIn = false;
-
-    this.isMobile = platformService.isMobile();
   }
 
   titleClick() {
