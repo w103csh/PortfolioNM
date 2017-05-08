@@ -18,7 +18,11 @@
   -webkit-box-flex: 1;
 }
 
-.below-title-wrapper .md-sidenav-content {
+md-sidenav-container {
+  width: 100%;
+}
+
+.mat-sidenav-content {
   left: 0px;
   right: 0px;
   position: relative;
