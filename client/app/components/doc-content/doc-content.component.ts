@@ -1,6 +1,7 @@
 
 import {
   Component,
+  Input,
 } from '@angular/core';
 
 import {
@@ -10,16 +11,21 @@ import {
 @Component({
   moduleId: module.id,
   selector: 'doc-content',
-  template: '<div [ngClass]=docClass><ng-content></ng-content></div> ',
+  template: `
+    <div *ngIf='banner' class='banner' [ngClass]=mobileClass ><span [innerHTML]=banner ></span><md-icon *ngIf='showSunny' class='sunny spin' >wb_sunny_48</md-icon></div>
+    <div class='doc-content' [ngClass]=mobileClass ><ng-content></ng-content></div>
+    `,
   // Its a bummer but you have to declare the style files in the parent component.
   // styleUrls: ['./doc-content.component.css', '../../../shared-css/doc-content.css'],
   styleUrls: ['./doc-content.component.css'],
 })
 export class DocContentComponent {
+  @Input() banner: string;
+  @Input() showSunny: boolean;
 
-  private docClass: string[] = ['doc-content'];
+  private mobileClass: string[] = [];
 
   constructor(private platformService: PlatformService) {
-    if (this.platformService.isMobile()) this.docClass.push('mobile');
+    this.mobileClass = this.platformService.isMobile() ? ['mobile'] : [];
   }
 }

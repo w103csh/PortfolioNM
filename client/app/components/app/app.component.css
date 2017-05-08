@@ -18,7 +18,13 @@
   -webkit-box-flex: 1;
 }
 
-.below-title-container {
+.below-title-wrapper .md-sidenav-content {
+  left: 0px;
+  right: 0px;
+  position: relative;
+}
+
+/*.below-title-container {
   position: relative;
   width: 100%;
   display: block;
@@ -28,7 +34,7 @@
 
   overflow-x: hidden;
   overflow-y: hidden;
-}
+}*/
 
 .sidenav-container {
   background-color: rgb(250, 250, 250);
@@ -93,8 +99,9 @@
 }
 
 .spacer {
-  display: flex;
   flex-grow: 1;
+  -webkit-box-flex: 1;
+  -webkit-box-direction: normal;
 }
 
 /* START side-nav */

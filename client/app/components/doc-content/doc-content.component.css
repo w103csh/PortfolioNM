@@ -1,4 +1,10 @@
 
+.sunny {
+  /*padding: 4px 0 0 4px;*/
+  margin-left: 4px;
+  color: orange;
+}
+
 .banner:not(.mobile) {
   padding: 36px 48px;
   background-color: rgba(236, 239, 241, 0.25);

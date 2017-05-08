@@ -23,6 +23,7 @@ import {
 export class HomeComponent {
 
   private header: string = 'Hello, World!';
+  private banner: string = `<span>My name is Colin Hughes. I am a developer currently based out of Denver, CO.</span>`;
   private fragmentIdPrefix: string;
   private isMobile: boolean;
 
@@ -31,14 +32,8 @@ export class HomeComponent {
     this.fragmentIdPrefix = this.router.url + '#';
     
     contentService.updateHeader(this.header);
-    let banner = ``;
-    // contentService.updateBanner(banner);
-    
     this.isMobile = this.contentService.getIsMobile();
   }
-
-  // Banner
-  private banner: string = `My name is Colin Hughes. I am a developer currently based out of Denver, CO.`;
 
   // Links
   private links: any = {

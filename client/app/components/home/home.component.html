@@ -1,7 +1,5 @@
 
-<!--<div [ngClass]=bannerClass ><span [innerHTML]='banner'></span><md-icon class='sunny spin' >wb_sunny_48</md-icon></div>-->
-
-<doc-content>
+<doc-content [banner]=banner [showSunny]=true >
 
   <!-- Introduction -->
   <p *ngFor='let p of intros' [innerHTML]='p' ></p>
