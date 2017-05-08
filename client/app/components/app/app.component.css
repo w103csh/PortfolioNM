@@ -92,6 +92,11 @@
   background-color: rgb(250, 250, 250);
 }
 
+.spacer {
+  display: flex;
+  flex-grow: 1;
+}
+
 /* START side-nav */
 /*md-sidenav-container {
   height: 100%;
