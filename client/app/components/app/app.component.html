@@ -2,13 +2,13 @@
 <title-bar [titleStart]=titleStart [titleEnd]=titleEnd [isSignedIn]=isSignedIn [isMobile]=isMobile ></title-bar>
 
 <div class='below-title-wrapper' >
-  <md-sidenav-container>
+  <md-sidenav-container class='below-title-sidenav' >
 
     <md-sidenav #sidenav opened=false class='sidenav-container' >
       <side-bar [isSignedIn]=isSignedIn [isMobile]=isMobile ></side-bar>
     </md-sidenav>
 
-    <div class='main-outlet-wrapper' [ngClass]=signedInClasses >
+    <div class='main-outlet' [ngClass]=signedInClasses >
 
       <content-container>
         <router-outlet></router-outlet>

@@ -45,6 +45,13 @@ h2 {
   align-content: center;
 }
 
+/* for some reason this had to be moved outside of the app.component.css */
+.below-title-sidenav .mat-sidenav-content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
+
 .loading-container h1 {
   display: flex;
   justify-content: center;

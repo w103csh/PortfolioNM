@@ -18,14 +18,15 @@
   -webkit-box-flex: 1;
 }
 
-md-sidenav-container {
+.below-title-sidenav  {
   width: 100%;
 }
 
-.mat-sidenav-content {
+/* This had to be moved to styles.css */
+.below-title-sidenav .mat-sidenav-content {
+  position: absolute;
   left: 0px;
   right: 0px;
-  position: relative;
 }
 
 /*.below-title-container {
@@ -41,6 +42,7 @@ md-sidenav-container {
 }*/
 
 .sidenav-container {
+  overflow-x: auto;
   background-color: rgb(250, 250, 250);
   /*background-color: hsl(0, 0%, 95%);*/
   box-shadow: rgba(0, 0, 0, 0.239216) 3px 0px 6px 0px;
@@ -90,7 +92,7 @@ md-sidenav-container {
   background-color: hsl(0, 0%, 95%) !important;
 }
 
-.main-outlet-wrapper {
+.main-outlet {
   min-height: 100%;
   display: flex;
 
