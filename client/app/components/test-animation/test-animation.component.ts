@@ -6,7 +6,9 @@ import {
   Title
 } from '@angular/platform-browser';
 
-
+import {
+  PlatformService,
+} from '../../../services/platform.service';
 import {
   ContentService,
 } from '../../../services/content.service';
@@ -25,6 +27,8 @@ import {
 export class TestAnimationComponent {
 
   private header: string = 'Animation Test';
+  private imgStyle: any;
+
   private animation: string = 'shrink';
   private shrunk: boolean = false;
 
@@ -32,8 +36,9 @@ export class TestAnimationComponent {
   private img2Embiggen: string = 'big';
   private shiftDec: string = 'left';
 
-  constructor(private contentService: ContentService) {
+  constructor(private contentService: ContentService, private platformService: PlatformService) {
     contentService.updateHeader(this.header);
+    this.setImgStyles();
   }
 
   embiggen($event: any) {
@@ -72,5 +77,12 @@ export class TestAnimationComponent {
         this.shiftDec = this.shiftDec == 'left' ? 'right' : 'left';
         break;
     }
+  }
+
+  setImgStyles() {
+    let sWidth = this.platformService.getScreenWidth();
+    let imgWidth = Math.round(sWidth*.2);
+    let imgHeight = imgWidth*3;
+    this.imgStyle = { 'width.px' : imgWidth, 'height.px' : imgHeight  };
   }
 }

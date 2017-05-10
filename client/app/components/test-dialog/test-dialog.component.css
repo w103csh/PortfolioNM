@@ -1,15 +1,16 @@
 
-:host {
-  margin-bottom: auto;
-}
-
-.controls {
+.controls:not(.mobile) {
   font-size: 14px;
-  padding: 12px 24px;
+  padding: 12px 24px 0 12px;
 }
 
 .indent {
   padding-left: 16px;
+}
+
+.indent.third.mobile {
+  padding: 0;
+  width: 90%;
 }
 
 md-checkbox {

@@ -19,6 +19,7 @@ import {
 export class TestDialogComponent {
 
   private header: string = 'Dialog Service Test';
+  private mobileClass: string[] = [];
   private model: any = {};
   private selectedOption: string;
 
@@ -28,6 +29,7 @@ export class TestDialogComponent {
     this.model.cancel = 'Cancel';
 
     contentService.updateHeader(this.header);
+    this.mobileClass = contentService.getIsMobile() ? ['mobile'] : [];
   }
 
   testDialog() {

@@ -4,9 +4,7 @@
   <p>Our fancy pictures are back! Now you can use them to test Angular animations.</p>
 
   <blockquote>
-    <small>
       Hover over the images to see them do tiny animations too!
-    </small>
   </blockquote>
 
   <section class='section'>
@@ -28,6 +26,7 @@
 
   <div class='flex-container-row flex-start img-container' >
     <img (mouseover)='embiggen($event)'
+      [ngStyle]=imgStyle
       (mouseout)='enlittle($event)'
       [id]='"img1"'
       [@embiggen]='img1Embiggen'
@@ -35,6 +34,7 @@
       class='ani-img'
       src='images/VerticalBanners_Low01.jpg' />
     <img (mouseover)='embiggen($event)'
+      [ngStyle]=imgStyle
       (mouseout)='enlittle($event)'
       [id]='"img2"'
       [@embiggen]='img2Embiggen'
