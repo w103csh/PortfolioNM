@@ -45,8 +45,8 @@ export class SignInComponent {
     // defaults
     this.model = new User('', '', '');
 
-    this.isMobile = contentService.getIsMobile();    
-    this.contentService.updateHeader('');
+    this.isMobile = contentService.getIsMobile();
+    this.contentService.updateHeader(this.isMobile  ? '' : null);
   }
 
   ngOnInit() {

@@ -1,9 +1,8 @@
 
 <div [ngClass]=contentClass >
-  <div *ngIf='header !== null || header !== undefined' [ngClass]=headerWrapperClass >
+  <div *ngIf='header !== null' class='header' [ngClass]=mobileClass >
     <button *ngIf='isMobile' md-icon-button (click)='showSidenavClick()' ><md-icon>menu</md-icon></button>
-    <h1 *ngIf='!isMobile' [ngClass]=headerClass >{{ header | uppercase }}</h1>
-    <h1 *ngIf='isMobile' [ngClass]=headerClass >{{ header | titlecase }}</h1>
+    <h1 [ngClass]=mobileClass >{{ header | uppercase }}</h1>
   </div>
   <ng-content></ng-content>
 </div>

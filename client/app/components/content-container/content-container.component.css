@@ -2,11 +2,14 @@
 .header {
   color: hsl(0, 0%, 95%);
 
+  display: flex;
+
   -webkit-margin-before: 0; 
   -webkit-margin-after: 0;
   padding: 32px 48px 48px 48px;
   margin: 0;
-
+  
+  -webkit-box-align: center;
   -webkit-box-direction: normal;
 
   background-color: hsl(150, 90%, 29%);
@@ -15,19 +18,15 @@
   text-shadow: 1px 1px hsl(180, 100%, 10%);
 }
 
-.mobile-header-wrapper {
-  display: flex !important;
-  -webkit-box-align: center !important;
-  -webkit-box-direction: normal !important;
-  
+.header.mobile {  
   height: 60px;
-  padding: 0 6px 0 12px !important;
+  padding: 0 6px 0 12px;
 }
 
-.mobile-header {
+.header.mobile h1 {
   margin: auto 0 auto 0;
-  padding: 4px 0 4px 10px !important;
-  font-size: 20px !important;
+  padding: 4px 0 4px 10px;
+  font-size: 20px;
 }
 
 button {

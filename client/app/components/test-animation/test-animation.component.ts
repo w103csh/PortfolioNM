@@ -1,20 +1,20 @@
 
 import {
-  Component
+  Component,
+  OnInit,
 } from '@angular/core';
 import {
   Title
 } from '@angular/platform-browser';
 
 import {
-  PlatformService,
-} from '../../../services/platform.service';
-import {
   ContentService,
 } from '../../../services/content.service';
 import {
   embiggen,
+  embiggenMobile,
   shiftSideToSide,
+  shiftSideToSideMobile,
 } from '../../../shared-animations/animations';
 
 @Component({
@@ -22,12 +22,13 @@ import {
   selector: 'test-animation',
   templateUrl: './test-animation.component.html',
   styleUrls: ['./test-animation.component.css'],
-  animations: [embiggen, shiftSideToSide]
+  animations: [embiggen, embiggenMobile, shiftSideToSide, shiftSideToSideMobile]
 })
 export class TestAnimationComponent {
 
   private header: string = 'Animation Test';
-  private imgStyle: any;
+  private mobileClass: string[] = [];
+  private isMobile: boolean;
 
   private animation: string = 'shrink';
   private shrunk: boolean = false;
@@ -36,10 +37,17 @@ export class TestAnimationComponent {
   private img2Embiggen: string = 'big';
   private shiftDec: string = 'left';
 
-  constructor(private contentService: ContentService, private platformService: PlatformService) {
+  constructor(private contentService: ContentService) {
     contentService.updateHeader(this.header);
-    this.setImgStyles();
+    this.isMobile = this.contentService.getIsMobile();
+    this.mobileClass = this.contentService.getIsMobile() ? ['mobile'] : [];
   }
+
+  // ngOnInit() {
+  //   this.img1Embiggen = 'big';
+  //   this.img2Embiggen = 'big';
+  //   this.shiftDec = 'left';
+  // }
 
   embiggen($event: any) {
     switch ($event.target.id) {
@@ -77,12 +85,5 @@ export class TestAnimationComponent {
         this.shiftDec = this.shiftDec == 'left' ? 'right' : 'left';
         break;
     }
-  }
-
-  setImgStyles() {
-    let sWidth = this.platformService.getScreenWidth();
-    let imgWidth = Math.round(sWidth*.2);
-    let imgHeight = imgWidth*3;
-    this.imgStyle = { 'width.px' : imgWidth, 'height.px' : imgHeight  };
   }
 }

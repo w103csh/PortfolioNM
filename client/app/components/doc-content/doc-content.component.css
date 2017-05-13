@@ -1,9 +1,4 @@
 
-.sunny {
-  /*padding: 4px 0 0 4px;*/
-  margin-left: 4px;
-  color: orange;
-}
 
 .banner:not(.mobile) {
   padding: 36px 48px;
@@ -18,6 +13,15 @@
   border: rgb(236, 239, 241);
   border-width: 0  0 1px 0;
   border-style: solid;
+}
+
+.banner.mobile md-icon {
+  vertical-align: middle;
+}
+
+.sunny {
+  margin-left: 4px;
+  color: orange;
 }
 
 .banner:not(.mobile), .banner:not(.mobile) > span {
@@ -146,6 +150,7 @@
 .doc-content >>> blockquote { -webkit-font-smoothing: antialiased; }
 .doc-content >>> a { -webkit-font-smoothing: antialiased; }
 
+/* TODO: fix these ugly buttons */
 .doc-content.mobile >>> a.mat-button:not(.toc):not(.anchor):not(.link-text) {
   min-height: 20px;
   height: 20px;

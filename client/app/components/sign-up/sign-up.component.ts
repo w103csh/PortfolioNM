@@ -41,7 +41,7 @@ export class SignUpComponent {
     this.model = new User('', '', '');
 
     this.isMobile = contentService.getIsMobile();    
-    this.contentService.updateHeader(this.isMobile  ? 'sign up' : null);
+    this.contentService.updateHeader(this.isMobile  ? '' : null);
   }
 
   validate(): boolean {

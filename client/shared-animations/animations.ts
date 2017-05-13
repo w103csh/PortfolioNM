@@ -8,8 +8,6 @@ import {
   trigger
 } from '@angular/core';
 
-// Component transition animations
-
 export const leftSlideInOutAnimation: AnimationEntryMetadata =
   trigger('leftSlideInOut', [
     state('*',
@@ -37,27 +35,74 @@ export const embiggen: AnimationEntryMetadata =
   trigger('embiggen', [
     state('big',
       style({
-        height: '500px',
+        width: '200px',
+        height: '600px',
+        margin: 'auto 14px',
       })
     ),
     state('bigger',
       style({
-        height: '600px',
+        width: '250px',
+        height: '700px',
+        margin: 'auto 0',
       })
     ),
     state('small',
       style({
-        height: '250px',
+        width: '125px',
+        height: '375px',
+        margin: 'auto 0',
       })
     ),
     state('smaller',
       style({
-        height: '200px',
+        width: '100px',
+        height: '300px',
+        margin: 'auto 14px',
       })
     ),
-    transition('big <=> bigger', animate('200ms ease-out')),
-    transition('smaller <=> small', animate('200ms ease-out')),
-    transition('big <=> smaller', animate('300ms ease-out')),
+    transition('big => bigger', animate('200ms ease-out')),
+    transition('bigger => big', animate('200ms ease-in')),
+    transition('smaller => small', animate('200ms ease-out')),
+    transition('small => smaller', animate('200ms ease-in')),
+    transition('big <=> smaller', animate('300ms ease-in')),
+  ]);
+
+export const embiggenMobile: AnimationEntryMetadata =
+  trigger('embiggenMobile', [
+    state('big',
+      style({
+        width: '100px',
+        height: '300px',
+        margin: 'auto 14px',
+      })
+    ),
+    state('bigger',
+      style({
+        width: '113px',
+        height: '350px',
+        margin: 'auto 0',
+      })
+    ),
+    state('small',
+      style({
+        width: '64px',
+        height: '175px',
+        margin: 'auto 0',
+      })
+    ),
+    state('smaller',
+      style({
+        width: '50px',
+        height: '150px',
+        margin: 'auto 6px',
+      })
+    ),
+    transition('big => bigger', animate('200ms ease-out')),
+    transition('bigger => big', animate('200ms ease-in')),
+    transition('smaller => small', animate('200ms ease-out')),
+    transition('small => smaller', animate('200ms ease-in')),
+    transition('big <=> smaller', animate('300ms ease-in')),
   ]);
 
 export const beshrinketh: AnimationEntryMetadata =
@@ -85,6 +130,21 @@ export const shiftSideToSide: AnimationEntryMetadata =
     state('right',
       style({
         transform: 'translateX(700px)'
+      })
+    ),
+    transition('left <=> right', animate('1000ms ease-in-out')),
+  ]);
+
+export const shiftSideToSideMobile: AnimationEntryMetadata =
+  trigger('shiftSideToSideMobile', [
+    state('left',
+      style({
+        transform: 'translateX(0)'
+      })
+    ),
+    state('right',
+      style({
+        transform: 'translateX(400px)'
       })
     ),
     transition('left <=> right', animate('1000ms ease-in-out')),

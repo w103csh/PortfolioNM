@@ -34,9 +34,8 @@ import {
 })
 export class ContentContainerComponent {
 
-  private headerWrapperClass: string[] = ['header'];
   private contentClass: string[] = ['content'];
-  private headerClass: string[] = [];
+  private mobileClass: string[] = ['mobile'];
 
   private isMobileSub: Subscription;
   private isMobile: boolean;
@@ -59,13 +58,8 @@ export class ContentContainerComponent {
       this.header = header;
       this.checkHeader();
     });
-    // this.isMobileSub = contentService.isMobile$.subscribe((isMobile: boolean) => {
-    //   this.isMobile = isMobile;
-    //   this.setMobileClasses();
-    // });
-    
-    this.setMobileClasses();
 
+    this.mobileClass = this.contentService.getIsMobile() ? ['mobile']: [];
     this.isMobile = this.contentService.getIsMobile();
   }
 
@@ -88,13 +82,6 @@ export class ContentContainerComponent {
     // This is strange but necessary
     if (!this.header)
       this.contentClass = [];
-  }
-
-  setMobileClasses() {
-    if (this.contentService.getIsMobile()) {
-      this.headerWrapperClass.push('mobile-header-wrapper');
-      this.headerClass.push('mobile-header');
-    }
   }
 
   ngOnDestroy() {

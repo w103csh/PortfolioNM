@@ -24,9 +24,11 @@
     <button md-raised-button color='primary' (click)='toggleStates()' >Toggle</button>
   </div>
 
-  <div class='flex-container-row flex-start img-container' >
+  <br />
+  <!-- Mobile -->
+  <div *ngIf='!isMobile' class='flex-container-row flex-start img-container' [ngClass]=mobileClass >
     <img (mouseover)='embiggen($event)'
-      [ngStyle]=imgStyle
+      [ngClass]=mobileClass
       (mouseout)='enlittle($event)'
       [id]='"img1"'
       [@embiggen]='img1Embiggen'
@@ -34,11 +36,31 @@
       class='ani-img'
       src='images/VerticalBanners_Low01.jpg' />
     <img (mouseover)='embiggen($event)'
-      [ngStyle]=imgStyle
+      [ngClass]=mobileClass
       (mouseout)='enlittle($event)'
       [id]='"img2"'
       [@embiggen]='img2Embiggen'
       [@shiftSideToSide]='shiftDec'
+      class='ani-img'
+      src='images/VerticalBanners_Low13.jpg' />
+  </div>
+
+  <!-- Not mobile -->
+  <div *ngIf='isMobile' class='flex-start img-container' [ngClass]=mobileClass >
+    <img (mouseover)='embiggen($event)'
+      [ngClass]=mobileClass
+      (mouseout)='enlittle($event)'
+      [id]='"img1"'
+      [@embiggenMobile]='img1Embiggen'
+      [@shiftSideToSideMobile]='shiftDec'
+      class='ani-img'
+      src='images/VerticalBanners_Low01.jpg' />
+    <img (mouseover)='embiggen($event)'
+      [ngClass]=mobileClass
+      (mouseout)='enlittle($event)'
+      [id]='"img2"'
+      [@embiggenMobile]='img2Embiggen'
+      [@shiftSideToSideMobile]='shiftDec'
       class='ani-img'
       src='images/VerticalBanners_Low13.jpg' />
   </div>
