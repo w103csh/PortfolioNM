@@ -1,10 +1,18 @@
 
-<title-bar [titleStart]=titleStart [titleEnd]=titleEnd [isSignedIn]=isSignedIn [isMobile]=isMobile ></title-bar>
+<!--<div *ngIf='showSplash '>
+  <router-outlet></router-outlet>
+</div>-->
 
+<title-bar [titleStart]=titleStart
+  [titleEnd]=titleEnd
+  [isSignedIn]=isSignedIn
+  [isMobile]=isMobile >
+  <!--[@topSlideIn]=topSlideIn >-->
+</title-bar>
 <div class='below-title-wrapper' >
-  <md-sidenav-container class='below-title-sidenav' >
+  <md-sidenav-container class='below-title-sidenav blue-background' >
 
-    <md-sidenav #sidenav opened=false class='sidenav-container' >
+    <md-sidenav #sidenav opened=false class='sidenav-container' [ngClass]=signedInClasses >
       <side-bar [isSignedIn]=isSignedIn [isMobile]=isMobile ></side-bar>
     </md-sidenav>
 
@@ -14,7 +22,7 @@
         <router-outlet></router-outlet>
       </content-container>
       
-      <div class='spacer'></div>
+      <div class='spacer' [ngClass]=signedInClasses ></div>
 
       <app-footer [isSignedIn]=isSignedIn ></app-footer>
     </div>

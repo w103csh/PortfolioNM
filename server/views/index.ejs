@@ -62,12 +62,19 @@
   </head>
 
   <body class='mat-app-background'>
+
     <main-app redirectUrl='<%= redirectUrl %>' >
-      <!-- This gets replaced by the app -->
-      <div id='loadingContainer' class='loading-container' >
-        <h1>Loading...</h1>
-        <div class='spinner'></div>
+
+      <!-- This gets replaced by the app. Copied into splash control -->
+      <div class='loading-container' >
+        <!--<div class='loading-img'>-->
+          <span>Loading...</span>
+          <div class='spinner'></div>
+        <!--</div>-->
       </div>
+
     </main-app>
-  
+
+  </body>
+
 </html>

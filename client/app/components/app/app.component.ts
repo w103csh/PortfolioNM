@@ -32,6 +32,9 @@ import {
 import {
   User,
 } from '../../../models/User';
+import {
+  topSlideIn,
+} from '../../../shared-animations/animations';
 
 import {
   Subscription,
@@ -47,6 +50,7 @@ import {
   selector: 'main-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  animations: [topSlideIn],
   providers: [AppService],
 })
 export class AppComponent {
@@ -57,7 +61,8 @@ export class AppComponent {
   private titleEnd: string;
   private title: string;
   private version: string;
-
+  
+  private showSplash: boolean = true;
   private isMobile: boolean;
   private screenWidth: number;
 

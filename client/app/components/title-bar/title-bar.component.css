@@ -93,9 +93,11 @@ span.title-end-mobile {
 }
 
 a.nav {
+  height: 100%;
   color: hsl(0, 0%, 95%) !important;
   text-decoration: none;
 }
+
 
 a.nav:hover {
   text-decoration: none;

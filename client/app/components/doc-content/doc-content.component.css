@@ -3,14 +3,14 @@
 .banner:not(.mobile) {
   padding: 36px 48px;
   background-color: rgba(236, 239, 241, 0.25);
-  border: rgb(236, 239, 241);
+  border: rgb(221, 221, 221);
   border-width: 0  0 1px 0;
   border-style: solid;
 }
 .banner.mobile {
   padding: 12px 12px;
   background-color: rgba(236, 239, 241, 0.25);
-  border: rgb(236, 239, 241);
+  border: rgb(221, 221, 221);
   border-width: 0  0 1px 0;
   border-style: solid;
 }

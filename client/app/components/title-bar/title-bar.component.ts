@@ -2,6 +2,7 @@
 import {
   Component,
   Input,
+  HostBinding,
 } from '@angular/core';
 import {
   Router
@@ -18,7 +19,6 @@ import {
   styleUrls: ['./title-bar.component.css'],
 })
 export class TitleBarComponent {
-
   @Input() titleStart: string;
   @Input() titleEnd: string;
   @Input() isSignedIn: boolean;

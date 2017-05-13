@@ -8,7 +8,24 @@ import {
   trigger
 } from '@angular/core';
 
-export const leftSlideInOutAnimation: AnimationEntryMetadata =
+export const topSlideIn: AnimationEntryMetadata =
+  trigger('topSlideIn', [
+    state('*',
+      style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })
+    ),
+    transition(':enter', [
+      style({
+        opacity: 0,
+        transform: 'translateY(-100%)'
+      }),
+      animate('0.2s ease-in'),
+    ])
+  ]);
+
+export const leftSlideInOut: AnimationEntryMetadata =
   trigger('leftSlideInOut', [
     state('*',
       style({
@@ -150,7 +167,7 @@ export const shiftSideToSideMobile: AnimationEntryMetadata =
     transition('left <=> right', animate('1000ms ease-in-out')),
   ]);
 
-export const rightSlideInAnimation: AnimationEntryMetadata =
+export const rightSlideIn: AnimationEntryMetadata =
   trigger('rightSlideIn', [
     state('*',
       style({
@@ -167,7 +184,7 @@ export const rightSlideInAnimation: AnimationEntryMetadata =
     ]),
   ]);
 
-export const rightSlideInOutAnimation: AnimationEntryMetadata =
+export const rightSlideInOut: AnimationEntryMetadata =
   trigger('rightSlideInOut', [
     state('*',
       style({

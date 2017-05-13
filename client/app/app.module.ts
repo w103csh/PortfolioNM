@@ -51,6 +51,7 @@ import { TitleBarComponent, }               from './components/title-bar/title-b
 import { TitleBarButtonGroupComponent, }    from './components/title-bar-button-group/title-bar-button-group.component';
 import { SideBarComponent, }                from './components/side-bar/side-bar.component';
 import { HomeComponent, }                   from './components/home/home.component';
+import { SplashComponent, }                 from './components/splash/splash.component';
 import { AboutComponent, }                  from './components/about/about.component';
 import { ContactComponent, }                from './components/contact/contact.component';
 import { AppFooterComponent, }              from './components/app-footer/app-footer.component';
@@ -91,6 +92,7 @@ import 'hammerjs';
     TitleBarComponent,
     SideBarComponent,
     HomeComponent,
+    SplashComponent,
     AboutComponent,
     ContactComponent,
     AppFooterComponent,

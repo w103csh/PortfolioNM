@@ -23,7 +23,7 @@ import {
 export class HomeComponent {
 
   private header: string = 'Hello, World!';
-  private banner: string = `<span>My name is Colin Hughes. I am a developer currently based out of Denver, CO.</span>`;
+  private banner: string = `My name is Colin Hughes. I am a developer currently based out of Denver, CO.`;
   private fragmentIdPrefix: string;
   private isMobile: boolean;
 
@@ -78,7 +78,7 @@ export class HomeComponent {
     intro: `<strong>Note</strong> - This site is a work in progress. I could be working on it right now...<br />
     <br />
     <i>Also, some of my programmer musings are gated behind the sign in button in the top right. There should be some cool
-    stuff behind there. Really, it just depends on what I am currently toying around with. If you want, make an account, and see.</i>`
+    stuff behind there. It depends on what I am currently toying around with. If you want, make an account, and see.</i>`
     ,
     site: `<strong>Note</strong> - If you clone the repository you have to have ` + this.links.npm + `, and ` + this.links.node1 + `
     installed. Then just run <code>npm install</code>. Also, the RESTful api that the 

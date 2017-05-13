@@ -4,7 +4,7 @@
     <!--<button md-button routerLink='/' disableRipple class='title' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></button>-->
     <button md-button (click)='titleClick()' disableRipple class='title not-mobile' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></button>
   </div>
-  <div class='nav-container' >
+  <div class='flex-start nav-container' >
     <a *ngFor='let link of navLinks' md-button routerLink='{{link.href}}' class='nav' >{{link.text}}</a>
   </div>
   <title-bar-button-group class='flex-end pad-right' [isMobile]=isMobile ></title-bar-button-group>

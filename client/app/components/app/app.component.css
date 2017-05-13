@@ -22,44 +22,10 @@
   width: 100%;
 }
 
-/* This had to be moved to styles.css */
-.below-title-sidenav .mat-sidenav-content {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-}
-
-/*.below-title-container {
-  position: relative;
-  width: 100%;
-  display: block;
-
-  box-sizing: border-box;
-  -webkit-box-direction: normal;
-
-  overflow-x: hidden;
-  overflow-y: hidden;
-}*/
-
 .sidenav-container {
   overflow-x: auto;
   background-color: rgb(250, 250, 250);
-  /*background-color: hsl(0, 0%, 95%);*/
   box-shadow: rgba(0, 0, 0, 0.239216) 3px 0px 6px 0px;
-}
-
-.backdrop {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-
-  display: block;
-  visibility: hidden;
-  -webkit-box-direction: normal;
-
-  z-index: 2;
 }
 
 .main-content {
@@ -70,28 +36,6 @@
   right: 0px;
 }
 
-/*.main-content {
-  position: absolute;
-  height: 100%;
-  display: block;
-  left: 0px;
-  right: 0px;
-
-  margin-left: 245px;
-  margin-right: 0px;
-
-  -webkit-box-direction: normal;
-  
-  overflow-x: auto;
-  overflow-y: auto;
-
-  background-color: rgb(250, 250, 250);
-}*/
-
-.not-signed-in {
-  background-color: hsl(0, 0%, 95%) !important;
-}
-
 .main-outlet {
   min-height: 100%;
   display: flex;
@@ -100,44 +44,16 @@
 
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
-
-  background-color: rgb(250, 250, 250);
 }
 
 .spacer {
+  min-height: 25px;
   flex-grow: 1;
   -webkit-box-flex: 1;
   -webkit-box-direction: normal;
 }
 
-/* START side-nav */
-/*md-sidenav-container {
-  height: 100%;
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-flex: 0 1 auto !important;
-  flex: 0 1 auto !important;
+/* TODO: this is a bad solution */
+.spacer:not(.not-signed-in) {
+  background-color: rgb(250, 250, 250);
 }
-
-.side-nav-closer {
-  height: 100%;
-  padding: 0 3px 0 3px;
-  display: inline-block;
-  background-color: #fff;
-  background-image: -webkit-linear-gradient(bottom, hsl(60, 20%, 95%), hsl(0, 0%, 95%));
-  border-right: 3px solid;
-  border-color: hsl(150, 90%, 29%);
-}
-
-.side-nav-closer > button {
-  margin-top: 2px;
-  height: 24px;
-  width: 24px;
-  background-color: darkgrey;
-  border-radius: 2px;
-}
-
-.side-nav-closer > button > span > md-icon {
-  padding: 1px 0 1px 0 !important;
-}*/
-/* END side-nav */
