@@ -1,7 +1,15 @@
 
 .admin-container {
   height: 100%;
-  margin: 25px;
-  padding: 10px 20px;  
   background-color: rgb(255, 255, 255);
+}
+
+.admin-container:not(.mobile) {
+  margin: 25px;
+  padding: 10px 20px;
+}
+
+.admin-container.mobile {
+  margin: 10px 10px;
+  padding: 5px;
 }

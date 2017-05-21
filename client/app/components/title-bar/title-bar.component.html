@@ -1,7 +1,6 @@
 
 <div *ngIf='!isMobile' class='title-bar-wrapper' >
   <div class='title-wrapper' >
-    <!--<button md-button routerLink='/' disableRipple class='title' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></button>-->
     <button md-button (click)='titleClick()' disableRipple class='title not-mobile' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></button>
   </div>
   <div class='flex-start nav-container' >
@@ -12,13 +11,10 @@
 
 <div *ngIf='isMobile' >
   <div class='title-bar-wrapper' >
+    <button *ngIf='isMobile' md-icon-button class='menu' (click)='showSidenavClick()' ><md-icon>menu</md-icon></button>
     <div [ngClass]='notMobileTitle' >
-      <!--<button md-button routerLink='/' disableRipple class='title' >{{titleStart}}<span class='title-end'>{{titleEnd}}</span></button>-->
       <button md-button (click)='titleClick()' disableRipple class='title mobile' >{{titleStart}}<span class='title-end-mobile'>{{titleEnd}}</span></button>
     </div>
     <title-bar-button-group class='flex-end' [isMobile]=isMobile ></title-bar-button-group>
   </div>
-  <!--<div class='nav-container-mobile' >
-    <a *ngFor='let link of navLinks' md-button routerLink='{{link.href}}' class='nav' >{{link.text}}</a>
-  </div>-->
 </div>

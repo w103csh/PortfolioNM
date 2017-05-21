@@ -5,11 +5,14 @@ import {
 } from '@angular/core';
 
 import {
-  AuthService,
-} from '../../../services/auth.service';
+  ContentComponent,
+} from '../../components/content/content.component';
 import {
   ContentService,
 } from '../../../services/content.service';
+import {
+  AuthService,
+} from '../../../services/auth.service';
 import {
   PlatformService,
 } from '../../../services/platform.service';
@@ -27,22 +30,27 @@ import {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
+export class DashboardComponent extends ContentComponent {
 
   //@HostBinding('@rightSlideIn') rightSlideIn = true;
 
   private header: string = 'Dashboard';
-  private isMobile: boolean;
+  
   private imgStyle: any;
 
   private userSub: Subscription;
   private user: User;
 
-  constructor(private authService: AuthService, private contentService: ContentService, private platformService: PlatformService) {
+  constructor(
+    private authService: AuthService,
+    private contentService: ContentService,
+    private platformService: PlatformService,
+  ) {
+    super(contentService);
+    contentService.updateHeader(this.header);
+
     this.userSub = authService.signedInUser$.subscribe((user: User) => { this.user = user; });
 
-    contentService.updateHeader(this.header);
-    this.isMobile = this.contentService.getIsMobile();
     this.setImgStyles();
   }
 

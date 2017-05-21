@@ -8,17 +8,21 @@
       <md-icon>more_vert</md-icon>
     </button>
     <md-menu #menu='mdMenu' x-position='before' [overlapTrigger]='false' >
-      <button md-menu-item (click)='clickAccount()' >
+      <button *ngIf='isMobile' md-menu-item (click)='menuClick("signInOut")' >
+        <md-icon>exit_to_app</md-icon>
+        <span>Sign out</span>
+      </button>
+      <button md-menu-item (click)='menuClick("account")' >
         <md-icon>account_circle</md-icon>
         <span>Account</span>
       </button>
-      <button md-menu-item disabled (click)='clickUsers()' >
+      <button md-menu-item disabled (click)='menuClick("users")' >
         <md-icon>people</md-icon>
         <span>Users</span>
       </button>
     </md-menu>
   </div>
-  <div class='button-container' >
-    <button md-raised-button color=primary (click)='signInOrOut()' >{{ user ? 'Sign out' : 'Sign in' }}</button>
+  <div *ngIf='showSignInOut && (!isMobile || !user)' class='button-container' >
+    <button md-raised-button color=primary (click)='menuClick("signInOut")' >{{ user ? 'Sign out' : 'Sign in' }}</button>
   </div>
 </div>

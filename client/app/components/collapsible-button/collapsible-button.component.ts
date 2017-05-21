@@ -5,6 +5,13 @@ import {
   OnInit
 } from '@angular/core';
 
+import {
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
+  ContentService,
+} from '../../../services/content.service';
+
 var nextId = 0;
 
 @Component({
@@ -13,7 +20,7 @@ var nextId = 0;
   templateUrl: './collapsible-button.component.html',
   styleUrls: [ './collapsible-button.component.css' ]
 })
-export class CollapsibleButtonComponent {
+export class CollapsibleButtonComponent extends ContentComponent {
   @Input() targetId: string = `target-${nextId++}`;
   @Input() expandText: string = 'Show details';
   @Input() collapseText: string = 'Hide details';
@@ -23,14 +30,10 @@ export class CollapsibleButtonComponent {
   @Input() expand: boolean = false;
   @Input() breakBeforeTarget: boolean = true;
   @Input() isMobile: boolean;
- 
-  private buttonClass: string[];
 
   ngOnInit() {
     if (this.expand)
       this.toggleClasses.push('in');
-
-    this.buttonClass = this.isMobile ? ['mobile'] : [];
   }
 
   toggle() {

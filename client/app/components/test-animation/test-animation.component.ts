@@ -8,6 +8,9 @@ import {
 } from '@angular/platform-browser';
 
 import {
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
   ContentService,
 } from '../../../services/content.service';
 import {
@@ -24,11 +27,9 @@ import {
   styleUrls: ['./test-animation.component.css'],
   animations: [embiggen, embiggenMobile, shiftSideToSide, shiftSideToSideMobile]
 })
-export class TestAnimationComponent {
+export class TestAnimationComponent extends ContentComponent {
 
   private header: string = 'Animation Test';
-  private mobileClass: string[] = [];
-  private isMobile: boolean;
 
   private animation: string = 'shrink';
   private shrunk: boolean = false;
@@ -37,10 +38,11 @@ export class TestAnimationComponent {
   private img2Embiggen: string = 'big';
   private shiftDec: string = 'left';
 
-  constructor(private contentService: ContentService) {
+  constructor(
+    private contentService: ContentService
+  ) {
+    super(contentService);
     contentService.updateHeader(this.header);
-    this.isMobile = this.contentService.getIsMobile();
-    this.mobileClass = this.contentService.getIsMobile() ? ['mobile'] : [];
   }
 
   // ngOnInit() {

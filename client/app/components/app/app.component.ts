@@ -21,14 +21,20 @@ import {
 } from '@angular/common';
 
 import {
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
+  ContentService,
+} from '../../../services/content.service';
+import {
   AppService
 } from '../../../services/app.service';
 import {
   AuthService,
 } from '../../../services/auth.service';
 import {
-  PlatformService,
-} from '../../../services/platform.service';
+  UsersService,
+} from '../../../services/users.service';
 import {
   User,
 } from '../../../models/User';
@@ -51,9 +57,9 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [topSlideIn],
-  providers: [AppService],
+  providers: [AppService, ContentService],
 })
-export class AppComponent {
+export class AppComponent extends ContentComponent {
 
   @ViewChild('sidenav') sidenav: MdSidenav;
 
@@ -63,33 +69,32 @@ export class AppComponent {
   private version: string;
   
   private showSplash: boolean = true;
-  private isMobile: boolean;
   private screenWidth: number;
 
   private isSignedInSub: Subscription;
-  private isSignedIn: boolean;
+  private isSignedIn: boolean = false;
   private signedInClasses: string[];
 
   constructor(
+    private contentService: ContentService,
     private appService: AppService,
     private authService: AuthService,
-    private platformService: PlatformService,
+    private usersService: UsersService,
     private router: Router,
     // private route: ActivatedRoute,
     private elementRef: ElementRef,
     private titleService: Title
   ) {
+    super(contentService);
 
-    // defaults
-    this.isSignedIn = false;
-
-    this.isMobile = platformService.isMobile();
-    this.setTitle();
-
+    // Subscribe to auth service then check for auth token
     this.isSignedInSub = authService.isSignedIn$.subscribe((isSignedIn: boolean) => {
       this.isSignedIn = isSignedIn;
       this.setSignedIn();
     });
+    this.authService.setSignedInUserFromToken();
+
+    this.setTitle();
 
     // Should only be set when browser is refreshed, or
     // if someone tries to load the app using a specific url.
@@ -103,18 +108,14 @@ export class AppComponent {
 
   }
 
-  ngOnInit() {
-    // TODO: This maybe should go in the constructor. No time to check now.
-    if (localStorage.getItem('token'))
-      this.authService.verify().subscribe();
-    
+  ngOnInit() {    
     // Hook up sidenav things
     this.appService.setSidenav(this.sidenav);
-    this.sidenav.mode = this.platformService.isMobile() ? 'push' : 'side';
+    this.sidenav.mode = this.isMobile ? 'push' : 'side';
   }
 
   setSignedIn() {
-    if (!this.platformService.isMobile()) {
+    if (!this.isMobile) {
       // Change background color
       this.signedInClasses = !this.isSignedIn ? ['not-signed-in'] : [];
 

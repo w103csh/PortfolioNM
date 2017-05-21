@@ -10,20 +10,27 @@ import {
 } from '@angular/http';
 
 import {
-  User
+  UsersService,
+} from './users.service';
+import {
+  User,
 } from '../models/User';
 import {
-  ResponseData
+  ResponseData,
 } from '../models/ResponseData';
 import {
-  __apiUrl
+  __apiUrl,
 } from '../APP_CONFIG';
 
 import {
-  Observable
+  AuthHttp,
+  JwtHelper,
+} from 'angular2-jwt';
+import {
+  Observable,
 } from 'rxjs/Observable';
 import {
-  BehaviorSubject
+  BehaviorSubject,
 } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -36,94 +43,141 @@ export class AuthService {
   // TODO: url 
   private readonly baseUrl = __apiUrl + '/auth';
   public redirectUrl: string;
+  private jwtHelper: JwtHelper = new JwtHelper();
 
   // observable streams
   private signedInUserSource = new BehaviorSubject<User>(null);
-  private isSignedInSource = new BehaviorSubject<boolean>(null);
+  private isSignedInSource = new BehaviorSubject<boolean>(false);
   public signedInUser$: Observable<User> = this.signedInUserSource.asObservable();
   public isSignedIn$: Observable<boolean> = this.isSignedInSource.asObservable();
 
-  constructor (private http: Http) { }
+  constructor(
+    private authHttp: AuthHttp,
+    private http: Http,
+    private usersService: UsersService
+  ) { }
 
-  private updateUser(user: User) {
+  checkToken(): boolean {
+    let tokenCookie = JSON.parse(localStorage.getItem('token'));
+    return tokenCookie && !this.jwtHelper.isTokenExpired(tokenCookie.token);
+  }
+
+  isSignedIn() {
+    return this.isSignedInSource.getValue();
+  }
+
+  getSignedInUser(): User {
+    return this.signedInUserSource.getValue();
+  }
+
+  setSignedInUserFromToken() {
+    if (this.checkToken() && !this.isSignedIn()) {
+
+      let id = JSON.parse(localStorage.getItem('token')).subject.id;
+
+      this.usersService.read(id).subscribe(
+        (response: ResponseData) => {
+          if (response && response.success) {
+            this.updateSignedInUser(response.data);
+          }
+          else {
+            this.signOut();
+          }
+        },
+        (err) => {
+          // TODO: log & something else
+          console.log(err);
+          this.signOut();
+        }
+      );
+    }
+  }
+
+  updateSignedInUser(user: User) {
     this.isSignedInSource.next(user ? true : false);
     this.signedInUserSource.next(user);
   }
 
-  signin(body: User): Observable<ResponseData> {
+  signIn(body: User): Observable<ResponseData> {
 
     let url = this.baseUrl + '/authenticate';
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
+    if (!body) {
+      body = JSON.parse(localStorage.getItem('token'));
+    }
+
     return this.http.post(url, body, options)
-                    .map((response: Response) => {
+      .map((response: Response) => {
 
-                      let data = response.json() && response.json().success && response.json().data;
-                      
-                      if(data.token && data.subject && data.subject.type && data.subject.id && data.user) {
-                        this.updateUser(new User(data.user.email, data.user._id, data.user.firstName, data.user.lastName));
-                        delete data.user;
-                        localStorage.setItem('token', JSON.stringify(data));
-                      }
+        let resJSON = response && response.json(), resData, data;
+        try {
+          resData = new ResponseData(resJSON.success, resJSON.message, resJSON.data);
+          if (resData.success) {
+            if (resData.data.token && resData.data.subject && resData.data.subject.type && resData.data.subject.id) {
+              localStorage.setItem('token', JSON.stringify(resData.data));
+            }
+            else {
+              throw new Error('VerifyToken service response not in correct format.');
+            }
+          }
+        }
+        catch (err) {
+          resData = new ResponseData(false, 'VerifyToken service response not in correct format.', null);
+        }
+        return resData;
 
-                      return response.json();
+      })
+      .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
 
-                    })
-                    .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
-             
   }
 
-  // should be as lightweight as possible
-  verify(): Observable<Boolean> {
+  verifyToken(): Observable<ResponseData> {
 
     let token = JSON.parse(localStorage.getItem('token'));
     let user = this.signedInUserSource.getValue();
 
-    // If there is a signed in user check that the local token subject id && type match the user (could be overkill)
-    // but,
-    // need to also let users who check the remember me box to go through as well.
-    if(( user && token.subject.id === user.id && token.subject.type === 'User') ||
-       (!user && token)) {
-
-      let url = this.baseUrl + '/verifyToken';
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-
-      // TODO: Consider sending token verification info as headers
-
-      //let body = { type: type, id: user._id, key: this.pubKey, token: token };
-      let body = { 
-        type: token.subject.type, 
-        id: token.subject.id, 
-        token: token.token, 
-        // Need to re-get user info when browser resets obeservable streams, but 
-        // there is still a jwt in local storage (i.e., remember me is checked)
-        includeSubject: (!user && token) 
-      };
-
-      return this.http.post(url, JSON.stringify(body), options)
-                      .map((response: Response) => {
-                        // TODO: make a bool that tells the api to return a user or just a bool
-                        let success = response.json() && response.json().success;
-                        let data = response.json() && response.json().success && response.json().data;
-                        if(data) {
-                          this.updateUser(new User(data.email, data._id, data.firstName, data.lastName));
-                        }
-                        return success;
-                      })
-                      .catch((error: any, caught) => 
-                        Observable.throw(error.json().message || 'Server error')
-                      );
-
+    if (!token || !token.subject || !token.subject.id || !token.subject.type) {
+      return Observable.of(new ResponseData(false, 'Token not in correct format.', null));
+    }
+    else if (token.subject.type !== 'User') {
+      return Observable.of(new ResponseData(false, 'Token does not have correct subject.', null));
+    }
+    else if (!user) {
+      return Observable.of(new ResponseData(false, 'Signed in user service does not have a subject.', null));
+    }
+    else if (!user || user.id != token.subject.id) {
+      return Observable.of(new ResponseData(false, 'Signed in user does not match token subject.', null));
     }
     else {
-      return Observable.of(false);   
-    }  
+
+      let url = this.baseUrl + '/verifyToken';
+
+      return this.authHttp.get(url)
+        .map((response: Response) => {
+
+          let resJSON = response && response.json(), resData;
+          try {
+            resData = new ResponseData(resJSON.success, resJSON.message, resJSON.data);
+            if (resData.success) {
+              // Do something (template)
+            }
+          }
+          catch (err) {
+            resData = new ResponseData(false, 'VerifyToken service response not in correct format.', null);
+          }
+          return resData;
+
+        })
+        .catch((error: any, caught) =>
+          Observable.throw(error.json().message || 'Server error')
+        );
+    }
   }
 
-  signout(): void {
-    this.updateUser(null);
+  signOut(): void {
+    this.updateSignedInUser(null);
     localStorage.removeItem('token');
   }
 }

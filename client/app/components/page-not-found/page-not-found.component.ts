@@ -11,9 +11,9 @@ import {
   moduleId: module.id,
   selector: 'page-not-found',
   templateUrl: './page-not-found.component.html',
-  styleUrls: [ './page-not-found.component.css', '../../../shared-css/doc.css', '../../../shared-css/doc-mobile.css' ]
+  styleUrls: ['./page-not-found.component.css']
 })
-export class PageNotFoundComponent{
+export class PageNotFoundComponent {
 
   private header: string = 'Page Not Found';
 

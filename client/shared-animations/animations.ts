@@ -25,6 +25,30 @@ export const topSlideIn: AnimationEntryMetadata =
     ])
   ]);
 
+export const topSlideInOut: AnimationEntryMetadata =
+  trigger('topSlideInOut', [
+    state('*',
+      style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })
+    ),
+    transition(':enter', [
+      style({
+        opacity: 0,
+        transform: 'translateY(-100%)'
+      }),
+      animate('0.2s ease-in'),
+    ]),
+    transition(':leave', [
+      style({
+        opacity: 0,
+        transform: 'translateY(-100%)'
+      }),
+      animate('0.2s ease-out'),
+    ])
+  ]);
+
 export const leftSlideInOut: AnimationEntryMetadata =
   trigger('leftSlideInOut', [
     state('*',

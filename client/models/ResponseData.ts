@@ -5,7 +5,7 @@ export class ResponseData {
     public success: boolean,
     public message: string,
     // maybe create an interface for the data
-    public data: Object,
+    public data: any,
   ) {  }
 
 }

@@ -1,21 +1,19 @@
 
-:host {
-  display: block;
-  padding: 10px 0;
-  margin: 5px;
-}
-
 .banner-small {
   font-size: .9em;
   padding: 18px 24px;
   margin: 0 0 20px 0;
 
   background-color: rgba(236, 239, 241, 0.25);
-  border: rgb(236, 239, 241);
-  border-width: 1px;
-  border-style: solid;
+  border-right: 1px solid rgb(236, 239, 241);
+  border-bottom: 1px solid rgb(236, 239, 241);
+  border-left: 1px solid rgb(236, 239, 241);
 }
 
-.tab-content-wrapper {
+.tab-content-wrapper:not(.mobile) {
   padding: 0 16px 16px 16px;
+}
+
+.tab-content-wrapper.mobile {
+  padding: 0 4px 4px 4px;
 }

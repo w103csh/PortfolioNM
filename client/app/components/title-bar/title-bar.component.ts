@@ -11,6 +11,9 @@ import {
 import {
   PlatformService,
 } from '../../../services/platform.service';
+import {
+  AppService
+} from '../../../services/app.service';
 
 @Component({
   moduleId: module.id,
@@ -21,9 +24,9 @@ import {
 export class TitleBarComponent {
   @Input() titleStart: string;
   @Input() titleEnd: string;
-  @Input() isSignedIn: boolean;
+  @Input() isSignedIn: boolean = false;
   @Input() isMobile: boolean;
-
+  
   private screenWidth: number;
 
   private navLinks: { text: string, href: string }[] = [
@@ -34,12 +37,19 @@ export class TitleBarComponent {
 
   private headerClass: string[] = ['header'];
 
-  constructor(private router: Router) {
-    // defaults
-    this.isSignedIn = false;
+  constructor(
+    private router: Router,
+    private appService: AppService
+  ) { }
+
+  showSidenavClick() {
+    this.appService.callSidenavToggleFunc();
   }
 
   titleClick() {
+    if (this.isMobile && this.appService.isSidenavOpen())
+      this.appService.callSidenavToggleFunc();
+
     if (this.isSignedIn)
       this.router.navigate(['dashboard']);
     else

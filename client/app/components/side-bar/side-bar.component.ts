@@ -53,11 +53,39 @@ export class SideBarComponent {
 
     if (!this.isMobile || (this.isMobile && this.isSignedIn)) {
       this.genNavLinks.push({ text: 'dashboard', href: '/dashboard'});
-      this.testNavLinks.push({ text: 'authorization ', href: '/test-auth'});
-      this.testNavLinks.push({ text: 'dialog ', href: '/test-dialog'});
-      this.testNavLinks.push({ text: 'animation ', href: '/test-animation'});
-      this.testNavLinks.push({ text: 'title ', href: '/test-title'});
-      this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      this.testNavLinks.push({ text: 'authorization', href: '/test-auth'});
+      this.testNavLinks.push({ text: 'dialog', href: '/test-dialog'});
+      this.testNavLinks.push({ text: 'animation', href: '/test-animation'});
+      this.testNavLinks.push({ text: 'title', href: '/test-title'});
+      this.testNavLinks.push({ text: 'page not found', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
+      // this.testNavLinks.push({ text: 'page not found ', href: '/non-existent'});
     }
   }
 

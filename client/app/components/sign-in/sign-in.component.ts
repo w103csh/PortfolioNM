@@ -1,7 +1,8 @@
 
 import {
   Component,
-  OnInit
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import {
   Router,
@@ -10,11 +11,17 @@ import {
 } from '@angular/router';
 
 import {
-  AuthService
-} from '../../../services/auth.service';
+  ContentComponent,
+} from '../../components/content/content.component';
 import {
   ContentService,
 } from '../../../services/content.service';
+import {
+  AuthService
+} from '../../../services/auth.service';
+import {
+  UsersService
+} from '../../../services/users.service';
 import {
   User
 } from '../../../models/User';
@@ -28,9 +35,7 @@ import {
   templateUrl: './sign-in.component.html',
   styleUrls: ['../../../shared-css/form.css', './sign-in.component.css']
 })
-export class SignInComponent {
-
-  private isMobile: boolean;
+export class SignInComponent extends ContentComponent {
 
   // validation
   private readonly emailRegex: RegExp = new RegExp('^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$');
@@ -38,15 +43,19 @@ export class SignInComponent {
   private passwordVal: string;
 
   private redirectUrl: string;
-  private model: User;
+  private model: User = new User('', '', '');
   private serverMsg: string;
 
-  constructor(private authService: AuthService, private contentService: ContentService, private route: ActivatedRoute, public router: Router) {
-    // defaults
-    this.model = new User('', '', '');
-
-    this.isMobile = contentService.getIsMobile();
-    this.contentService.updateHeader(this.isMobile  ? '' : null);
+  constructor(
+    private authService: AuthService,
+    private usersService: UsersService,
+    private contentService: ContentService,
+    private route: ActivatedRoute,
+    public router: Router
+  ) {
+    super(contentService);
+    this.contentService.updateHeader(this.isMobile ? null : null);
+    this.contentService.updateshowSignInOut(false);
   }
 
   ngOnInit() {
@@ -89,17 +98,32 @@ export class SignInComponent {
   onSubmit() {
     if (this.validate()) {
 
-      this.authService.signin(this.model).subscribe(
-        (response) => {
+      this.authService.signIn(this.model).subscribe(
+        (response: ResponseData) => {
           // TODO: move common logic
           if (response && response.success) {
-            this.serverMsg = null;
-            this.router.navigate([this.redirectUrl]);
+
+            this.usersService.read(response.data.subject.id).subscribe(
+              (response: ResponseData) => {
+                if(response && response.success) {
+                  this.serverMsg = null;
+                  this.authService.updateSignedInUser(response.data);
+                  this.router.navigate([this.redirectUrl]);
+                }
+                else {
+                  this.serverMsg = response.message;
+                }
+              },
+              (err) => {
+                // TODO: log & something else
+                console.log(err);
+                this.serverMsg = 'Server error please try again. If the problem continues contact an administrator.';
+              }
+            )
           }
-          // show message from the server
           else {
-            // // TODO: log
-            // if (!response.message) console.log('Unknown issue. Contact an administrator.')
+            // show message from the server
+            // TODO: log
             this.serverMsg = response.message || 'Unknown issue. Contact an administrator.';
           }
         },
@@ -113,4 +137,7 @@ export class SignInComponent {
     }
   }
 
+  ngOnDestroy() {
+    this.contentService.updateshowSignInOut(true);
+  }
 }

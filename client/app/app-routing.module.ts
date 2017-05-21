@@ -18,7 +18,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AuthGuardService } from '../services/auth-guard.service';
+
+import { AuthGuard } from '../services/auth-guard.service';
+import { CanDeactivateGuard } from '../services/can-deactivate-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -40,32 +42,32 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuard]
   },
   {
     path: 'test-auth',
     component: TestAuthComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuard]
   },
   {
     path: 'test-dialog',
     component: TestDialogComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuard]
   },
   {
     path: 'test-animation',
     component: TestAnimationComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuard]
   },
   {
     path: 'test-title',
     component: TestTitleComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin',
     loadChildren: () => AdminModule,
-    canLoad: [AuthGuardService]
+    canLoad: [AuthGuard]
   },
   {
     path: 'signin',
@@ -89,6 +91,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CanDeactivateGuard]
 })
 export class AppRoutingModule { }

@@ -60,6 +60,13 @@ button.mobile {
   text-shadow: 2px 3px hsl(180, 100%, 10%);
 }
 
+button.menu {
+  color: rgb(243, 243, 243);
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 12px;
+}
+
 button.title:hover, button.title:focus {
   text-decoration: none;
 }

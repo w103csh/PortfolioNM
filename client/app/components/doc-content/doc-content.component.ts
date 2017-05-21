@@ -5,8 +5,11 @@ import {
 } from '@angular/core';
 
 import {
-  PlatformService
-} from '../../../services/platform.service';
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
+  ContentService,
+} from '../../../services/content.service';
 
 @Component({
   moduleId: module.id,
@@ -25,13 +28,13 @@ import {
   // styleUrls: ['./doc-content.component.css', '../../../shared-css/doc-content.css'],
   styleUrls: ['./doc-content.component.css'],
 })
-export class DocContentComponent {
+export class DocContentComponent extends ContentComponent {
   @Input() banner: string;
   @Input() showSunny: boolean;
 
-  private mobileClass: string[] = [];
-
-  constructor(private platformService: PlatformService) {
-    this.mobileClass = this.platformService.isMobile() ? ['mobile'] : [];
+  constructor(
+    private contentService: ContentService
+  ) {
+    super(contentService);
   }
 }

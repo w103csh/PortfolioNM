@@ -14,24 +14,24 @@
   <br />
 
   <div *ngIf='results' class='flex-container-column list-container' [ngClass]=mobileClass >
-    <div class='flex list-item' >
-      <label [ngClass]=mobileClass >Authorize:</label>
+    <div class='flex list-item' [ngClass]=mobileClass >
+      <label>Authorized:</label>
       <span>{{results?.verifyMsg}}</span>
     </div>
-    <div class='flex list-item'>
-      <label [ngClass]=mobileClass >Remember me checked:</label>
+    <div class='flex list-item' [ngClass]=mobileClass >
+      <label>Remember me checked:</label>
       <span>{{ results?.rememberMe | titlecase }}</span>
     </div>
-    <div class='flex list-item'>
-      <label [ngClass]=mobileClass >(IAT) Issued at:</label>
+    <div class='flex list-item' [ngClass]=mobileClass >
+      <label>(IAT) Issued at:</label>
       <span>{{results?.iat}}</span>
     </div>
-    <div class='flex list-item'>
-      <label [ngClass]=mobileClass >(EXP) Expiration Time:</label>
+    <div class='flex list-item' [ngClass]=mobileClass >
+      <label>(EXP) Expiration Time:</label>
       <span>{{results?.exp}}</span>
     </div>
-    <div class='flex list-item'>
-      <label [ngClass]=mobileClass >(SUB) Subject:</label>
+    <div class='flex list-item' [ngClass]=mobileClass >
+      <label>(SUB) Subject:</label>
       <span>{{results?.sub}}</span>
     </div>
   </div>

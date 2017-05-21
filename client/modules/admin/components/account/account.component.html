@@ -1,34 +1,186 @@
 
 <tab-content-container [description]='description' >
 
-  <div class='toolbar-panel' >
+  <div class='toolbar-panel genInfo' >
 
-    <md-toolbar color='primary'>
+    <md-toolbar color='primary' class='toolbar' [ngClass]=mobileClass >
         <span>General Information</span>
-        <span class='toolbar-row-spacer'></span>
-        <button md-mini-fab class='toolbar-row-icon-button' (click)='genInfoEdit()' ><md-icon>edit</md-icon></button>
+        <span class='toolbar-spacer'></span>
+        <button *ngIf='!genInfoDisableForm && !genInfoEnabled' md-mini-fab class='toolbar-icon-button' (click)='genInfoEnableDisable(true)' ><md-icon>edit</md-icon></button>
+        <button *ngIf='!genInfoDisableForm && genInfoEnabled' md-mini-fab class='toolbar-icon-button' (click)='genInfoEnableDisable(false)' ><md-icon>clear</md-icon></button>
     </md-toolbar>
+    <div class='toolbar-content' >
+      <form (ngSubmit)='genInfoOnSubmit()' #genInfoForm='ngForm' >
 
-    <div *ngIf='genInfoShow' class='toolbar-content' >
-      <div>
-        <p><strong>There is nothing here yet.</strong></p>
-        <p><small>Testing a different panel style!</small></p>
-        <p><small>Testing a different panel style!</small></p>
-      </div>
+        <div *ngIf='!genInfoDisableForm' class='genInfoInputs'>
+          <div>
+            <md-input-container class='wide' >
+              <input mdInput placeholder='Email (disabled)'
+                name='email'
+                [(ngModel)]=genInfoModel.email
+                type='email'
+                disabled
+                #email='ngModel' >
+            </md-input-container>
+          </div>
+
+          <div class='flex-container-row' >
+            <div class='half pad' > 
+              <md-input-container class='wide' >
+                <input mdInput placeholder='First name'
+                  name='firstName'
+                  [(ngModel)]=genInfoModel.firstName
+                  disabled
+                  #firstName='ngModel' >
+              </md-input-container>
+            </div>
+            <div class='half' > 
+              <md-input-container class='wide' >
+                <input mdInput placeholder='Last name'
+                  name='lastName'
+                  [(ngModel)]=genInfoModel.lastName
+                  disabled
+                  #lastName='ngModel' >
+              </md-input-container>
+            </div>
+          </div>
+
+          <div>
+            <md-input-container class='wide'>
+              <textarea mdInput placeholder='Address'
+                name='address'
+                [(ngModel)]=genInfoModel.address
+                disabled
+                #address='ngModel' >
+              </textarea>
+            </md-input-container>
+            <md-input-container class='wide'>
+              <textarea mdInput placeholder='Address 2'
+                name='address2'
+                [(ngModel)]=genInfoModel.address2
+                disabled
+                #address2='ngModel' >
+              </textarea>
+            </md-input-container>
+          </div>
+
+          <!-- desktop rows (not a great solution) -->
+          <div *ngIf='!isMobile'>
+            <div class='flex-container-row' >
+              <div class='third pad' > 
+                <md-input-container class='wide' >
+                  <input mdInput placeholder='City'
+                    name='city'
+                    [(ngModel)]=genInfoModel.city
+                    disabled
+                    #city='ngModel' >
+                </md-input-container>
+              </div>
+              <div class='third pad select' >
+                <md-select placeholder='State'
+                  name='state'
+                  [(ngModel)]=genInfoModel.state
+                  disabled
+                  #state='ngModel' >
+                  <md-option *ngFor='let state of stateList' [value]='state.abbr'>{{state.abbr}}</md-option>
+                </md-select>
+              </div>
+              <div class='third' > 
+                <md-input-container class='wide' >
+                  <input mdInput placeholder='Zip'
+                    name='zip'
+                    [(ngModel)]=genInfoModel.zip
+                    disabled
+                    #zip='ngModel' >
+                </md-input-container>
+              </div>
+            </div>
+
+            <div>
+              <md-input-container >
+                <input mdInput placeholder='Phone'
+                  name='phone'
+                  [(ngModel)]=genInfoModel.phone
+                  type='phone'
+                  disabled
+                  #phone='ngModel' >
+              </md-input-container>
+            </div>
+          </div>
+
+          <!-- mobile rows (not a great solution) -->
+          <div *ngIf='isMobile'>
+            <div class='flex-container-row' >
+              <div class='half pad' > 
+                <md-input-container class='wide' >
+                  <input mdInput placeholder='City'
+                    name='city'
+                    [(ngModel)]=genInfoModel.city
+                    disabled
+                    #city='ngModel' >
+                </md-input-container>
+              </div>
+              <div class='half pad select' [ngClass]=mobileClass >
+                <md-select placeholder='State'
+                  name='state'
+                  [(ngModel)]=genInfoModel.state
+                  disabled
+                  #state='ngModel' >
+                  <md-option *ngFor='let state of stateList' [value]='state.abbr'>{{state.abbr}}</md-option>
+                </md-select>
+              </div>
+            </div>
+
+            <div class='flex-container-row' >
+              <div class='half pad' > 
+                <md-input-container class='wide' >
+                  <input mdInput placeholder='Zip'
+                    name='zip'
+                    [(ngModel)]=genInfoModel.zip
+                    disabled
+                    #zip='ngModel' >
+                </md-input-container>
+              </div>
+              <div class='half pad' >
+                <md-input-container >
+                  <input mdInput placeholder='Phone'
+                    name='phone'
+                    [(ngModel)]=genInfoModel.phone
+                    type='phone'
+                    disabled
+                    #phone='ngModel' >
+                </md-input-container>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p *ngIf='genInfoMsg' class='error'>{{ genInfoMsg }}</p>
+
+        <div *ngIf='genInfoEnabled' class='float-right' [@topSlideIn]=topSlideIn >
+          <button md-raised-button type='button' (click)='genInfoEnableDisable(false)' >Cancel</button>
+          <button md-raised-button type='submit' color='primary' >Save</button>
+        </div>
+
+      </form>
     </div>
-
   </div>
 
-  <div class='panel panel-default gen-info' >
+</tab-content-container>
+
+
+
+  <!--<div class='panel panel-default gen-info' >
     <h4>
       General Infomation
       <button md-mini-fab class='panel-btn panel-btn-edit' (click)='genInfoEdit2()' ><md-icon>edit</md-icon></button>
     </h4>
     <div class='panel-body' >
-      <p><strong>There is nothing here yet.</strong></p>
+      <div><strong>There is nothing here yet.</strong></div>
       <label>Selected Option:</label>{{selectedOption}}
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
     </div>
   </div>
 
@@ -38,26 +190,26 @@
     </div>
     <div class='panel-body' >
 
-      <p><strong>There is nothing here yet.</strong></p>
+      <div><strong>There is nothing here yet.</strong></div>
 
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
-      <p><small>Testing a different panel style!</small></p>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
+      <div><small>Testing a different panel style!</small></div>
 
     </div>
   </div>
   
-</tab-content-container>
+</tab-content-container>-->

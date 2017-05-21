@@ -1,5 +1,4 @@
 
-
 <ul class='side-bar-list' >
   <li *ngIf='genNavLinks?.length > 0' class='category' >
     <span>GENERAL</span>
@@ -32,34 +31,4 @@
   </li>
 </ul>
 
-
-<!--<div class='nav-list-wrapper' >
-  <ul class='side-bar-list' >
-    <li class='category' >
-      <span>GENERAL</span>
-    </li>
-    <li *ngFor='let link of genNavLinks' >
-      <a md-raised-button 
-          routerLink='{{link.href}}'
-          routerLinkActive
-          #rla='routerLinkActive'
-          active='rla.isActive'
-          class='wide' >
-        {{ link.text | titlecase }}
-      </a>
-    </li>
-    <li class='category not-top'>
-      <span>TESTS</span>
-    </li>
-    <li *ngFor='let link of testNavLinks' >
-      <a md-raised-button 
-          routerLink='{{link.href}}'
-          routerLinkActive
-          #rla='routerLinkActive'
-          active='rla.isActive'
-          class='wide' >
-        {{ link.text | titlecase }}
-      </a>
-    </li>
-  </ul>
-</div>-->
+<!--<div class='bottom-decor' ></div>-->

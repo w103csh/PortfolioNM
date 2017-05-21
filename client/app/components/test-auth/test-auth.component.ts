@@ -8,11 +8,14 @@ import {
 } from '@angular/router';
 
 import {
-  AuthService,
-} from '../../../services/auth.service';
+  ContentComponent,
+} from '../../components/content/content.component';
 import {
   ContentService,
 } from '../../../services/content.service';
+import {
+  AuthService,
+} from '../../../services/auth.service';
 
 import {
   JwtHelper,
@@ -24,20 +27,26 @@ import {
   templateUrl: './test-auth.component.html',
   styleUrls: ['./test-auth.component.css']
 })
-export class TestAuthComponent {
+export class TestAuthComponent extends ContentComponent {
 
   private header: string = 'Authorization Service Test';
+  
   private results: any = null;
   private jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(private router: Router, private authService: AuthService, private contentService: ContentService) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private contentService: ContentService
+  ) {
+    super(contentService);
     contentService.updateHeader(this.header);
   }
 
   checkToken() {
     this.results = {};
 
-    this.authService.verify().subscribe(
+    this.authService.verifyToken().subscribe(
       response => {
         this.results.verifyMsg = response ? 'Successful!' : 'Failed!';
 

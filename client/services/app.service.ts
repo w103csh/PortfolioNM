@@ -17,6 +17,10 @@ export class AppService {
     this.sidenav = sidenav;
   }
 
+  isSidenavOpen(): boolean {
+    return this.sidenav.opened;
+  }
+
   callSidenavToggleFunc() {
     this.sidenav.toggle();
   }

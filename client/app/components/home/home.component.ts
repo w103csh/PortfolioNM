@@ -11,6 +11,9 @@ import {
 } from '@angular/router';
 
 import {
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
   ContentService,
 } from '../../../services/content.service';
 
@@ -20,19 +23,18 @@ import {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent extends ContentComponent {
 
   private header: string = 'Hello, World!';
   private banner: string = `My name is Colin Hughes. I am a developer currently based out of Denver, CO.`;
-  private fragmentIdPrefix: string;
-  private isMobile: boolean;
+  private fragmentIdPrefix: string = this.router.url + '#';
 
-  constructor(private contentService: ContentService, private router: Router) {
-    // defaults
-    this.fragmentIdPrefix = this.router.url + '#';
-    
+  constructor(
+    private contentService: ContentService,
+    private router: Router,
+  ) {
+    super(contentService);
     contentService.updateHeader(this.header);
-    this.isMobile = this.contentService.getIsMobile();
   }
 
   // Links

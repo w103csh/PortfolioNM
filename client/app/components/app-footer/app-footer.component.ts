@@ -6,8 +6,11 @@ import {
 } from '@angular/core';
 
 import {
-  PlatformService
-} from '../../../services/platform.service';
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
+  ContentService,
+} from '../../../services/content.service';
 import {
   __version
 } from '../../../APP_CONFIG';
@@ -16,19 +19,20 @@ import {
   moduleId: module.id,
   selector: 'app-footer',
   templateUrl: './app-footer.component.html',
-  styleUrls: [ './app-footer.component.css' ],
+  styleUrls: ['./app-footer.component.css'],
 })
-export class AppFooterComponent{
-  
+export class AppFooterComponent extends ContentComponent {
+
   @Input() isSignedIn: boolean = false;
+  private footerClasses: string[];
 
   private version: string;
-  private footerClasses: string[];
-  private mobileClass: string[] = [];
 
-  constructor(private platformService: PlatformService) {
+  constructor(
+    private contentService: ContentService,
+  ) {
+    super(contentService);
     this.version = __version;
-    this.mobileClass = this.platformService.isMobile() ? ['mobile'] : [];
     this.setFooterClasses();
   }
 
@@ -43,6 +47,6 @@ export class AppFooterComponent{
     else {
       this.footerClasses = ['flex-container-row', 'center', 'indent'];
     }
-    if (this.platformService.isMobile()) this.footerClasses.push('mobile');
+    if (this.isMobile) this.footerClasses.push('mobile');
   }
 }

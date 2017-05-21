@@ -1,18 +1,27 @@
 
 import {
-  Component
+  Component,
+  OnInit,
+  ViewChild,
 } from '@angular/core';
 import {
   Router,
   NavigationExtras
 } from '@angular/router';
+// import {
+//   NgModel,
+//   FormControl,
+// } from '@angular/forms';
 
 import {
-  ContentService
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
+  ContentService,
 } from '../../../services/content.service';
 import {
-  UserService
-} from '../../../services/user.service';
+  UsersService
+} from '../../../services/users.service';
 
 import {
   User
@@ -24,24 +33,30 @@ import {
   templateUrl: './sign-up.component.html',
   styleUrls: ['../../../shared-css/form.css', './sign-up.component.css']
 })
-export class SignUpComponent {
+export class SignUpComponent extends ContentComponent {
 
-  private isMobile: boolean;
+  // @ViewChild('email') email: NgModel;
 
   // validation
-  private readonly emailRegex: RegExp = new RegExp('^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$');
+  private readonly emailPattern: string = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
+  private readonly emailRegex: RegExp = new RegExp(this.emailPattern);
   private emailVal: string;
   private passwordVal: string;
 
-  private model: User;
+  private model: User = new User('', '', '');
   private serverMsg: string;
 
-  constructor(private userService: UserService, public router: Router, private contentService: ContentService) {
-    // defaults
-    this.model = new User('', '', '');
+  constructor(
+    private usersService: UsersService,
+    public router: Router,
+    private contentService: ContentService
+  ) {
+    super(contentService);
+    this.contentService.updateHeader(this.isMobile ? null : null);
+  }
 
-    this.isMobile = contentService.getIsMobile();    
-    this.contentService.updateHeader(this.isMobile  ? '' : null);
+  ngOnInit() {
+    // console.log(this.email);
   }
 
   validate(): boolean {
@@ -80,7 +95,7 @@ export class SignUpComponent {
   onSubmit() {
     if (this.validate()) {
 
-      this.userService.create(this.model).subscribe(
+      this.usersService.create(this.model).subscribe(
         response => {
           if (response.success) {
             this.serverMsg = null;

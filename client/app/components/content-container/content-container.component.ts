@@ -12,11 +12,11 @@ import {
 } from '@angular/material';
 
 import {
-  ContentService
-} from '../../../services/content.service';
+  ContentComponent,
+} from '../../components/content/content.component';
 import {
-  AppService
-} from '../../../services/app.service';
+  ContentService,
+} from '../../../services/content.service';
 import {
   AuthService
 } from '../../../services/auth.service';
@@ -29,16 +29,12 @@ import {
   moduleId: module.id,
   selector: 'content-container',
   templateUrl: './content-container.component.html',
-  styleUrls: [ './content-container.component.css' ],
-  providers: [ContentService],
+  styleUrls: ['./content-container.component.css'],
 })
-export class ContentContainerComponent {
+export class ContentContainerComponent extends ContentComponent {
 
   private contentClass: string[] = ['content'];
-  private mobileClass: string[] = ['mobile'];
 
-  private isMobileSub: Subscription;
-  private isMobile: boolean;
   private isDocSub: Subscription;
   private isDoc: boolean;
   private isSignedInSub: Subscription;
@@ -46,7 +42,11 @@ export class ContentContainerComponent {
   private headerSub: Subscription;
   private header: string;
 
-  constructor(private contentService: ContentService, private authService: AuthService, private appService: AppService) {
+  constructor(
+    private contentService: ContentService,
+    private authService: AuthService,
+  ) {
+    super(contentService);
     // This is pretty strange. The above subs don't have to be associated with a change function. The changes happen
     // through interpolation. When the subs below change we want to call a function here in the class, so we need to 
     // call the functions we need in the subscription set logic. ngOnChanges does not fire from a subscription setter!!!
@@ -58,17 +58,10 @@ export class ContentContainerComponent {
       this.header = header;
       this.checkHeader();
     });
-
-    this.mobileClass = this.contentService.getIsMobile() ? ['mobile']: [];
-    this.isMobile = this.contentService.getIsMobile();
-  }
-
-  showSidenavClick() {
-    this.appService.callSidenavToggleFunc();
   }
 
   checkHeader() {
-    if(this.header) {
+    if (this.header) {
       this.setSignedInClasses();
     }
     else {

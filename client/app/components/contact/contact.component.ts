@@ -4,6 +4,9 @@ import {
 } from '@angular/core';
 
 import {
+  ContentComponent,
+} from '../../components/content/content.component';
+import {
   ContentService,
 } from '../../../services/content.service';
 
@@ -19,10 +22,9 @@ import {
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
-export class ContactComponent {
+export class ContactComponent extends ContentComponent {
 
   private header: string = 'Contact me';
-  private mobileClass: string[] = ['.mobile'];
 
   // File download strings
   private url: string = __apiUrl + '/file/download/';
@@ -31,27 +33,27 @@ export class ContactComponent {
 
   private listItems: { aInnards: string, href: string, linkText: string, target: string }[];
 
-  constructor(private contentService: ContentService) {
+  constructor(
+    private contentService: ContentService,
+  ) {
+    super(contentService);
     contentService.updateHeader(this.header);
-    this.mobileClass = this.contentService.getIsMobile() ? ['mobile'] : [];
     this.setListData();
   }
 
   setListData() {
-    let isMobile = this.contentService.getIsMobile();
-
     this.listItems = [
       {
         aInnards: '<img src="images/linkedin-box-white.png" />',
         href: 'https://www.linkedin.com/in/colin-hughes-15047a7a',
         linkText: 'See my Linked In profile.',
-        target: isMobile && false ? null : '_blank',
+        target: this.isMobile && false ? null : '_blank',
       },
       {
         aInnards: '<img src="images/github-circle-white.png" />',
         href: 'https://github.com/w103csh/PortfolioNM',
         linkText: 'View, or clone the source code for this website from GitHub.',
-        target: isMobile && false ? null : '_blank',
+        target: this.isMobile && false ? null : '_blank',
       },
       {
         aInnards: '<img src="images/file-pdf-box-white.png" />',
@@ -69,7 +71,7 @@ export class ContactComponent {
         aInnards: '<img src="images/google-drive-white.png" />',
         href: 'https://docs.google.com/document/d/1LVWKC3lJRgdu8HdQDb4YiU6YNmQfQs6OuXbKisX8eac/edit?usp=sharing',
         linkText: 'See my resume as in Google Docs.',
-        target: isMobile && false ? null : '_blank',
+        target: this.isMobile && false ? null : '_blank',
       },
     ];
   }

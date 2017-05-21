@@ -27,8 +27,8 @@
           [(ngModel)]='model.email' 
           name='email'
           required
-          pattern='emailRegex'
           #email='ngModel' >
+          <!--pattern='emailPattern'-->
         <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
         <md-error *ngSwitchCase='"email"' >Must be a valid email address</md-error>
       </md-input-container>

@@ -21,12 +21,12 @@ export class ContentService {
   // Observable sources
   private isMobileSource = new BehaviorSubject<boolean>(false);
   private headerSource = new BehaviorSubject<string>(null);
-  // private bannerSource = new BehaviorSubject<string>(null);
+  private showSignInOutSource = new BehaviorSubject<boolean>(true);
 
   // Observable streams
   isMobile$ = this.isMobileSource.asObservable();
   header$ = this.headerSource.asObservable();
-  // banner$ = this.bannerSource.asObservable();
+  showSignInOut$ = this.showSignInOutSource.asObservable();
 
   constructor(private platformService: PlatformService) {
     this.updateIsMobile(platformService.isMobile());
@@ -39,12 +39,11 @@ export class ContentService {
 
   updateHeader(header: string) {
     this.headerSource.next(header);
-    // this.bannerSource.next(null);
   }
 
-  // updateBanner(banner: string) {
-  //   this.bannerSource.next(banner);
-  // }
+  updateshowSignInOut(show: boolean) {
+    this.showSignInOutSource.next(show);
+  }
 
   // Behavior getters
   getIsMobile(): boolean {
