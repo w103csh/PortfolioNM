@@ -74,7 +74,7 @@ export class TitleBarButtonGroupComponent{
   }
 
   signInOrOut() {
-    menuClick('signInOut');
+    this.menuClick('signInOut');
   }
 
   ngOnDestroy() {

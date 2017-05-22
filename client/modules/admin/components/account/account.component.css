@@ -43,9 +43,15 @@ md-error, p.error {
   color: darkred;
 }
 
-md-select {
-  margin-top: 5px;
-}
+/*md-select {
+  height: 16px;
+  line-height: normal;
+  position: relative;
+}*/
+
+/*md-select .mat-select-trigger {
+  height: 16px;
+}*/
 
 .select:not(.mobile) md-select {
   width: 90%;
