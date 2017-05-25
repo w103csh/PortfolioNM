@@ -7,30 +7,32 @@
 
     <form (ngSubmit)='onSubmit()' #signUpForm='ngForm' >
 
+      <md-input-container class='wide' [ngSwitch]='emailVal' >
+        <input mdInput placeholder='Email'
+          type='email'
+          [(ngModel)]=model.email
+          name='email'
+          required
+          #email='ngModel'
+          >
+        <md-error *ngIf='password.hasError("required")' >This is a required field</md-error>
+        <md-error *ngIf='password.hasError("regex")' >Must be a valid email address</md-error>
+      </md-input-container>
+
       <md-input-container class='wide' >
         <input mdInput placeholder='First name'
-          [(ngModel)]='model.firstName' 
+          [(ngModel)]=model.firstName
           name='firstName'
-          #firstName='ngModel' >
+          #firstName='ngModel'
+          >
       </md-input-container>
       
       <md-input-container class='wide' >
         <input mdInput placeholder='Last name'
-          [(ngModel)]='model.lastName' 
+          [(ngModel)]=model.lastName
           name='lastName'
-          #lastName='ngModel' >
-      </md-input-container>
-
-      <md-input-container class='wide' [ngSwitch]='emailVal' >
-        <input mdInput placeholder='Email'
-          type='email'
-          [(ngModel)]='model.email' 
-          name='email'
-          required
-          #email='ngModel' >
-          <!--pattern='emailPattern'-->
-        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
-        <md-error *ngSwitchCase='"email"' >Must be a valid email address</md-error>
+          #lastName='ngModel'
+          >
       </md-input-container>
 
       <md-input-container class='wide' [ngSwitch]='passwordVal' >
@@ -40,9 +42,25 @@
           name='password'
           required
           minlength='7'
-          #password='ngModel'>
-        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
-        <md-error *ngSwitchCase='"length"' >Must have at least 7 characters</md-error>
+          #password='ngModel'
+          >
+        <md-error *ngIf='password.hasError("required")' >This is a required field</md-error>
+        <md-error *ngIf='password.hasError("minlength")' >Must have at least 7 characters</md-error>
+      </md-input-container>
+
+      <md-input-container class='wide' >
+        <input mdInput placeholder='Confirm password'
+          type='password'
+          [(ngModel)]=model.confirmPassword
+          name='confirmPassword'
+          required
+          minlength='7'
+          [attr.password]=password.value
+          #confirmPassword='ngModel'
+          >
+        <md-error *ngIf='confirmPassword.hasError("required")' >This is a required field</md-error>
+        <md-error *ngIf='confirmPassword.hasError("minlength")' >Must have at least 7 characters</md-error>
+        <md-error *ngIf='confirmPassword.hasError("match")' >Passwords must match</md-error>
       </md-input-container>
 
       <p *ngIf='serverMsg' class='error'>{{serverMsg}}</p>

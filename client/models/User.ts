@@ -6,6 +6,7 @@ export class User {
     public firstName?: string,
     public lastName?: string,
     public password?: string,
+    public confirmPassword?: string,
     public rememberMe?: boolean,
     public address?: string,
     public address2?: string,
@@ -26,6 +27,7 @@ export class User {
       this.firstName,
       this.lastName,
       this.password,
+      this.confirmPassword,
       this.rememberMe,
       this.address,
       this.address2,
@@ -37,17 +39,18 @@ export class User {
   }
 
   isDiff(user: User): boolean {
-    return user.email != this.email ||
-      user.id != this.id ||
-      user.firstName != this.firstName ||
-      user.lastName != this.lastName ||
-      user.password != this.password ||
-      user.rememberMe != this.rememberMe ||
-      user.address != this.address ||
-      user.address2 != this.address2 ||
-      user.city != this.city ||
-      user.state != this.state ||
-      user.zip != this.zip ||
-      user.phone != this.phone;
+    return user.email !== this.email
+      || user.id !== this.id
+      || user.firstName !== this.firstName
+      || user.lastName !== this.lastName
+      || user.password !== this.password
+      || user.confirmPassword !== this.confirmPassword
+      || user.rememberMe !== this.rememberMe
+      || user.address !== this.address
+      || user.address2 !== this.address2
+      || user.city !== this.city
+      || user.state !== this.state
+      || user.zip !== this.zip
+      || user.phone !== this.phone;
   }
 }
