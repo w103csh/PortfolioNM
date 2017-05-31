@@ -134,7 +134,7 @@ module.exports = {
               newUser.saveAsync()
                 .then((newUser) => {
                   if(newUser) {
-                    removePassword(newUser);
+                    newUser = removePassword(newUser);
                     return done(null, newUser);
                   }
                   else {
@@ -185,7 +185,7 @@ module.exports = {
         // console.log(updatedUser);
 
         if (updatedUser) {
-          removePassword(updatedUser);
+          updatedUser = removePassword(updatedUser);
           return done(null, updatedUser);
         }
         else {
