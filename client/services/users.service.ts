@@ -55,7 +55,7 @@ export class UsersService {
 
   }
 
-  read(id: string): Observable<ResponseData> {
+  read(id): Observable<ResponseData> {
 
     let url = id ? (this.baseUrl + '/' + id) : this.baseUrl;
 
@@ -129,6 +129,7 @@ export class UsersService {
 
   }
 
+  // TODO: this is terrible. Change this. Consider changing id to _id for User object.
   createUserFromJSON(user: any): User {
     return new User(
       user.email,
@@ -136,6 +137,7 @@ export class UsersService {
       user.firstName,
       user.lastName,
       user.password,
+      user.confirmPassword,
       user.rememberMe,
       user.address,
       user.address2,

@@ -77,7 +77,7 @@ export class HomeComponent extends ContentComponent {
 
   // Disclaimer
   private disclaimers: any = {
-    intro: `<strong>Note</strong> - This site is a work in progress. I could be working on it right now...<br />
+    intro: `<strong>Notes</strong> - This site now has custom mobile layouts and CSS. Check it out!!!<br />
     <br />
     <i>Also, some of my programmer musings are gated behind the sign in button in the top right. There should be some cool
     stuff behind there. It depends on what I am currently toying around with. If you want, make an account, and see.</i>`
