@@ -6,7 +6,8 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  MdDialogRef
+  MdDialogRef,
+  MdDialogContainer
 } from '@angular/material';
 
 @Component({
@@ -19,8 +20,8 @@ export class YesNoDialogComponent {
 
   private config: any;
 
-  constructor(public dialogRef: MdDialogRef<YesNoDialogComponent>) {
-    let data = this.dialogRef._containerInstance.dialogConfig && this.dialogRef._containerInstance.dialogConfig.data;
+  constructor(public dialogRef: MdDialogRef<YesNoDialogComponent>, container: MdDialogContainer) {
+    let data = container._config && container._config.data;
     this.setData(data);
   }
 
