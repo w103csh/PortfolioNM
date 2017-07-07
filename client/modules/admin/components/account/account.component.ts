@@ -109,7 +109,7 @@ export class AccountComponent extends ContentComponent {
     this.createFormControlArray('genInfo');
 
     // Disable forms to start
-    this.enableDisableFormControls(this.genInfoControls, false);
+    //this.enableDisableFormControls(this.genInfoControls, false);
   }
 
   canDeactivate(): Observable<boolean> | boolean {

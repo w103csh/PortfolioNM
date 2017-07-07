@@ -7,16 +7,16 @@
 
     <form (ngSubmit)='onSubmit()' #signUpForm='ngForm' >
 
-      <md-input-container class='wide' [ngSwitch]='emailVal' >
+      <md-input-container class='wide' >
         <input mdInput placeholder='Email'
           type='email'
-          [(ngModel)]=model.email
+          [(ngModel)]='model.email'
           name='email'
           required
           #email='ngModel'
           >
-        <md-error *ngIf='password.hasError("required")' >This is a required field</md-error>
-        <md-error *ngIf='password.hasError("regex")' >Must be a valid email address</md-error>
+        <md-error *ngIf='email.hasError("required")' >This is a required field</md-error>
+        <md-error *ngIf='email.hasError("regex")' >Must be a valid email address</md-error>
       </md-input-container>
 
       <md-input-container class='wide' >
@@ -29,13 +29,13 @@
       
       <md-input-container class='wide' >
         <input mdInput placeholder='Last name'
-          [(ngModel)]=model.lastName
+          [(ngModel)]='model.lastName'
           name='lastName'
           #lastName='ngModel'
           >
       </md-input-container>
 
-      <md-input-container class='wide' [ngSwitch]='passwordVal' >
+      <md-input-container class='wide' >
         <input mdInput placeholder='Password'
           type='password'
           [(ngModel)]='model.password' 
@@ -51,7 +51,7 @@
       <md-input-container class='wide' >
         <input mdInput placeholder='Confirm password'
           type='password'
-          [(ngModel)]=model.confirmPassword
+          [(ngModel)]='model.confirmPassword'
           name='confirmPassword'
           required
           minlength='7'

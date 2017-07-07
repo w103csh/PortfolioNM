@@ -63,9 +63,6 @@ export class SignUpComponent extends ContentComponent {
   // validation
   private readonly emailPattern: string = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
   private readonly emailRegex: RegExp = new RegExp(this.emailPattern);
-  private emailVal: string;
-  private passwordVal: string;
-  private confirmPasswordVal: string;
 
   private model: User = new User('', '', '');
   private serverMsg: string;

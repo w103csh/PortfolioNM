@@ -62,6 +62,12 @@ md-error, p.error {
   width: 100%;
 }
 
+.select {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 13px;
+}
 
 p.error{
   font-size: 14px;

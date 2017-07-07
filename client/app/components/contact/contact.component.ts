@@ -69,7 +69,7 @@ export class ContactComponent extends ContentComponent {
       },
       {
         aInnards: '<img src="images/google-drive-white.png" />',
-        href: 'https://docs.google.com/document/d/1LVWKC3lJRgdu8HdQDb4YiU6YNmQfQs6OuXbKisX8eac/edit?usp=sharing',
+        href: 'https://docs.google.com/document/d/1zHo4IkVjRJ6FK5dHURe6WPNeCFgC_GZ3KIU0_iH9RaM/edit?usp=sharing',
         linkText: 'See my resume as in Google Docs.',
         target: this.isMobile && false ? null : '_blank',
       },

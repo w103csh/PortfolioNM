@@ -7,28 +7,29 @@
 
     <form (ngSubmit)='onSubmit()' #signInForm='ngForm' >
 
-      <md-input-container class='wide' [ngSwitch]='emailVal' >
+      <md-input-container class='wide' >
         <input mdInput placeholder='Email'
           type='email'
-          [(ngModel)]='model.email' 
+          [(ngModel)]='model.email'
           name='email'
           required
-          #email='ngModel' >
-          <!-- patter=emailRegex -->
-        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
-        <md-error *ngSwitchCase='"email"' >Must be a valid email address</md-error>
+          #email='ngModel'
+          >
+        <md-error *ngIf='email.hasError("required")' >This is a required field</md-error>
+        <md-error *ngIf='email.hasError("regex")' >Must be a valid email address</md-error>
       </md-input-container>
 
-      <md-input-container class='wide' [ngSwitch]='passwordVal' >
+      <md-input-container class='wide' >
         <input mdInput placeholder='Password'
           type='password'
           [(ngModel)]='model.password' 
           name='password'
           required
           minlength='7'
-          #password='ngModel'>
-        <md-error *ngSwitchCase='"required"' >This is a required field</md-error>
-        <md-error *ngSwitchCase='"length"' >Must have at least 7 characters</md-error>
+          #password='ngModel'
+          >
+        <md-error *ngIf='password.hasError("required")' >This is a required field</md-error>
+        <md-error *ngIf='password.hasError("minlength")' >Must have at least 7 characters</md-error>
       </md-input-container>
       
       <md-checkbox class='mat-checkbox' [(ngModel)]='model.rememberMe' name='rememberMe' >Remember me</md-checkbox>
