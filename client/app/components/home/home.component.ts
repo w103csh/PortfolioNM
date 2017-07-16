@@ -77,7 +77,7 @@ export class HomeComponent extends ContentComponent {
 
   // Disclaimer
   private disclaimers: any = {
-    intro: `<strong>Notes</strong> - This site now has custom mobile layouts and CSS. Check it out!!!<br />
+    intro: `<strong>Note</strong> - This site now has custom mobile layouts and CSS. Check it out!!!<br />
     <br />
     <i>Also, some of my programmer musings are gated behind the sign in button in the top right. There should be some cool
     stuff behind there. It depends on what I am currently toying around with. If you want, make an account, and see.</i>`
@@ -111,7 +111,7 @@ export class HomeComponent extends ContentComponent {
     `So, what does the <i>NM</i> stand for in <u>PortfolioNM</u>?  Well, the <i>N</i> stands for `
     + this.links.node1 +
     `, and the <i>M</i> stands for `
-    + this.links.mongo +
+    + this.links.mongo1 +
     `, and these are two of the techonologies that power the site` +
     //+ this.links.mots1 + 
     `. Normally, this would not be noteworthy, but `

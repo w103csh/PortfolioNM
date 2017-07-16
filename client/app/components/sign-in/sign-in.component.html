@@ -16,7 +16,7 @@
           #email='ngModel'
           >
         <md-error *ngIf='email.hasError("required")' >This is a required field</md-error>
-        <md-error *ngIf='email.hasError("regex")' >Must be a valid email address</md-error>
+        <md-error *ngIf='!email.hasError("required") && email.hasError("regex")' >Must be a valid email address</md-error>
       </md-input-container>
 
       <md-input-container class='wide' >
@@ -29,7 +29,7 @@
           #password='ngModel'
           >
         <md-error *ngIf='password.hasError("required")' >This is a required field</md-error>
-        <md-error *ngIf='password.hasError("minlength")' >Must have at least 7 characters</md-error>
+        <md-error *ngIf='!password.hasError("required") && password.hasError("minlength")' >Must have at least 7 characters</md-error>
       </md-input-container>
       
       <md-checkbox class='mat-checkbox' [(ngModel)]='model.rememberMe' name='rememberMe' >Remember me</md-checkbox>

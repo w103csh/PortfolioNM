@@ -16,12 +16,12 @@
           #email='ngModel'
           >
         <md-error *ngIf='email.hasError("required")' >This is a required field</md-error>
-        <md-error *ngIf='email.hasError("regex")' >Must be a valid email address</md-error>
+        <md-error *ngIf='!email.hasError("required") && email.hasError("regex")' >Must be a valid email address</md-error>
       </md-input-container>
 
       <md-input-container class='wide' >
         <input mdInput placeholder='First name'
-          [(ngModel)]=model.firstName
+          [(ngModel)]='model.firstName'
           name='firstName'
           #firstName='ngModel'
           >
@@ -45,7 +45,7 @@
           #password='ngModel'
           >
         <md-error *ngIf='password.hasError("required")' >This is a required field</md-error>
-        <md-error *ngIf='password.hasError("minlength")' >Must have at least 7 characters</md-error>
+        <md-error *ngIf='!password.hasError("required") && password.hasError("minlength")' >Must have at least 7 characters</md-error>
       </md-input-container>
 
       <md-input-container class='wide' >
@@ -55,12 +55,13 @@
           name='confirmPassword'
           required
           minlength='7'
-          [attr.password]=password.value
+          [attr.password]='password.value'
           #confirmPassword='ngModel'
           >
+        <!-- TODO: I did not see an easy way to do else if. Check back later to see if an easier solution presents itself. -->
         <md-error *ngIf='confirmPassword.hasError("required")' >This is a required field</md-error>
-        <md-error *ngIf='confirmPassword.hasError("minlength")' >Must have at least 7 characters</md-error>
-        <md-error *ngIf='confirmPassword.hasError("match")' >Passwords must match</md-error>
+        <md-error *ngIf='!confirmPassword.hasError("required") && confirmPassword.hasError("minlength")' >Must have at least 7 characters</md-error>
+        <md-error *ngIf='!confirmPassword.hasError("required") && !confirmPassword.hasError("minlength") && confirmPassword.hasError("match")' >Passwords must match</md-error>
       </md-input-container>
 
       <p *ngIf='serverMsg' class='error'>{{serverMsg}}</p>

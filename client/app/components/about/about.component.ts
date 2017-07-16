@@ -61,7 +61,7 @@ export class AboutComponent {
     `So, what does the <i>NM</i> stand for in <u>PortfolioNM</u>?  Well, the <i>N</i> stands for `
     + this.links.node1 +
     `, and the <i>M</i> stands for `
-    + this.links.mongo +
+    + this.links.mongo1 +
     `, and these are two of the techonologies that power the site` +
     //+ this.links.mots1 + 
     `. Normally, this would not be noteworthy, but `
