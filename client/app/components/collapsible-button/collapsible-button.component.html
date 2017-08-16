@@ -1,8 +1,9 @@
   
 <button md-button
+  #toggleButton
   [ngClass]=mobileClass
   color='{{color}}'
-  (click)='toggle()'
+  (click)='toggle($event)'
   data-toggle='collapse'
   [attr.data-target]='"#"+targetId'
   [attr.aria-expanded]='expand'

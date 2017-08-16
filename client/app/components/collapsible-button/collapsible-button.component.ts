@@ -2,8 +2,13 @@
 import {
   Component,
   Input,
-  OnInit
+  OnInit,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
+import {
+  MdButton,
+} from '@angular/material';
 
 import {
   ContentComponent,
@@ -31,12 +36,23 @@ export class CollapsibleButtonComponent extends ContentComponent {
   @Input() breakBeforeTarget: boolean = true;
   @Input() isMobile: boolean;
 
+  @ViewChild('toggleButton') toggleButton: MdButton;
+
   ngOnInit() {
     if (this.expand)
       this.toggleClasses.push('in');
   }
 
-  toggle() {
-    this.expand = !this.expand;
+  toggle(event: Event) {
+    if (event.srcElement.tagName.toLowerCase() == 'md-icon') {
+      this.toggleButton._elementRef.nativeElement.click();
+    }
+    else {
+      this.expand = !this.expand;
+    }
+  }
+
+  toggleIcon() {
+    console.log('here');
   }
 }
