@@ -51,8 +51,4 @@ export class CollapsibleButtonComponent extends ContentComponent {
       this.expand = !this.expand;
     }
   }
-
-  toggleIcon() {
-    console.log('here');
-  }
 }
